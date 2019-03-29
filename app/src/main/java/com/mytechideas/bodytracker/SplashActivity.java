@@ -1,9 +1,11 @@
 package com.mytechideas.bodytracker;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.os.Handler;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
@@ -33,5 +35,14 @@ public class SplashActivity extends AppCompatActivity {
         logoImageView.startAnimation(animation);
 
         sloganTextView.startAnimation(animation);
+
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Intent intent =new Intent(SplashActivity.this,MainActivity.class);
+                startActivity(intent);
+            }
+        }, 2000);
     }
 }
