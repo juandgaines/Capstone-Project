@@ -34,6 +34,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.755"
-        tools:text="Your personal recipe friend" />
+        android:text="Your personal recipe friend" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
