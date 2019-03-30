@@ -4,6 +4,7 @@ package com.mytechideas.bodytracker;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.firebase.ui.auth.AuthUI;
@@ -14,6 +15,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.mytechideas.bodytracker.retrofit.EdamamService;
 import com.mytechideas.bodytracker.retrofit.Example;
+import com.squareup.picasso.Picasso;
 
 import java.util.Arrays;
 import java.util.List;
@@ -21,6 +23,8 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -33,13 +37,15 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth mFirebaseAuth;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
     private String name;
-
+    @BindView(R.id.profile_pic)
+    ImageView profileImageView;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
 
         mFirebaseAuth=FirebaseAuth.getInstance();
         mAuthStateListener=new FirebaseAuth.AuthStateListener() {
@@ -51,7 +57,10 @@ public class MainActivity extends AppCompatActivity {
                 if(user!=null){
                     Toast.makeText(MainActivity.this,"Bienvenido",Toast.LENGTH_LONG).show();
                      name= user.getDisplayName();
-                       
+                     Picasso.get().load(user.getPhotoUrl()).resize(400, 400)
+                            .centerCrop().into(profileImageView);
+
+
                 }
                 else{
                     startActivityForResult(
