@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "35357446436",
+    "firebase_url": "https://bodytracker-3b8e5.firebaseio.com",
+    "project_id": "bodytracker-3b8e5",
+    "storage_bucket": "bodytracker-3b8e5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:35357446436:android:169748ee5f63f6f2",
+        "android_client_info": {
+          "package_name": "com.mytechideas.bodytracker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "35357446436-ja2tl62aj9h0455o1q72qr5453nk5mpc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mytechideas.bodytracker",
+            "certificate_hash": "e51f9656f8f1a91ca924071975b7fcc3692a9d2a"
+          }
+        },
+        {
+          "client_id": "35357446436-3ch6s2kn443krgr0u5b86bmlr7m2ukq1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCixIaDWUnjvLa2tfj0wHegbZu6Gzwmc_8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "35357446436-3ch6s2kn443krgr0u5b86bmlr7m2ukq1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
