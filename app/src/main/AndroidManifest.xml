@@ -24,6 +24,10 @@
             android:theme="@style/AppTheme">
 
         </activity>
+        <activity android:name=".onboarding.IntroPagerActivity"
+            android:theme="@style/AppTheme">
+
+        </activity>
     </application>
 
 </manifest>

@@ -2,6 +2,7 @@ package com.mytechideas.bodytracker;
 
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageView;
@@ -13,6 +14,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.core.Repo;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.mytechideas.bodytracker.onboarding.IntroPagerActivity;
 import com.mytechideas.bodytracker.retrofit.EdamamService;
 import com.mytechideas.bodytracker.retrofit.Example;
 import com.squareup.picasso.Picasso;
@@ -23,6 +25,7 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.preference.PreferenceManager;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import retrofit2.Call;
@@ -47,6 +50,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
+
+
         mFirebaseAuth=FirebaseAuth.getInstance();
         mAuthStateListener=new FirebaseAuth.AuthStateListener() {
             @Override
@@ -59,7 +64,14 @@ public class MainActivity extends AppCompatActivity {
                      name= user.getDisplayName();
                      Picasso.get().load(user.getPhotoUrl()).resize(400, 400)
                             .centerCrop().into(profileImageView);
-
+                    SharedPreferences sharedPreferences =
+                            PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+                    // Check if we need to display our OnboardingFragment
+                    if (!sharedPreferences.getBoolean(
+                            getResources().getString(R.string.first_time_app), false)) {
+                        // The user hasn't seen the OnboardingFragment yet, so show it
+                        startActivity(new Intent(MainActivity.this, IntroPagerActivity.class));
+                    }
 
                 }
                 else{
