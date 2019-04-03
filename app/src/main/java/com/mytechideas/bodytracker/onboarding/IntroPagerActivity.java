@@ -15,30 +15,41 @@ import com.mytechideas.bodytracker.R;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.viewpager.widget.ViewPager;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class IntroPagerActivity extends AppCompatActivity {
 
-    private ViewPager mSlideViewPager;
-    private Button mPrevButton;
-    private Button mNextButton;
-    private TabLayout mDotLayout;
+    @BindView(R.id.slideViewPager)
+    ViewPager mSlideViewPager;
+    @BindView(R.id.prev_button)
+    Button mPrevButton;
+    @BindView(R.id.next_button)
+    Button mNextButton;
+
+    @BindView(R.id.tabDots)
+    TabLayout mDotLayout;
+
     private SliderAdapter mSliderAdapter;
     private int mCurrentPage;
+    private  String name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_intro_pager);
+        ButterKnife.bind(this);
 
 
-        mSlideViewPager=(ViewPager) findViewById(R.id.slideViewPager);
-        mPrevButton =(Button) findViewById(R.id.prev_button);
-        mNextButton =(Button) findViewById(R.id.next_button);
+        Intent intent=getIntent();
 
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabDots);
-        tabLayout.setupWithViewPager(mSlideViewPager, true);
+        if(intent!=null && intent.hasExtra(Intent.EXTRA_TEXT)){
 
-        mSliderAdapter= new SliderAdapter(getSupportFragmentManager());
+            name=intent.getStringExtra(Intent.EXTRA_TEXT);
+        }
+        mDotLayout.setupWithViewPager(mSlideViewPager, true);
+
+        mSliderAdapter= new SliderAdapter(getSupportFragmentManager(),name);
 
         mSlideViewPager.setAdapter(mSliderAdapter);
 

@@ -70,7 +70,9 @@ public class MainActivity extends AppCompatActivity {
                     if (!sharedPreferences.getBoolean(
                             getResources().getString(R.string.first_time_app), false)) {
                         // The user hasn't seen the OnboardingFragment yet, so show it
-                        startActivity(new Intent(MainActivity.this, IntroPagerActivity.class));
+                        Intent intent =new Intent(MainActivity.this, IntroPagerActivity.class);
+                        intent.putExtra(Intent.EXTRA_TEXT,name);
+                        startActivity(intent);
                     }
 
                 }

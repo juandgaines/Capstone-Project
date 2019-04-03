@@ -6,9 +6,12 @@ import androidx.fragment.app.FragmentPagerAdapter;
 
 public class SliderAdapter extends FragmentPagerAdapter {
     private static int NUM_ITEMS = 3;
+    private String mName;
 
-    public SliderAdapter(FragmentManager fragmentManager) {
+    public SliderAdapter(FragmentManager fragmentManager, String name) {
+
         super(fragmentManager);
+        mName=name;
     }
 
     @Override
@@ -20,7 +23,9 @@ public class SliderAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0: // Fragment # 0 - This will show FirstFragment
-                return new OnboardingFragment1();
+                OnboardingFragment1 onboardingFragment1= new OnboardingFragment1();
+                onboardingFragment1.setName(mName);
+                return onboardingFragment1 ;
             case 1: // Fragment # 0 - This will show FirstFragment different title
                 return new OnboardingFragment2();
             case 2: // Fragment # 1 - This will show SecondFragment
