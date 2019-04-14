@@ -5,4 +5,26 @@
     <string name="finish_sentence">Finish</string>
     <string name="first_time_app" translatable="false">firts_time_login</string>
     <string name="edittext_brithday_hint">Tap to insert a date...</string>
+    <string name="height_text">Height</string>
+    <string name="weight_text">Weight</string>
+    <string name="name_text">Name</string>
+    <string name="birthday_text">Birthday</string>
+    <string name="gender_text">Gender</string>
+    <string name="user_data_text">User data</string>
+    <string name="lifestyle_sedentary_title">Sedentary</string>
+    <string name="lifestyle_sedentary_description">Unless you do at least 30 minutes per day of intentional exercise, you are considered sedentary</string>
+    <string name="lifestyle_moderately_active_title">Lightly Active</string>
+    <string name="lifestyle_moderately_active_description">Daily exercise that is equal to walking for 30 minutes at 4mph.  For an adult of average weight, this amount of exercise will burn about 130-160 additional calories.</string>
+    <string name="lifestyle_active_title">Active</string>
+    <string name="lifestyle_active_description">Daily exercise that is equal to walking for 1 hour and 45 minutes at 4mph.  For an adult of average weight, this amount of exercise will burn about 470-580 additional calories.</string>
+    <string name="lifestyle_highly_active_title">Very Active</string>
+    <string name="lifestyle_highly_active_description">Daily exercise that is equal to walking for 4 hours and 15 minutes at 4mph.  For an adult of average weight, this amount of exercise will burn about 1,150-1400 additional calories.</string>
+    <string name="lifestyle_text">Lifestyle</string>
+
+
+    <string-array name="gender_array">
+        <item>Select</item>
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
 </resources>

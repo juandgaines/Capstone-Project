@@ -1,8 +1,5 @@
 <component name="libraryTable">
   <library name="Gradle: androidx.media:media:1.0.0@aar">
-    <ANNOTATIONS>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/media-1.0.0.aar/7150784add6a468f95904d49f59b5a73/annotations.zip!/" />
-    </ANNOTATIONS>
     <CLASSES>
       <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/media-1.0.0.aar/7150784add6a468f95904d49f59b5a73/res" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/media-1.0.0.aar/7150784add6a468f95904d49f59b5a73/jars/classes.jar!/" />
