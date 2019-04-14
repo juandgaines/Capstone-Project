@@ -25,7 +25,7 @@ import androidx.recyclerview.widget.RecyclerView;
 public class AdapterCardTextAndImage extends RecyclerView.Adapter<AdapterCardTextAndImage.MyViewHolder> {
 
     Context mContext;
-    int mOption=-1;
+    private int mOption=-1;
     List<LifeStyle> lifeStyles= new ArrayList<LifeStyle>();
 
 

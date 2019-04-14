@@ -12,6 +12,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.mytechideas.bodytracker.R;
 
@@ -36,6 +37,10 @@ public class OnboardingFragment1 extends Fragment implements AdapterView.OnItemS
     EditText mDateView;
     @BindView(R.id.gender_spinner)
     Spinner mSpinner;
+    @BindView(R.id.weight_view)
+    EditText mWeight;
+    @BindView(R.id.height_view)
+    EditText mHeight;
     @BindView(R.id.lifestyle_recycler_view)
     RecyclerView mRecyclerView;
 
@@ -47,6 +52,7 @@ public class OnboardingFragment1 extends Fragment implements AdapterView.OnItemS
     DatePickerDialog datePickerDialog;
     private String mGender;
     private GridLayoutManager layoutManager;
+    private int edad=-1;
 
     private AdapterCardTextAndImage mAdapter;
 
@@ -68,13 +74,14 @@ public class OnboardingFragment1 extends Fragment implements AdapterView.OnItemS
 
         mUserName.setText(mName);
         mUserName.setEnabled(false);
-
+        int Actual=mYear;
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(),
                 R.array.gender_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mSpinner.setOnItemSelectedListener(this);
         mSpinner.setAdapter(adapter);
+
 
 
         mDateView.setOnClickListener(new View.OnClickListener() {
@@ -87,8 +94,14 @@ public class OnboardingFragment1 extends Fragment implements AdapterView.OnItemS
                         mDateView.setText(year +"/"+ (month+1)+"/"+day);
 
                         mYear=year;
+                        edad=Actual-mYear;
+
+                        if(mMonth<month){
+                            edad--;
+                        }
                         mMonth=month;
                         mDay=day;
+
 
                         Log.d(LOG_TAG,"Date:"+year +"/"+ (month)+"/"+day);
                     }
@@ -116,6 +129,7 @@ public class OnboardingFragment1 extends Fragment implements AdapterView.OnItemS
     }
 
 
+
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
         mGender=(String) parent.getItemAtPosition(pos);
@@ -125,6 +139,46 @@ public class OnboardingFragment1 extends Fragment implements AdapterView.OnItemS
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
 
+    }
+
+    public boolean validateUserData() {
+        float numericalWeight;
+        float numericalHeight;
+        String[] list= getResources().getStringArray(R.array.gender_array);
+        if (edad <= 18) {
+            Toast.makeText(getContext(),"No menores de edad",Toast.LENGTH_LONG).show();
+            return false;
+        }
+        if(mGender.equals(list[0])){
+            Toast.makeText(getContext(),"Seleccione genero valido",Toast.LENGTH_LONG).show();
+            return false;
+        }
+        String weight=mWeight.getText().toString();
+        if(weight.equals("")){
+            Toast.makeText(getContext(),"Poner peso...",Toast.LENGTH_LONG).show();
+            return false;
+        }
+        else{
+             numericalWeight=Float.parseFloat(weight);
+
+        }
+
+        String height=mHeight.getText().toString();
+        if(height.equals("")){
+            Toast.makeText(getContext(),"Poner altura...",Toast.LENGTH_LONG).show();
+            return false;
+        }
+        else{
+            numericalHeight=Float.parseFloat(height);
+
+        }
+
+        if (mAdapter.getLifestyleOption()<0){
+            Toast.makeText(getContext(),"Seleccione estilo de vida...",Toast.LENGTH_LONG).show();
+            return false;
+        }
+
+        return true;
     }
 
 

@@ -8,10 +8,19 @@ public class SliderAdapter extends FragmentPagerAdapter {
     private static int NUM_ITEMS = 3;
     private String mName;
 
+    OnboardingFragment1 onboardingFragment1;
+    OnboardingFragment2 onboardingFragment2;
+    OnboardingFragment3 onboardingFragment3;
+
     public SliderAdapter(FragmentManager fragmentManager, String name) {
 
         super(fragmentManager);
         mName=name;
+        onboardingFragment1= new OnboardingFragment1();
+        onboardingFragment1.setName(mName);
+        onboardingFragment2=new OnboardingFragment2();
+        onboardingFragment3=new OnboardingFragment3();
+
     }
 
     @Override
@@ -23,17 +32,25 @@ public class SliderAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0: // Fragment # 0 - This will show FirstFragment
-                OnboardingFragment1 onboardingFragment1= new OnboardingFragment1();
-                onboardingFragment1.setName(mName);
                 return onboardingFragment1 ;
+
             case 1: // Fragment # 0 - This will show FirstFragment different title
-                return new OnboardingFragment2();
+                return onboardingFragment2;
             case 2: // Fragment # 1 - This will show SecondFragment
-                return new OnboardingFragment3();
+                return onboardingFragment3;
             default:
                 return null;
         }
     }
+
+    public boolean transition(){
+      boolean x=onboardingFragment1.validateUserData();
+      //notifyDataSetChanged();
+      return x;
+    }
+
+
+
 
 
 }

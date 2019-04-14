@@ -53,7 +53,6 @@ public class IntroPagerActivity extends AppCompatActivity {
 
         mSlideViewPager.setAdapter(mSliderAdapter);
 
-
         mNextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -92,15 +91,37 @@ public class IntroPagerActivity extends AppCompatActivity {
                         mNextButton.setEnabled(true);
                         mPrevButton.setEnabled(false);
                         mPrevButton.setVisibility(View.INVISIBLE);
+                        mDotLayout.setupWithViewPager(mSlideViewPager,true);
 
                         mNextButton.setText(R.string.next_sentence);
                         mPrevButton.setText("");
+                        break;
+                    case 1:
 
+                        boolean x=mSliderAdapter.transition();
+
+                        if(!x){
+                            mCurrentPage-=1;
+                            mSlideViewPager.setCurrentItem(mCurrentPage);
+                            mSlideViewPager.clearOnPageChangeListeners();
+                            //mDotLayout.getTabAt(0).select();
+
+                        }
+                        else {
+                            mNextButton.setEnabled(true);
+                            mPrevButton.setEnabled(true);
+                            mPrevButton.setVisibility(View.VISIBLE);
+                            mDotLayout.setupWithViewPager(mSlideViewPager,true);
+
+                            mNextButton.setText(R.string.next_sentence);
+                            mPrevButton.setText(R.string.prev_sentence);
+                        }
                         break;
                     case 2:
                         mNextButton.setEnabled(true);
                         mPrevButton.setEnabled(true);
                         mPrevButton.setVisibility(View.VISIBLE);
+                        mDotLayout.setupWithViewPager(mSlideViewPager,true);
 
                         mNextButton.setText(R.string.finish_sentence);
                         mPrevButton.setText(R.string.prev_sentence);
