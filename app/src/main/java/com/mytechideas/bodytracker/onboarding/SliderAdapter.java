@@ -7,17 +7,20 @@ import androidx.fragment.app.FragmentPagerAdapter;
 public class SliderAdapter extends FragmentPagerAdapter {
     private static int NUM_ITEMS = 3;
     private String mName;
+    private String mFirebaseuid;
 
     OnboardingFragment1 onboardingFragment1;
     OnboardingFragment2 onboardingFragment2;
     OnboardingFragment3 onboardingFragment3;
 
-    public SliderAdapter(FragmentManager fragmentManager, String name) {
+    public SliderAdapter(FragmentManager fragmentManager, String name, String uidfirebase) {
 
         super(fragmentManager);
         mName=name;
+        mFirebaseuid=uidfirebase;
         onboardingFragment1= new OnboardingFragment1();
         onboardingFragment1.setName(mName);
+        onboardingFragment1.setUID(mFirebaseuid);
         onboardingFragment2=new OnboardingFragment2();
         onboardingFragment3=new OnboardingFragment3();
 
@@ -43,11 +46,40 @@ public class SliderAdapter extends FragmentPagerAdapter {
         }
     }
 
-    public boolean transition(){
+    public boolean validateTransition1(){
       boolean x=onboardingFragment1.validateUserData();
       //notifyDataSetChanged();
       return x;
     }
+
+    public UserDataBT getUserDataForm(){
+        return onboardingFragment1.getUserData();
+    }
+
+    public void setConfigurationForFragment2(UserDataBT userDataBT){
+
+        onboardingFragment2.setConfigurationForFragment2(userDataBT);
+        notifyDataSetChanged();
+    }
+
+    public void setConfigurationForFragment3(UserDataBT userDataBT){
+
+        onboardingFragment3.setConfigurationForFragment3(userDataBT);
+        notifyDataSetChanged();
+    }
+
+
+    public boolean validateTransition2(){
+        boolean x=onboardingFragment2.validateUserData();
+        //notifyDataSetChanged();
+        return x;
+    }
+
+    public UserDataBT getUserDataForm2(){
+        return onboardingFragment2.getUserData();
+    }
+
+
 
 
 

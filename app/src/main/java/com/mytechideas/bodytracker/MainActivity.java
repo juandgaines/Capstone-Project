@@ -38,6 +38,8 @@ public class MainActivity extends AppCompatActivity {
 
     private static final int RC_SIGN_IN = 1;
     private FirebaseAuth mFirebaseAuth;
+
+    public static final String EXTRA_FIREBASE_UI="idfirebase";
     private FirebaseAuth.AuthStateListener mAuthStateListener;
     private String name;
     @BindView(R.id.profile_pic)
@@ -60,8 +62,9 @@ public class MainActivity extends AppCompatActivity {
 
 
                 if(user!=null){
-                    Toast.makeText(MainActivity.this,"Bienvenido",Toast.LENGTH_LONG).show();
+                    Toast.makeText(MainActivity.this,"user:"+user.getUid(),Toast.LENGTH_LONG).show();
                      name= user.getDisplayName();
+
                      Picasso.get().load(user.getPhotoUrl()).resize(400, 400)
                             .centerCrop().into(profileImageView);
                     SharedPreferences sharedPreferences =
@@ -72,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
                         // The user hasn't seen the OnboardingFragment yet, so show it
                         Intent intent =new Intent(MainActivity.this, IntroPagerActivity.class);
                         intent.putExtra(Intent.EXTRA_TEXT,name);
+                        intent.putExtra(EXTRA_FIREBASE_UI,user.getUid());
                         startActivity(intent);
                     }
 

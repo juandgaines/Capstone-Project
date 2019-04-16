@@ -32,7 +32,7 @@ public class IntroPagerActivity extends AppCompatActivity {
 
     private SliderAdapter mSliderAdapter;
     private int mCurrentPage;
-    private  String name;
+    private  String name,uidfirebase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,13 +43,17 @@ public class IntroPagerActivity extends AppCompatActivity {
 
         Intent intent=getIntent();
 
-        if(intent!=null && intent.hasExtra(Intent.EXTRA_TEXT)){
-
-            name=intent.getStringExtra(Intent.EXTRA_TEXT);
+        if(intent!=null ){
+            if(intent.hasExtra(Intent.EXTRA_TEXT) ) {
+                name = intent.getStringExtra(Intent.EXTRA_TEXT);
+            }
+            if (intent.hasExtra(Intent.EXTRA_TEXT)){
+                uidfirebase = intent.getStringExtra(MainActivity.EXTRA_FIREBASE_UI);
+            }
         }
         mDotLayout.setupWithViewPager(mSlideViewPager, true);
 
-        mSliderAdapter= new SliderAdapter(getSupportFragmentManager(),name);
+        mSliderAdapter= new SliderAdapter(getSupportFragmentManager(),name,uidfirebase);
 
         mSlideViewPager.setAdapter(mSliderAdapter);
 
@@ -92,13 +96,12 @@ public class IntroPagerActivity extends AppCompatActivity {
                         mPrevButton.setEnabled(false);
                         mPrevButton.setVisibility(View.INVISIBLE);
                         mDotLayout.setupWithViewPager(mSlideViewPager,true);
-
                         mNextButton.setText(R.string.next_sentence);
                         mPrevButton.setText("");
                         break;
                     case 1:
 
-                        boolean x=mSliderAdapter.transition();
+                        boolean x=mSliderAdapter.validateTransition1();
 
                         if(!x){
                             mCurrentPage-=1;
@@ -108,30 +111,41 @@ public class IntroPagerActivity extends AppCompatActivity {
 
                         }
                         else {
+
+                            mSliderAdapter.setConfigurationForFragment2(mSliderAdapter.getUserDataForm());
                             mNextButton.setEnabled(true);
                             mPrevButton.setEnabled(true);
                             mPrevButton.setVisibility(View.VISIBLE);
                             mDotLayout.setupWithViewPager(mSlideViewPager,true);
-
                             mNextButton.setText(R.string.next_sentence);
                             mPrevButton.setText(R.string.prev_sentence);
                         }
                         break;
                     case 2:
-                        mNextButton.setEnabled(true);
-                        mPrevButton.setEnabled(true);
-                        mPrevButton.setVisibility(View.VISIBLE);
-                        mDotLayout.setupWithViewPager(mSlideViewPager,true);
 
-                        mNextButton.setText(R.string.finish_sentence);
-                        mPrevButton.setText(R.string.prev_sentence);
+                        boolean y=mSliderAdapter.validateTransition2();
+
+                        if(!y){
+                            mCurrentPage-=1;
+                            mSlideViewPager.setCurrentItem(mCurrentPage);
+                            mSlideViewPager.clearOnPageChangeListeners();
+                            //mDotLayout.getTabAt(0).select();
+                        }
+                        else {
+                            mSliderAdapter.setConfigurationForFragment3(mSliderAdapter.getUserDataForm2());
+                            mNextButton.setEnabled(true);
+                            mPrevButton.setEnabled(true);
+                            mPrevButton.setVisibility(View.VISIBLE);
+                            mDotLayout.setupWithViewPager(mSlideViewPager, true);
+                            mNextButton.setText(R.string.finish_sentence);
+                            mPrevButton.setText(R.string.prev_sentence);
+                        }
                         break;
                     default:
 
                         mNextButton.setEnabled(true);
                         mPrevButton.setEnabled(true);
                         mPrevButton.setVisibility(View.VISIBLE);
-
                         mNextButton.setText(R.string.next_sentence);
                         mPrevButton.setText(R.string.prev_sentence);
 

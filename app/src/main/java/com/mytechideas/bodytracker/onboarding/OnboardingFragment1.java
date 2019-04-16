@@ -2,6 +2,7 @@ package com.mytechideas.bodytracker.onboarding;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
+import android.service.autofill.UserData;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.mytechideas.bodytracker.R;
 
 import java.util.Calendar;
@@ -45,6 +48,7 @@ public class OnboardingFragment1 extends Fragment implements AdapterView.OnItemS
     RecyclerView mRecyclerView;
 
     private String mName;
+    private String mFirebaseUI;
     private Calendar c;
     private int mYear;
     private int mMonth;
@@ -54,8 +58,11 @@ public class OnboardingFragment1 extends Fragment implements AdapterView.OnItemS
     private GridLayoutManager layoutManager;
     private int edad=-1;
 
-    private AdapterCardTextAndImage mAdapter;
+    private FirebaseDatabase mFirebaseDatabase;
+    private DatabaseReference mUserDataReference;
 
+    private AdapterCardTextAndImage mAdapter;
+    private UserDataBT data;
 
 
     @Nullable
@@ -67,6 +74,8 @@ public class OnboardingFragment1 extends Fragment implements AdapterView.OnItemS
         ButterKnife.bind(this,view);
 
         c=Calendar.getInstance();
+        mFirebaseDatabase=FirebaseDatabase.getInstance();
+        mUserDataReference =mFirebaseDatabase.getReference().child("users").child(mFirebaseUI);
 
         mYear=c.get(Calendar.YEAR);
         mMonth=c.get(Calendar.MONTH);
@@ -178,8 +187,18 @@ public class OnboardingFragment1 extends Fragment implements AdapterView.OnItemS
             return false;
         }
 
+        data= new UserDataBT(mName,edad,mGender,numericalWeight,numericalHeight,mAdapter.getLifestyleOption());
+        mFirebaseDatabase.getReference().child("users").child(mFirebaseUI).removeValue();
+        mUserDataReference.push().setValue(data);
         return true;
     }
 
 
+    public void setUID(String mFirebaseuid) {
+        this.mFirebaseUI=mFirebaseuid;
+    }
+
+    public UserDataBT getUserData() {
+        return data;
+    }
 }

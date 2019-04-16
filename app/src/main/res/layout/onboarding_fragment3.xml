@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <TextView
+            android:id="@+id/target_calories_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/target_calories_text"
+            app:layout_constraintStart_toStartOf="@+id/body_label"
+            app:layout_constraintTop_toBottomOf="@+id/body_recyclerview" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/body_recyclerview"
+            android:layout_width="373dp"
+            android:layout_height="311dp"
+            android:layout_marginStart="8dp"
+            app:layout_constraintStart_toStartOf="@+id/body_label"
+            app:layout_constraintTop_toBottomOf="@+id/body_label" />
+
+        <TextView
+            android:id="@+id/body_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="32dp"
+            android:text="@string/bodytype_label"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/protein_percentage_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/protein_label"
+            app:layout_constraintStart_toStartOf="@+id/target_calories_label"
+            app:layout_constraintTop_toBottomOf="@+id/target_calories_label" />
+
+        <TextView
+            android:id="@+id/carbs_percentage_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/carbs_text"
+            app:layout_constraintStart_toStartOf="@+id/protein_percentage_label"
+            app:layout_constraintTop_toBottomOf="@+id/protein_percentage_label" />
+
+        <TextView
+            android:id="@+id/fats_percentage_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/fats_texts"
+            app:layout_constraintStart_toStartOf="@+id/carbs_percentage_label"
+            app:layout_constraintTop_toBottomOf="@+id/carbs_percentage_label" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

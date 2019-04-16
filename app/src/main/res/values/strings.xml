@@ -20,6 +20,27 @@
     <string name="lifestyle_highly_active_title">Very Active</string>
     <string name="lifestyle_highly_active_description">Daily exercise that is equal to walking for 4 hours and 15 minutes at 4mph.  For an adult of average weight, this amount of exercise will burn about 1,150-1400 additional calories.</string>
     <string name="lifestyle_text">Lifestyle</string>
+    <string name="goal_label">Select your goal</string>
+    <string name="bodytype_label">Select your body type</string>
+    <string name="goal_lose_title">Lose weight</string>
+    <string name="goal_maintain_title">Maintain weight</string>
+    <string name="goal_gain_title">Gain weight</string>
+    <string name="goal_mantain_female_description">An average woman needs to eat about 2000 calories per day to maintain</string>
+    <string name="goal_lose_female_description">An average woman needs to eat about 1500 calories to lose one pound of weight per week.</string>
+    <string name="goal_gain_female_description">An average woman needs to eat over 2000 calories per day to gain weight.</string>
+    <string name="goal_lose_male_description">An average man needs 2000 to lose one pound of weight per week.</string>
+    <string name="goal_mantain_male_description">An average man needs 2500 calories to maintain.</string>
+    <string name="goal_gain_male_description">An average man needs over  2500 calories to gain weight.</string>
+    <string name="target_calories_text">Target calories:</string>
+    <string name="protein_label">Protein:</string>
+    <string name="carbs_text">Carbs:</string>
+    <string name="fats_texts">Fats:</string>
+    <string name="bodytype_ectomorph_title">Ectomorph</string>
+    <string name="bodytype_endomorph_title">Endomorph</string>
+    <string name="bodytype_mesomorph_title">Mesomorph</string>
+    <string name="bodytype_ectomorph_description">An ectomorph tends to be thin, and struggles to gain weight as either body fat or muscle. They can eat piles of food and stay looking the same, even when gaining muscular weight is their biggest goal.</string>
+    <string name="bodytype_mesomorph_description">The mesomorph has a middle-of-the-road build that takes the best of both worlds. They tend to have wide shoulders, a narrow waist, relatively thin joints, and round muscle bellies.</string>
+    <string name="bodytype_endomorph_description">The endomorph tends to gain weight and keep it on. Their build is a little wider than an ectomorph or mesomorph, with a thick ribcage, wide hips, and shorter limbs.</string>
 
 
     <string-array name="gender_array">
