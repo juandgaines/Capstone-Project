@@ -7,6 +7,7 @@ public class UserDataBT {
     private int edad,mLifestyle,mGoal,mBodyType;
     private String mGender;
     private float mWeight,mHeight;
+    private double mLifeStyleFactor,mPerCarbs,mPerFats,mPerProtein,mTargetCalories;
 
 
     public UserDataBT( String mName, int edad, String mGender, float mWeight, float mHeight, int lifestyleOption) {
@@ -19,6 +20,62 @@ public class UserDataBT {
         this.mLifestyle=lifestyleOption;
 
 
+        if(mLifestyle==0){
+            this.mLifeStyleFactor=1.2;
+
+        }
+        else if(mLifestyle==1){
+            this.mLifeStyleFactor=1.375;
+        }
+        else if(mLifestyle==2){
+            this.mLifeStyleFactor=1.5;
+        }
+        else if(mLifestyle==3){
+            this.mLifeStyleFactor=1.725;
+        }
+
+
+    }
+
+    public double getmTargetCalories() {
+        return mTargetCalories;
+    }
+
+    public void setmTargetCalories(double mTargetCalories) {
+        this.mTargetCalories = mTargetCalories;
+    }
+
+    public double getmPerCarbs() {
+        return mPerCarbs;
+    }
+
+    public double getmPerFats() {
+        return mPerFats;
+    }
+
+    public double getmPerProtein() {
+        return mPerProtein;
+    }
+
+    public void setmLifeStyleFactor(double mLifeStyleFactor) {
+        this.mLifeStyleFactor = mLifeStyleFactor;
+    }
+
+    public void setmPerCarbs(double mPerCarbs) {
+        this.mPerCarbs = mPerCarbs;
+    }
+
+    public void setmPerFats(double mPerFats) {
+        this.mPerFats = mPerFats;
+    }
+
+    public void setmPerProtein(double mPerProtein) {
+        this.mPerProtein = mPerProtein;
+    }
+
+
+    public double getmLifeStyleFactor() {
+        return mLifeStyleFactor;
     }
 
     public int getmBodyType() {

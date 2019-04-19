@@ -58,8 +58,7 @@ public class OnboardingFragment1 extends Fragment implements AdapterView.OnItemS
     private GridLayoutManager layoutManager;
     private int edad=-1;
 
-    private FirebaseDatabase mFirebaseDatabase;
-    private DatabaseReference mUserDataReference;
+
 
     private AdapterCardTextAndImage mAdapter;
     private UserDataBT data;
@@ -74,8 +73,7 @@ public class OnboardingFragment1 extends Fragment implements AdapterView.OnItemS
         ButterKnife.bind(this,view);
 
         c=Calendar.getInstance();
-        mFirebaseDatabase=FirebaseDatabase.getInstance();
-        mUserDataReference =mFirebaseDatabase.getReference().child("users").child(mFirebaseUI);
+
 
         mYear=c.get(Calendar.YEAR);
         mMonth=c.get(Calendar.MONTH);
@@ -187,9 +185,9 @@ public class OnboardingFragment1 extends Fragment implements AdapterView.OnItemS
             return false;
         }
 
+
         data= new UserDataBT(mName,edad,mGender,numericalWeight,numericalHeight,mAdapter.getLifestyleOption());
-        mFirebaseDatabase.getReference().child("users").child(mFirebaseUI).removeValue();
-        mUserDataReference.push().setValue(data);
+
         return true;
     }
 

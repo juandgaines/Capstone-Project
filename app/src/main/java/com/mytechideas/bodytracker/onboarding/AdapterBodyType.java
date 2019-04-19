@@ -25,17 +25,23 @@ public class AdapterBodyType extends RecyclerView.Adapter<AdapterBodyType.MyView
 
     Context mContext;
     private int mOption=-1;
+    OnClickPErBody mCallback;
     List<BodyType> bodyType= new ArrayList<BodyType>();
 
 
-    public int getGoal(){
+    public interface OnClickPErBody{
+
+        void updateTargetNutirents(int option);
+    }
+    public int getBodyType(){
 
         return mOption;
 
     }
 
-    public AdapterBodyType(Context context) {
+    public AdapterBodyType(Context context, OnClickPErBody callback) {
         mContext = context;
+        mCallback=callback;
 
         String[] list= context.getResources().getStringArray(R.array.gender_array);
 
@@ -68,6 +74,7 @@ public class AdapterBodyType extends RecyclerView.Adapter<AdapterBodyType.MyView
             public void onClick(View view) {
                 AdapterGoal.MyViewHolderGoal.selecteditem=position;
                 mOption=position;
+                mCallback.updateTargetNutirents(mOption);
 
                 Toast.makeText(mContext,"Op:"+mOption,Toast.LENGTH_LONG).show();
                 notifyDataSetChanged();

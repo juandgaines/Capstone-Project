@@ -41,6 +41,9 @@
     <string name="bodytype_ectomorph_description">An ectomorph tends to be thin, and struggles to gain weight as either body fat or muscle. They can eat piles of food and stay looking the same, even when gaining muscular weight is their biggest goal.</string>
     <string name="bodytype_mesomorph_description">The mesomorph has a middle-of-the-road build that takes the best of both worlds. They tend to have wide shoulders, a narrow waist, relatively thin joints, and round muscle bellies.</string>
     <string name="bodytype_endomorph_description">The endomorph tends to gain weight and keep it on. Their build is a little wider than an ectomorph or mesomorph, with a thick ribcage, wide hips, and shorter limbs.</string>
+    <string name="tab_layout_home_text">Home</string>
+    <string name="tab_layout_meals_text">Meals</string>
+    <string name="tab_layout_profile_text">Profile</string>
 
 
     <string-array name="gender_array">

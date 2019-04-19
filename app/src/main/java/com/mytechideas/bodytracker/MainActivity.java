@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.firebase.ui.auth.AuthUI;
+import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.core.Repo;
@@ -26,6 +27,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.PreferenceManager;
+import androidx.viewpager.widget.ViewPager;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import retrofit2.Call;
@@ -42,8 +44,11 @@ public class MainActivity extends AppCompatActivity {
     public static final String EXTRA_FIREBASE_UI="idfirebase";
     private FirebaseAuth.AuthStateListener mAuthStateListener;
     private String name;
-    @BindView(R.id.profile_pic)
-    ImageView profileImageView;
+
+    @BindView(R.id.main_tablayout)
+    TabLayout mTabLayout;
+    @BindView(R.id.main_view_pager)
+    ViewPager mViewPager;
 
 
     @Override
@@ -64,14 +69,13 @@ public class MainActivity extends AppCompatActivity {
                 if(user!=null){
                     Toast.makeText(MainActivity.this,"user:"+user.getUid(),Toast.LENGTH_LONG).show();
                      name= user.getDisplayName();
+                     //Picasso.get().load(user.getPhotoUrl()).resize(400, 400).centerCrop().into(profileImageView);
 
-                     Picasso.get().load(user.getPhotoUrl()).resize(400, 400)
-                            .centerCrop().into(profileImageView);
+
                     SharedPreferences sharedPreferences =
                             PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
                     // Check if we need to display our OnboardingFragment
-                    if (!sharedPreferences.getBoolean(
-                            getResources().getString(R.string.first_time_app), false)) {
+                    if (!sharedPreferences.getBoolean(getResources().getString(R.string.first_time_app), false)) {
                         // The user hasn't seen the OnboardingFragment yet, so show it
                         Intent intent =new Intent(MainActivity.this, IntroPagerActivity.class);
                         intent.putExtra(Intent.EXTRA_TEXT,name);

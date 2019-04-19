@@ -18,11 +18,14 @@
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mytechideas/bodytracker/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/mytechideas/bodytracker/MainActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mytechideas/bodytracker/onboarding/AdapterBodyType.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/mytechideas/bodytracker/onboarding/AdapterBodyType.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mytechideas/bodytracker/onboarding/IntroPagerActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/mytechideas/bodytracker/onboarding/IntroPagerActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mytechideas/bodytracker/onboarding/OnboardingFragment1.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/mytechideas/bodytracker/onboarding/OnboardingFragment1.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mytechideas/bodytracker/onboarding/OnboardingFragment2.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/mytechideas/bodytracker/onboarding/OnboardingFragment2.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mytechideas/bodytracker/onboarding/OnboardingFragment3.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/mytechideas/bodytracker/onboarding/OnboardingFragment3.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mytechideas/bodytracker/onboarding/SliderAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/mytechideas/bodytracker/onboarding/SliderAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mytechideas/bodytracker/onboarding/UserDataBT.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/mytechideas/bodytracker/onboarding/UserDataBT.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/onboarding_fragment3.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/onboarding_fragment3.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -80,43 +83,46 @@
     <session id="-649514449">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="1" />
+          <entry key="project.closed" value="2" />
           <entry key="project.open.time.0" value="1" />
           <entry key="project.open.time.10" value="1" />
+          <entry key="project.open.time.3" value="1" />
           <entry key="project.open.time.40" value="1" />
-          <entry key="project.opened" value="3" />
+          <entry key="project.opened" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="gradle" value="5" />
-          <entry key="java" value="54" />
+          <entry key="class" value="1" />
+          <entry key="gradle" value="8" />
+          <entry key="java" value="73" />
           <entry key="png" value="1" />
-          <entry key="xml" value="29" />
+          <entry key="xml" value="32" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Groovy" value="5" />
+          <entry key="CLASS" value="1" />
+          <entry key="Groovy" value="8" />
           <entry key="Image" value="1" />
-          <entry key="JAVA" value="54" />
-          <entry key="XML" value="29" />
+          <entry key="JAVA" value="73" />
+          <entry key="XML" value="32" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="gradle" value="10" />
-          <entry key="java" value="5691" />
-          <entry key="txt" value="457" />
-          <entry key="xml" value="1074" />
+          <entry key="java" value="7099" />
+          <entry key="txt" value="545" />
+          <entry key="xml" value="1160" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="Groovy" value="10" />
-          <entry key="JAVA" value="5691" />
-          <entry key="PLAIN_TEXT" value="457" />
-          <entry key="XML" value="1074" />
+          <entry key="JAVA" value="7099" />
+          <entry key="PLAIN_TEXT" value="545" />
+          <entry key="XML" value="1160" />
         </counts>
       </usages-collector>
     </session>
@@ -124,117 +130,96 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mytechideas/bodytracker/onboarding/AdapterGoal.java">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mytechideas/bodytracker/onboarding/OnboardingFragment3.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="29" selection-start-line="29" selection-end-line="29" />
+            <state relative-caret-position="-577">
+              <caret line="65" lean-forward="true" selection-start-line="65" selection-end-line="65" />
               <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#811#817#0" expanded="true" />
+                <element signature="method#validateUserData#0;class#OnboardingFragment3#0" />
+                <element signature="method#updateTargetNutirents#0;class#OnboardingFragment3#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mytechideas/bodytracker/onboarding/AdapterBodyType.java">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mytechideas/bodytracker/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="508">
-              <caret line="61" column="51" selection-start-line="61" selection-start-column="51" selection-end-line="61" selection-end-column="51" />
+            <state>
+              <caret line="50" column="25" selection-start-line="50" selection-start-column="25" selection-end-line="50" selection-end-column="25" />
               <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#830#840#0" expanded="true" />
-                <element signature="e#1114#1167#0" expanded="true" />
-                <element signature="e#1200#1259#0" expanded="true" />
-                <element signature="e#1291#1344#0" expanded="true" />
-                <element signature="e#1383#1442#0" expanded="true" />
-                <element signature="e#1475#1528#0" expanded="true" />
-                <element signature="e#1566#1625#0" expanded="true" />
-                <element signature="e#2912#2913#0" expanded="true" />
-                <element signature="e#2947#2948#0" expanded="true" />
+                <element signature="e#2599#2648#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mytechideas/bodytracker/onboarding/Goal.java">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mytechideas/bodytracker/onboarding/OnboardingFragment1.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="193">
-              <caret line="13" selection-start-line="13" selection-end-line="36" selection-end-column="5" />
+            <state relative-caret-position="672">
+              <caret line="192" lean-forward="true" selection-start-line="192" selection-end-line="192" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#6228#6229#0" expanded="true" />
+                <element signature="e#6273#6274#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mytechideas/bodytracker/onboarding/BodyType.java">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mytechideas/bodytracker/onboarding/OnboardingFragment2.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="362">
-              <caret line="37" column="5" selection-start-line="37" selection-start-column="5" selection-end-line="37" selection-end-column="5" />
+            <state relative-caret-position="329">
+              <caret line="65" column="39" selection-start-line="65" selection-start-column="39" selection-end-line="65" selection-end-column="39" />
+              <folding>
+                <element signature="e#1656#1657#0" expanded="true" />
+                <element signature="e#1690#1691#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mytechideas/bodytracker/onboarding/SliderAdapter.java">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mytechideas/bodytracker/onboarding/UserDataBT.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="470">
-              <caret line="78" column="41" selection-start-line="78" selection-start-column="41" selection-end-line="78" selection-end-column="41" />
+            <state relative-caret-position="365">
+              <caret line="46" selection-start-line="46" selection-end-line="46" />
+              <folding>
+                <element signature="e#973#974#0" expanded="true" />
+                <element signature="e#1011#1012#0" expanded="true" />
+                <element signature="e#959#960#0" expanded="true" />
+                <element signature="e#991#992#0" expanded="true" />
+                <element signature="e#1026#1027#0" expanded="true" />
+                <element signature="e#1057#1058#0" expanded="true" />
+                <element signature="e#1095#1096#0" expanded="true" />
+                <element signature="e#1129#1130#0" expanded="true" />
+                <element signature="e#1299#1300#0" expanded="true" />
+                <element signature="e#1341#1342#0" expanded="true" />
+                <element signature="e#1389#1390#0" expanded="true" />
+                <element signature="e#1429#1430#0" expanded="true" />
+                <element signature="e#1483#1484#0" expanded="true" />
+                <element signature="e#1529#1530#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/onboarding_fragment3.xml">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mytechideas/bodytracker/onboarding/SliderAdapter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="290">
-              <caret line="20" column="8" selection-start-line="20" selection-start-column="8" selection-end-line="20" selection-end-column="8" />
-              <folding>
-                <element signature="e#678#708#0" expanded="true" />
-                <element signature="e#1587#1611#0" expanded="true" />
-                <element signature="e#1969#1992#0" expanded="true" />
-                <element signature="e#2378#2398#0" expanded="true" />
-                <element signature="e#2789#2809#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-          <provider editor-type-id="android-designer2" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mytechideas/bodytracker/onboarding/IntroPagerActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="925">
-              <caret line="106" column="44" selection-start-line="106" selection-start-column="44" selection-end-line="106" selection-end-column="44" />
+            <state relative-caret-position="930">
+              <caret line="68" column="31" lean-forward="true" selection-start-line="68" selection-start-column="31" selection-end-line="68" selection-end-column="31" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/goal_and_body_item.xml">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mytechideas/bodytracker/onboarding/LifeStyle.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret selection-end-line="65" selection-end-column="14" />
-            </state>
-          </provider>
-          <provider editor-type-id="android-designer2" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/goal_and_body_item2.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="145">
-              <caret line="19" column="12" selection-start-line="19" selection-start-column="12" selection-end-line="19" selection-end-column="12" />
-            </state>
-          </provider>
-          <provider editor-type-id="android-designer2" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mytechideas/bodytracker/onboarding/OnboardingFragment3.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="23" column="19" selection-start-line="23" selection-start-column="19" selection-end-line="23" selection-end-column="19" />
+            <state relative-caret-position="321">
+              <caret line="37" column="5" selection-start-line="15" selection-start-column="3" selection-end-line="37" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -273,36 +258,37 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/imagetext_card_layout.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/onboarding_fragment1.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/mytechideas/bodytracker/onboarding/AdapterCardTextAndImage.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/mytechideas/bodytracker/MainActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/mytechideas/bodytracker/onboarding/Goal.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/mytechideas/bodytracker/onboarding/OnboardingFragment1.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/mytechideas/bodytracker/onboarding/UserDataBT.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/mytechideas/bodytracker/onboarding/AdapterGoal.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/mytechideas/bodytracker/onboarding/SliderAdapter.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/mytechideas/bodytracker/onboarding/IntroPagerActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/onboarding_fragment2.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/mytechideas/bodytracker/onboarding/OnboardingFragment2.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/goal_and_body_item.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/mytechideas/bodytracker/onboarding/BodyType.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/mytechideas/bodytracker/onboarding/OnboardingFragment3.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/mytechideas/bodytracker/onboarding/AdapterBodyType.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/goal_and_body_item2.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/onboarding_fragment3.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/mytechideas/bodytracker/onboarding/AdapterBodyType.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/mytechideas/bodytracker/onboarding/UserDataBT.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/mytechideas/bodytracker/onboarding/OnboardingFragment1.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/mytechideas/bodytracker/onboarding/SliderAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/mytechideas/bodytracker/onboarding/OnboardingFragment3.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/mytechideas/bodytracker/onboarding/IntroPagerActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/mytechideas/bodytracker/MainActivity.java" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="y" value="22" />
     <option name="width" value="1280" />
-    <option name="height" value="705" />
+    <option name="height" value="708" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="ProjectPane" />
+      <pane id="PackagesPane" />
       <pane id="Scope" />
       <pane id="AndroidView">
         <subPane>
@@ -324,37 +310,13 @@
             </path>
             <path>
               <item name="Capstone-Project" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="bodytracker" type="cbb59c9e:AndroidPsiDirectoryNode" />
-              <item name="onboarding" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Capstone-Project" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="res" type="d4f16f75:AndroidResFolderNode" />
-            </path>
-            <path>
-              <item name="Capstone-Project" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="res" type="d4f16f75:AndroidResFolderNode" />
-              <item name="drawable" type="ddeffd01:AndroidResFolderTypeNode" />
-            </path>
-            <path>
-              <item name="Capstone-Project" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="res" type="d4f16f75:AndroidResFolderNode" />
-              <item name="layout" type="ddeffd01:AndroidResFolderTypeNode" />
-            </path>
-            <path>
-              <item name="Capstone-Project" type="1abcf292:AndroidViewProjectNode" />
               <item name="Gradle Scripts" type="ae0cef3a:AndroidBuildScriptsGroupNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
+      <pane id="ProjectPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -511,31 +473,31 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="22" width="1280" height="705" extended-state="0" />
+    <frame x="0" y="22" width="1280" height="717" extended-state="6" />
     <layout>
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
-      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.18739903" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.18739903" />
       <window_info id="Structure" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info id="Build Variants" order="4" side_tool="true" />
       <window_info id="Image Layers" order="5" />
       <window_info id="Designer" order="6" />
       <window_info id="Capture Tool" order="7" />
-      <window_info anchor="bottom" id="Find" />
       <window_info anchor="bottom" id="Run" order="0" weight="0.38996765" />
-      <window_info anchor="bottom" id="Logcat" order="1" visible="true" weight="0.13866232" />
+      <window_info anchor="bottom" id="Logcat" order="1" weight="0.053833604" />
       <window_info anchor="bottom" id="TODO" order="2" weight="0.32952693" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.38662317" />
+      <window_info anchor="bottom" id="Debug" order="3" visible="true" weight="0.3808" />
       <window_info anchor="bottom" id="Terminal" order="4" />
       <window_info anchor="bottom" id="Event Log" order="5" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="6" />
       <window_info anchor="bottom" id="Build" order="7" weight="0.32626426" />
       <window_info anchor="bottom" id="Android Profiler" order="8" />
+      <window_info anchor="bottom" id="Find" order="9" />
       <window_info anchor="right" id="Device File Explorer" order="0" side_tool="true" />
       <window_info anchor="right" id="Capture Analysis" order="1" />
       <window_info anchor="right" id="Gradle" order="2" weight="0.32956383" />
       <window_info anchor="right" id="Theme Preview" order="3" />
-      <window_info active="true" anchor="right" id="Preview" order="4" visible="true" weight="0.32956383" />
+      <window_info anchor="right" id="Preview" order="4" weight="0.32956383" />
       <window_info anchor="right" id="Palette&#9;" order="5" />
     </layout>
     <layout-to-restore>
@@ -568,6 +530,18 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/mytechideas/bodytracker/MainActivity.java</url>
+          <line>77</line>
+          <properties />
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/tab_indicator_selected.xml">
       <provider selected="true" editor-type-id="text-editor">
@@ -577,20 +551,20 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+      <provider editor-type-id="android-manifest" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="157">
           <caret line="27" column="44" selection-start-line="27" selection-start-column="44" selection-end-line="27" selection-end-column="44" />
         </state>
       </provider>
-      <provider editor-type-id="android-manifest" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_intro_pager.xml">
+      <provider selected="true" editor-type-id="android-designer2" />
       <provider editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="8" column="4" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="4" />
         </state>
       </provider>
-      <provider selected="true" editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/tab_selector.xml">
       <provider selected="true" editor-type-id="text-editor">
@@ -623,52 +597,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="37" column="61" selection-start-line="37" selection-start-column="61" selection-end-line="37" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/imagetext_card_layout.xml">
+      <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-336">
           <caret line="6" column="42" selection-start-line="6" selection-start-column="42" selection-end-line="6" selection-end-column="42" />
         </state>
       </provider>
-      <provider editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="67">
-          <caret line="34" column="41" selection-start-line="34" selection-start-column="41" selection-end-line="34" selection-end-column="41" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/onboarding_fragment1.xml">
+      <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="128">
           <caret line="22" column="35" selection-start-line="22" selection-start-column="35" selection-end-line="22" selection-end-column="35" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mytechideas/bodytracker/onboarding/UserDataBT.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="26" selection-start-line="16" selection-start-column="26" selection-end-line="16" selection-end-column="26" />
-          <folding>
-            <element signature="e#554#555#0" expanded="true" />
-            <element signature="e#586#587#0" expanded="true" />
-            <element signature="e#615#616#0" expanded="true" />
-            <element signature="e#643#644#0" expanded="true" />
-            <element signature="e#690#691#0" expanded="true" />
-            <element signature="e#732#733#0" expanded="true" />
-            <element signature="e#771#772#0" expanded="true" />
-            <element signature="e#805#806#0" expanded="true" />
-            <element signature="e#849#850#0" expanded="true" />
-            <element signature="e#877#878#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -679,23 +620,156 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mytechideas/bodytracker/onboarding/OnboardingFragment2.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/onboarding_fragment2.xml">
+      <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="61" column="39" selection-start-line="61" selection-start-column="39" selection-end-line="61" selection-end-column="39" />
+        <state relative-caret-position="173">
+          <caret line="17" column="37" selection-start-line="17" selection-start-column="37" selection-end-line="17" selection-end-column="37" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mytechideas/bodytracker/onboarding/OnboardingFragment1.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/goal_and_body_item.xml">
+      <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1908">
-          <caret line="196" column="45" selection-start-line="196" selection-start-column="45" selection-end-line="196" selection-end-column="45" />
+        <state>
+          <caret selection-end-line="65" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/goal_and_body_item2.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="19" column="12" selection-start-line="19" selection-start-column="12" selection-end-line="19" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mytechideas/bodytracker/retrofit/EdamamService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="14" column="28" selection-start-line="14" selection-start-column="28" selection-end-line="14" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mytechideas/bodytracker/onboarding/BodyType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="333">
+          <caret line="37" column="5" selection-start-line="37" selection-start-column="5" selection-end-line="37" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mytechideas/bodytracker/onboarding/Goal.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="193">
+          <caret line="13" selection-start-line="13" selection-end-line="36" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/onboarding_fragment3.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="43" selection-start-line="8" selection-start-column="43" selection-end-line="8" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="48" column="17" selection-start-line="48" selection-start-column="17" selection-end-line="48" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mytechideas/bodytracker/onboarding/AdapterCardTextAndImage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="87" selection-start-line="87" selection-end-line="87" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="class#2483:3197" />
-            <element signature="e#6081#6082#0" expanded="true" />
-            <element signature="e#6311#6312#0" expanded="true" />
-            <element signature="e#6337#6338#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mytechideas/bodytracker/onboarding/AdapterGoal.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="29" selection-start-line="29" selection-end-line="29" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mytechideas/bodytracker/onboarding/AdapterBodyType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-407">
+          <caret line="33" column="45" selection-start-line="33" selection-start-column="45" selection-end-line="33" selection-end-column="45" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/Library/Android/sdk/platforms/android-28/android.jar!/android/os/Looper.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="347">
+          <caret line="76" selection-start-line="76" selection-end-line="76" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-188" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-203">
+          <caret line="27" column="17" selection-start-line="27" selection-start-column="17" selection-end-line="27" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mytechideas/bodytracker/onboarding/OnboardingFragment2.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="329">
+          <caret line="65" column="39" selection-start-line="65" selection-start-column="39" selection-end-line="65" selection-end-column="39" />
+          <folding>
+            <element signature="e#1656#1657#0" expanded="true" />
+            <element signature="e#1690#1691#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mytechideas/bodytracker/onboarding/OnboardingFragment3.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-577">
+          <caret line="65" lean-forward="true" selection-start-line="65" selection-end-line="65" />
+          <folding>
+            <element signature="method#validateUserData#0;class#OnboardingFragment3#0" />
+            <element signature="method#updateTargetNutirents#0;class#OnboardingFragment3#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mytechideas/bodytracker/onboarding/UserDataBT.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="365">
+          <caret line="46" selection-start-line="46" selection-end-line="46" />
+          <folding>
+            <element signature="e#973#974#0" expanded="true" />
+            <element signature="e#1011#1012#0" expanded="true" />
+            <element signature="e#959#960#0" expanded="true" />
+            <element signature="e#991#992#0" expanded="true" />
+            <element signature="e#1026#1027#0" expanded="true" />
+            <element signature="e#1057#1058#0" expanded="true" />
+            <element signature="e#1095#1096#0" expanded="true" />
+            <element signature="e#1129#1130#0" expanded="true" />
+            <element signature="e#1299#1300#0" expanded="true" />
+            <element signature="e#1341#1342#0" expanded="true" />
+            <element signature="e#1389#1390#0" expanded="true" />
+            <element signature="e#1429#1430#0" expanded="true" />
+            <element signature="e#1483#1484#0" expanded="true" />
+            <element signature="e#1529#1530#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -707,126 +781,57 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mytechideas/bodytracker/onboarding/AdapterCardTextAndImage.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mytechideas/bodytracker/onboarding/IntroPagerActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="477">
-          <caret line="87" selection-start-line="87" selection-end-line="87" />
+        <state relative-caret-position="899">
+          <caret line="81" column="21" lean-forward="true" selection-start-line="81" selection-start-column="21" selection-end-line="81" selection-end-column="21" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#2478#2527#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-337">
+          <caret line="11" column="36" lean-forward="true" selection-start-line="11" selection-start-column="36" selection-end-line="11" selection-end-column="36" />
+          <folding>
+            <element signature="e#1501#1531#0" expanded="true" />
+            <element signature="e#1708#1739#0" expanded="true" />
+            <element signature="e#1916#1949#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mytechideas/bodytracker/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="151">
-          <caret line="104" column="38" selection-start-line="104" selection-start-column="38" selection-end-line="104" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/onboarding_fragment2.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="173">
-          <caret line="17" column="37" selection-start-line="17" selection-start-column="37" selection-end-line="17" selection-end-column="37" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mytechideas/bodytracker/onboarding/IntroPagerActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="925">
-          <caret line="106" column="44" selection-start-line="106" selection-start-column="44" selection-end-line="106" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mytechideas/bodytracker/onboarding/OnboardingFragment3.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="23" column="19" selection-start-line="23" selection-start-column="19" selection-end-line="23" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/goal_and_body_item.xml">
-      <provider selected="true" editor-type-id="text-editor">
         <state>
-          <caret selection-end-line="65" selection-end-column="14" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mytechideas/bodytracker/onboarding/AdapterGoal.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="29" selection-start-line="29" selection-end-line="29" />
+          <caret line="50" column="25" selection-start-line="50" selection-start-column="25" selection-end-line="50" selection-end-column="25" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#811#817#0" expanded="true" />
+            <element signature="e#2599#2648#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mytechideas/bodytracker/onboarding/Goal.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mytechideas/bodytracker/onboarding/OnboardingFragment1.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="193">
-          <caret line="13" selection-start-line="13" selection-end-line="36" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mytechideas/bodytracker/onboarding/AdapterBodyType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="508">
-          <caret line="61" column="51" selection-start-line="61" selection-start-column="51" selection-end-line="61" selection-end-column="51" />
+        <state relative-caret-position="672">
+          <caret line="192" lean-forward="true" selection-start-line="192" selection-end-line="192" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#830#840#0" expanded="true" />
-            <element signature="e#1114#1167#0" expanded="true" />
-            <element signature="e#1200#1259#0" expanded="true" />
-            <element signature="e#1291#1344#0" expanded="true" />
-            <element signature="e#1383#1442#0" expanded="true" />
-            <element signature="e#1475#1528#0" expanded="true" />
-            <element signature="e#1566#1625#0" expanded="true" />
-            <element signature="e#2912#2913#0" expanded="true" />
-            <element signature="e#2947#2948#0" expanded="true" />
+            <element signature="e#6228#6229#0" expanded="true" />
+            <element signature="e#6273#6274#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/goal_and_body_item2.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="145">
-          <caret line="19" column="12" selection-start-line="19" selection-start-column="12" selection-end-line="19" selection-end-column="12" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mytechideas/bodytracker/onboarding/BodyType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="362">
-          <caret line="37" column="5" selection-start-line="37" selection-start-column="5" selection-end-line="37" selection-end-column="5" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mytechideas/bodytracker/onboarding/SliderAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="470">
-          <caret line="78" column="41" selection-start-line="78" selection-start-column="41" selection-end-line="78" selection-end-column="41" />
+        <state relative-caret-position="930">
+          <caret line="68" column="31" lean-forward="true" selection-start-line="68" selection-start-column="31" selection-end-line="68" selection-end-column="31" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/onboarding_fragment3.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="290">
-          <caret line="20" column="8" selection-start-line="20" selection-start-column="8" selection-end-line="20" selection-end-column="8" />
-          <folding>
-            <element signature="e#678#708#0" expanded="true" />
-            <element signature="e#1587#1611#0" expanded="true" />
-            <element signature="e#1969#1992#0" expanded="true" />
-            <element signature="e#2378#2398#0" expanded="true" />
-            <element signature="e#2789#2809#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2" />
     </entry>
   </component>
   <component name="masterDetails">

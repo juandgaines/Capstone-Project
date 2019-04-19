@@ -1,7 +1,9 @@
 package com.mytechideas.bodytracker.onboarding;
 
+import android.content.Context;
 import android.content.Intent;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -14,6 +16,7 @@ import com.mytechideas.bodytracker.R;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
+import androidx.preference.PreferenceManager;
 import androidx.viewpager.widget.ViewPager;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -64,9 +67,22 @@ public class IntroPagerActivity extends AppCompatActivity {
 
                 mSlideViewPager.setCurrentItem(mCurrentPage);
                 if(mCurrentPage==3){
-                    Intent intent = new Intent(IntroPagerActivity.this, MainActivity.class);
-                    startActivity(intent);
-                    finish();
+                    boolean z=mSliderAdapter.validateTransition3();
+                    if(z) {
+
+                        SharedPreferences.Editor sharedPreferencesEditor =
+                                PreferenceManager.getDefaultSharedPreferences(IntroPagerActivity.this).edit();
+                        sharedPreferencesEditor.putBoolean(
+                                getResources().getString(R.string.first_time_app), true);
+
+                        sharedPreferencesEditor.apply();
+                        Intent intent = new Intent(IntroPagerActivity.this, MainActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                    else{
+                        mCurrentPage=2;
+                    }
                 }
             }
         });

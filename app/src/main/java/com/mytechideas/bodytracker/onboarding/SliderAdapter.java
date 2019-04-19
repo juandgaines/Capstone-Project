@@ -65,12 +65,19 @@ public class SliderAdapter extends FragmentPagerAdapter {
     public void setConfigurationForFragment3(UserDataBT userDataBT){
 
         onboardingFragment3.setConfigurationForFragment3(userDataBT);
+        onboardingFragment3.setUID(mFirebaseuid);
         notifyDataSetChanged();
     }
 
 
     public boolean validateTransition2(){
         boolean x=onboardingFragment2.validateUserData();
+        //notifyDataSetChanged();
+        return x;
+    }
+
+    public boolean validateTransition3(){
+        boolean x=onboardingFragment3.validateUserData();
         //notifyDataSetChanged();
         return x;
     }
