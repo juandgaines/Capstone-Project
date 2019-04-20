@@ -1038,19 +1038,7 @@ public class Camera2BasicFragment extends Fragment
         }
     }
 
-    public Bitmap rotateBitmap(Bitmap original, float degrees) {
-        int width = original.getWidth();
-        int height = original.getHeight();
 
-        Matrix matrix = new Matrix();
-        matrix.preRotate(degrees);
-
-        Bitmap rotatedBitmap = Bitmap.createBitmap(original, 0, 0, width, height, matrix, true);
-        Canvas canvas = new Canvas(rotatedBitmap);
-        canvas.drawBitmap(original, 5.0f, 0.0f, null);
-
-        return rotatedBitmap;
-    }
 
 }
 
