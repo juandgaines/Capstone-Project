@@ -1,5 +1,6 @@
 package com.mytechideas.bodytracker.mainviewpager;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.AnimatedVectorDrawable;
 import android.os.Bundle;
@@ -67,6 +68,14 @@ public class MainHomeFragment extends Fragment implements OnChartValueSelectedLi
                 }else{
                     closeFABMenu();
                 }
+            }
+        });
+
+        mFabOp1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent= new Intent(getContext(),InputBarcodeActivity.class);
+                startActivity(intent);
             }
         });
 

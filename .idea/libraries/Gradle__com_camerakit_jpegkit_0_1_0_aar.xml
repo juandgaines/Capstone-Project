@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="Gradle: com.camerakit:jpegkit:0.1.0@aar">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/jetified-jpegkit-0.1.0.aar/00f5759072cc91c75cdecb1b5e576672/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/jetified-jpegkit-0.1.0.aar/00f5759072cc91c75cdecb1b5e576672/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
