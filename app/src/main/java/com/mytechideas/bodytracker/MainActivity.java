@@ -15,7 +15,9 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.core.Repo;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.mytechideas.bodytracker.mainviewpager.MainAdapterViewPager;
 import com.mytechideas.bodytracker.onboarding.IntroPagerActivity;
+import com.mytechideas.bodytracker.onboarding.SliderAdapter;
 import com.mytechideas.bodytracker.retrofit.EdamamService;
 import com.mytechideas.bodytracker.retrofit.Example;
 import com.squareup.picasso.Picasso;
@@ -45,10 +47,14 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener mAuthStateListener;
     private String name;
 
+
+
     @BindView(R.id.main_tablayout)
     TabLayout mTabLayout;
     @BindView(R.id.main_view_pager)
     ViewPager mViewPager;
+
+    private MainAdapterViewPager mMainAdapterViewPager;
 
 
     @Override
@@ -56,7 +62,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-
 
 
         mFirebaseAuth=FirebaseAuth.getInstance();
@@ -71,6 +76,11 @@ public class MainActivity extends AppCompatActivity {
                      name= user.getDisplayName();
                      //Picasso.get().load(user.getPhotoUrl()).resize(400, 400).centerCrop().into(profileImageView);
 
+                    mTabLayout.setupWithViewPager(mViewPager, true);
+
+                    mMainAdapterViewPager= new MainAdapterViewPager(getSupportFragmentManager(), MainActivity.this);
+
+                    mViewPager.setAdapter(mMainAdapterViewPager);
 
                     SharedPreferences sharedPreferences =
                             PreferenceManager.getDefaultSharedPreferences(MainActivity.this);

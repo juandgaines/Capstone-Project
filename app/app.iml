@@ -206,6 +206,7 @@
     <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-basement:16.1.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.core:core:1.0.1@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.squareup.okio:okio:1.15.0@jar" level="project" />
+    <orderEntry type="library" name="Gradle: com.github.PhilJay:MPAndroidChart:v3.1.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.collection:collection:1.0.0@jar" level="project" />
     <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-tasks:16.0.1@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.lifecycle:lifecycle-process:2.0.0@aar" level="project" />
