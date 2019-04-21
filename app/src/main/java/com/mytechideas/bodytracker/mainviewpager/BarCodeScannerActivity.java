@@ -5,6 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.exifinterface.media.ExifInterface;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -28,10 +33,19 @@ import com.google.firebase.ml.vision.barcode.FirebaseVisionBarcode;
 import com.google.firebase.ml.vision.barcode.FirebaseVisionBarcodeDetector;
 import com.google.firebase.ml.vision.barcode.FirebaseVisionBarcodeDetectorOptions;
 import com.google.firebase.ml.vision.common.FirebaseVisionImage;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.mytechideas.bodytracker.R;
+import com.mytechideas.bodytracker.retrofit.EdamamService;
+import com.mytechideas.bodytracker.retrofit.Example;
+import com.mytechideas.bodytracker.retrofit.Food;
+import com.mytechideas.bodytracker.retrofit.FoodAPI;
+import com.mytechideas.bodytracker.retrofit.Ingredients;
+import com.mytechideas.bodytracker.retrofit.NutrientsCall;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class BarCodeScannerActivity extends AppCompatActivity {
@@ -55,6 +69,15 @@ public class BarCodeScannerActivity extends AppCompatActivity {
                                 FirebaseVisionBarcode.FORMAT_UPC_A,
                                 FirebaseVisionBarcode.FORMAT_UPC_E)
                         .build();
+
+
+        Gson gson= new GsonBuilder().create();
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://api.edamam.com/")
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .build();
+
+        EdamamService service = retrofit.create(EdamamService.class);
 
 
         if(intent!=null && intent.hasExtra("image")){
@@ -117,6 +140,43 @@ public class BarCodeScannerActivity extends AppCompatActivity {
                                         Toast.makeText(BarCodeScannerActivity.this,"Type UPC-E",Toast.LENGTH_LONG).show();
                                         break;
                                 }
+
+                                service.listProductUPC(rawValue,"3c1df531","c5e9100c6e4c25c52c015c0293e2b3f1").enqueue(new Callback<FoodAPI>() {
+                                    @Override
+                                    public void onResponse(Call<FoodAPI> call, Response<FoodAPI> response) {
+                                        Log.v("Retrofit", response.toString());
+
+
+                                        Ingredients ingredients=new Ingredients();
+
+                                        ingredients.setFoodId(response.body().getHints().get(0).getFood().getFoodId());
+                                        ingredients.setMeasureURI(response.body().getHints().get(0).getMeasures().get(0).getUri());
+                                        ingredients.setQuantity(1);
+
+                                        List<Ingredients> mListNeeded= new ArrayList<Ingredients>();
+
+
+                                        mListNeeded.add(ingredients);
+                                        NutrientsCall mNutritionCall= new NutrientsCall(mListNeeded);
+                                        service.getNutritionsFromUPC(mNutritionCall,"3c1df531","c5e9100c6e4c25c52c015c0293e2b3f1").enqueue(new Callback<NutrientsCall>() {
+                                            @Override
+                                            public void onResponse(Call<NutrientsCall> call, Response<NutrientsCall> response) {
+
+                                            }
+
+                                            @Override
+                                            public void onFailure(Call<NutrientsCall> call, Throwable t) {
+
+                                            }
+                                        });
+
+                                    }
+
+                                    @Override
+                                    public void onFailure(Call<FoodAPI> call, Throwable t) {
+                                        Log.v("Retrofit", call.toString());
+                                    }
+                                });
                             }
                             // ...
                         }
