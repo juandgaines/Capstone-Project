@@ -4,26 +4,16 @@ package com.mytechideas.bodytracker;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.firebase.ui.auth.AuthUI;
 import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.core.Repo;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.mytechideas.bodytracker.mainviewpager.MainAdapterViewPager;
 import com.mytechideas.bodytracker.onboarding.IntroPagerActivity;
-import com.mytechideas.bodytracker.onboarding.SliderAdapter;
-import com.mytechideas.bodytracker.retrofit.EdamamService;
-import com.mytechideas.bodytracker.retrofit.Example;
-import com.squareup.picasso.Picasso;
 
 import java.util.Arrays;
-import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -32,11 +22,6 @@ import androidx.preference.PreferenceManager;
 import androidx.viewpager.widget.ViewPager;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
 

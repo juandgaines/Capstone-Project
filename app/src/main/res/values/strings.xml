@@ -50,6 +50,18 @@
     <string name="request_permission">Would you like to provide acces to the camera to continue?</string>
     <string name="description_info">Info</string>
     <string name="camera_error">This device doesn\'t support Camera2 API</string>
+    <string name="product_not_found">Product not found. Please try it again or use other input method.</string>
+    <string name="no_internet_connection_message">Something went wrong. Check your internet connection.</string>
+    <string name="product_found">Product found! Do you wish to added to the daily chart?</string>
+    <string name="ok_text">Ok</string>
+    <string name="yes_text">Yes!</string>
+    <string name="no_text">No</string>
+    <string name="upc_label">UPC:</string>
+    <string name="upc_name_text">Name:</string>
+    <string name="upc_calories_text">Calories:</string>
+    <string name="upc_carbs_text">Carbs:</string>
+    <string name="upc_fats_text">Fats:</string>
+    <string name="upc_protein_text">Protein:</string>
 
 
     <string-array name="gender_array">
