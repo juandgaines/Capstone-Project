@@ -60,6 +60,7 @@ public class MainHomeFragment extends Fragment implements OnChartValueSelectedLi
                 container, false);
         ButterKnife.bind(this,view);
 
+
         mFabMain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

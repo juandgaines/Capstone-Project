@@ -18,7 +18,7 @@
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/image_goal"
+                android:id="@+id/image_meal"
                 android:layout_width="116dp"
                 android:layout_height="160dp"
                 android:layout_marginStart="8dp"
@@ -32,12 +32,12 @@
                 tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
             <TextView
-                android:id="@+id/goal_title"
+                android:id="@+id/meal_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="TextView"
                 app:layout_constraintBottom_toBottomOf="@+id/checkbox_goal"
-                app:layout_constraintStart_toStartOf="@+id/image_goal"
+                app:layout_constraintStart_toStartOf="@+id/image_meal"
                 app:layout_constraintTop_toTopOf="@+id/checkbox_goal" />
 
             <CheckBox
@@ -45,8 +45,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                app:layout_constraintEnd_toEndOf="@+id/image_goal"
-                app:layout_constraintTop_toBottomOf="@+id/image_goal" />
+                app:layout_constraintEnd_toEndOf="@+id/image_meal"
+                app:layout_constraintTop_toBottomOf="@+id/image_meal" />
 
             <TextView
                 android:id="@+id/description_goal"
@@ -58,7 +58,7 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp"
                 android:text="TextView"
-                app:layout_constraintBottom_toTopOf="@+id/goal_title"
+                app:layout_constraintBottom_toTopOf="@+id/meal_title"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

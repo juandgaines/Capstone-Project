@@ -106,8 +106,8 @@ public class AdapterBodyType extends RecyclerView.Adapter<AdapterBodyType.MyView
         public MyViewHolderBodyType(@NonNull View itemView) {
             super(itemView);
 
-            mLifeStyleTitleView= (TextView) itemView.findViewById(R.id.goal_title);
-            mLifeStyleImageView= (ImageView) itemView.findViewById(R.id.image_goal);
+            mLifeStyleTitleView= (TextView) itemView.findViewById(R.id.meal_title);
+            mLifeStyleImageView= (ImageView) itemView.findViewById(R.id.image_meal);
             mLifeStyleDescriptionView= (TextView) itemView.findViewById(R.id.description_goal);
             mCheckBox=(CheckBox)itemView.findViewById(R.id.checkbox_goal);
 

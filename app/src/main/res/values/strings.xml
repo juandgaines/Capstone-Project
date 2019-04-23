@@ -62,6 +62,16 @@
     <string name="upc_carbs_text">Carbs:</string>
     <string name="upc_fats_text">Fats:</string>
     <string name="upc_protein_text">Protein:</string>
+    <string name="incompatible_encoding">Barcode must be UPC-E or UPC-A Encoded.Try other input method.</string>
+    <string name="try_again_text">Try again</string>
+    <string name="meal_breakfast_title">Breakfast</string>
+    <string name="meal_lunch_title">Lunch</string>
+    <string name="meal_dinner_title">Dinner</string>
+    <string name="meal_snacks_title">Snacks</string>
+    <string name="meal_breakfast_description">Skipping breakfast may make you hungrier and more likely to eat larger meals, which leads to a surge in blood sugar. Such spikes can pave the way for diabetes, high blood pressure and high cholesterol levels, all risk factors that can snowball into a heart attack.</string>
+    <string name="meal_lunch_description">Fuel up at the right time. In the 1960s, nutritionist Adelle Davis popularized the mantra “Eat breakfast like a king, lunch like a prince and dinner like a pauper.” Why? Fueling up makes sense earlier in the day, when your body needs the most calories for energy.</string>
+    <string name="meal_dinner_description">Don’t overdo it. Calories get burned up no matter when you eat them, so theoretically it’s O.K. to eat after dark. But if you eat a heavy dinner, you’re not as likely to get rid of those calories before you turn in.</string>
+    <string name="meal_snacks_description"><![CDATA[A snack is a small service of food and generally eaten between meals. Snacks come in a variety of forms including packaged snack foods and other processed foods, as well as items made from fresh ingredients at home.]]></string>
 
 
     <string-array name="gender_array">

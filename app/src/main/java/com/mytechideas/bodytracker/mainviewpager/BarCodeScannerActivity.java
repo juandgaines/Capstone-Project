@@ -146,61 +146,58 @@ public class BarCodeScannerActivity extends AppCompatActivity {
                                         case FirebaseVisionBarcode.FORMAT_UPC_E:
                                             Toast.makeText(BarCodeScannerActivity.this, "Type UPC-E", Toast.LENGTH_LONG).show();
                                             break;
+
+                                        default:
+                                            showIncompatibleEncoding();
+                                            break;
+
+
                                     }
 
 
-                                    service.getProductbyUPC(rawValue, "xxxxxx", "xxxxxxx").enqueue(new Callback<NutritionixUPCCall>() {
+                                    service.getProductbyUPC(rawValue, "", "").enqueue(new Callback<NutritionixUPCCall>() {
                                         @Override
                                         public void onResponse(Call<NutritionixUPCCall> call, Response<NutritionixUPCCall> response) {
 
                                             Log.v("Retrofit", response.toString());
-                                            Foods mFood=response.body().getFoods().get(0);
-                                            String urlImage = mFood.getPhoto().getThumb();
-                                            String name= mFood.getFoodName();
-                                            String calories=mFood.getNfCalories().toString()+" cal";
-                                            String fats=mFood.getNfTotalFat().toString()+" g";
-                                            String carbs=mFood.getNfTotalCarbohydrate().toString()+" g";
-                                            String protein=mFood.getNfProtein().toString()+" g";
 
-                                            mUpcProductName.setText(name);
-                                            mUpcProductCalories.setText(calories);
-                                            mUpcProductCarbs.setText(carbs);
-                                            mUpcProductFats.setText(fats);
-                                            mUpcProductProt.setText(protein);
+                                            if(response.code()!=404) {
+                                                Foods mFood = response.body().getFoods().get(0);
+                                                String urlImage = mFood.getPhoto().getThumb();
+                                                String name = mFood.getFoodName();
+                                                String calories = mFood.getNfCalories().toString() + " cal";
+                                                String fats = mFood.getNfTotalFat().toString() + " g";
+                                                String carbs = mFood.getNfTotalCarbohydrate().toString() + " g";
+                                                String protein = mFood.getNfProtein().toString() + " g";
 
-                                            List<PieEntry> entries = new ArrayList<>();
+                                                mUpcProductName.setText(name);
+                                                mUpcProductCalories.setText(calories);
+                                                mUpcProductCarbs.setText(carbs);
+                                                mUpcProductFats.setText(fats);
+                                                mUpcProductProt.setText(protein);
 
-                                            entries.add(new PieEntry(mFood.getNfTotalCarbohydrate()*4, "Carbs"));
-                                            entries.add(new PieEntry(mFood.getNfTotalFat()*9, "Fats"));
-                                            entries.add(new PieEntry(mFood.getNfProtein()*4, "Proteins"));
+                                                List<PieEntry> entries = new ArrayList<>();
 
-                                            PieDataSet set = new PieDataSet(entries, "Calories distribution");
+                                                entries.add(new PieEntry(mFood.getNfTotalCarbohydrate() * 4, "Carbs"));
+                                                entries.add(new PieEntry(mFood.getNfTotalFat() * 9, "Fats"));
+                                                entries.add(new PieEntry(mFood.getNfProtein() * 4, "Proteins"));
 
-                                            set.setColors(colorArray,BarCodeScannerActivity.this);
-                                            PieData data = new PieData(set);
-                                            mPieChart.setData(data);
+                                                PieDataSet set = new PieDataSet(entries, "Calories distribution");
 
-                                            Legend legend=mPieChart.getLegend();
-                                            legend.setForm(Legend.LegendForm.CIRCLE);
-//
-//                                            LegendEntry[] legendEntries= new LegendEntry[entries.size()];
-//
-//                                            for(int h=0; h<legendEntries.length;h++){
-//                                                LegendEntry entry=new LegendEntry();
-//                                                entry.formColor=colorArrayLabels[h];
-//                                                entry.label=mMacroNutrientsLabels[h];
-//                                                legendEntries[h]=entry;
-//                                            }
-//                                            legend.setCustom(legendEntries);
-//
-//
+                                                set.setColors(colorArray, BarCodeScannerActivity.this);
+                                                PieData data = new PieData(set);
+                                                mPieChart.setData(data);
 
-                                            mPieChart.invalidate(); // refresh
+                                                mPieChart.invalidate(); // refresh
 
-                                            Picasso.get().load(urlImage).into(mPreviewImage);
-                                            showProductFoundMessage();
-                                            Toast.makeText(BarCodeScannerActivity.this, "Calories:" + response.body().getFoods().get(0).getNfCalories().toString(), Toast.LENGTH_LONG).show();
+                                                Picasso.get().load(urlImage).into(mPreviewImage);
+                                                showProductFoundMessage();
 
+                                            }
+                                            else{
+                                                if(formatType==FirebaseVisionBarcode.FORMAT_UPC_A||formatType==FirebaseVisionBarcode.FORMAT_UPC_E)
+                                                    Toast.makeText(BarCodeScannerActivity.this, "Product do not exist on database", Toast.LENGTH_LONG).show();
+                                            }
                                         }
 
                                         @Override
@@ -231,6 +228,17 @@ public class BarCodeScannerActivity extends AppCompatActivity {
                     });
 
         }
+    }
+
+    private void showIncompatibleEncoding() {
+        Snackbar mySnackbar = Snackbar.make(mCoordinatorLayout, R.string.incompatible_encoding, Snackbar.LENGTH_INDEFINITE);
+        mySnackbar.setAction(R.string.try_again_text, new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                BarCodeScannerActivity.this.finish();
+            }
+        });
+        mySnackbar.show();
     }
 
     private void showNoInternetMessage(Bitmap finalRotatedBitmap) {
