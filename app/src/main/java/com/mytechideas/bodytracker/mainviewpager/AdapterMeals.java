@@ -2,6 +2,7 @@ package com.mytechideas.bodytracker.mainviewpager;
 
 import android.animation.Animator;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,12 +27,19 @@ import androidx.recyclerview.widget.RecyclerView;
 
 class AdapterMeals extends RecyclerView.Adapter<AdapterMeals.MealsViewHolder> {
 
+    public interface MealsAdapterOnClickHandler {
+        void onClick(MealsType mealsType);
+    }
+
 
     private Context mContext;
     private List<MealsType> mealsTypes= new ArrayList<MealsType>();
 
-    public AdapterMeals(Context context) {
+    private MealsAdapterOnClickHandler mMealsAdapterOnClickHandler;
+
+    public AdapterMeals(Context context, MealsAdapterOnClickHandler mealsAdapterOnClickHandler) {
         mContext=context;
+        mMealsAdapterOnClickHandler= mealsAdapterOnClickHandler;
 
         mealsTypes.add(new MealsType(mContext.getString(R.string.meal_breakfast_title),R.drawable.meal_breakfast, mContext.getString(R.string.meal_breakfast_description)));
         mealsTypes.add(new MealsType(mContext.getString(R.string.meal_lunch_title),R.drawable.meal_lunch, mContext.getString(R.string.meal_lunch_description)));
@@ -66,13 +74,13 @@ class AdapterMeals extends RecyclerView.Adapter<AdapterMeals.MealsViewHolder> {
 
 
 
-    public static class MealsViewHolder extends RecyclerView.ViewHolder  implements View.OnLongClickListener, View.OnClickListener{
+    public  class MealsViewHolder extends RecyclerView.ViewHolder  implements View.OnLongClickListener, View.OnClickListener{
 
         public TextView mMealTitleView;
         public ImageView mMealImageView;
         public TextView mMealDescriptionView;
-        static int blue;
-        static int white;
+        private int blue;
+        private int white;
 
         public MealsViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -121,9 +129,14 @@ class AdapterMeals extends RecyclerView.Adapter<AdapterMeals.MealsViewHolder> {
             return true;
         }
 
+
         @Override
         public void onClick(View view) {
-//Start pagin activity
+
+            MealsType mType=mealsTypes.get(getAdapterPosition());
+            mMealsAdapterOnClickHandler.onClick(mType);
+
+
         }
     }
 }

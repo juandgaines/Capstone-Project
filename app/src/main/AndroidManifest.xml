@@ -3,8 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.mytechideas.bodytracker">
     <!-- First, request the camera permission -->
-    <uses-permission android:name="android.permission.CAMERA" />
-    <!--   -->
+    <uses-permission android:name="android.permission.CAMERA" /> <!--  -->
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
 
@@ -17,7 +16,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".mainviewpager.BarCodeScannerActivity"></activity>
+        <activity android:name=".mainviewpager.MealsGridActivity"></activity>
+        <activity android:name=".mainviewpager.BarCodeScannerActivity" />
         <activity android:name=".mainviewpager.InputBarcodeActivity" />
 
         <meta-data

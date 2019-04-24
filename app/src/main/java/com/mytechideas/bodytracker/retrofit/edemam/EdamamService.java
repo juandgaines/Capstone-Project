@@ -9,7 +9,11 @@ import retrofit2.http.Query;
 public interface EdamamService {
 
     @GET("search")
-    Call<Example> searchRecipesByKeyWord(@Query("q") String word, @Query("app_id") String appId,@Query("app_key") String appKey);
+    Call<Example> searchRecipesByKeyWord(@Query("q") String word,
+                                         @Query("from") int from,
+                                         @Query("to") int to,
+                                         @Query("app_id") String appId,
+                                         @Query("app_key") String appKey);
 
     @GET("api/food-database/parser")
     Call<FoodAPI> listProductUPC(@Query("upc") String upccode, @Query("app_id") String appId,@Query("app_key") String appKey);

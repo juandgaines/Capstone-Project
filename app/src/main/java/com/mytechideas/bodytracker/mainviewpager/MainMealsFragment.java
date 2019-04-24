@@ -1,12 +1,15 @@
 package com.mytechideas.bodytracker.mainviewpager;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.mytechideas.bodytracker.R;
+import com.mytechideas.bodytracker.onboarding.AdapterBodyType;
 import com.mytechideas.bodytracker.onboarding.AdapterCardTextAndImage;
 
 import androidx.annotation.NonNull;
@@ -19,10 +22,16 @@ import butterknife.ButterKnife;
 
 
 
-public class MainMealsFragment extends Fragment {
+public class MainMealsFragment extends Fragment  implements AdapterMeals.MealsAdapterOnClickHandler {
+
+
+    public static final String QUERY_TEXT_KEY="query_key";
 
     @BindView(R.id.meals_recyclerview)
     RecyclerView mMealsRecyclerView;
+
+    @BindView(R.id.meal_search_fab)
+    FloatingActionButton mMealFab;
 
     private AdapterMeals mAdapter;
     GridLayoutManager layoutManager;
@@ -51,11 +60,30 @@ public class MainMealsFragment extends Fragment {
 
 
 
-        mAdapter= new AdapterMeals(getContext());
+        mAdapter= new AdapterMeals(getContext(),this);
 
         mMealsRecyclerView.setAdapter(mAdapter);
 
+        mMealFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Abrir actividad buscador
+            }
+        });
         return view;
+
+    }
+
+    @Override
+    public void onClick(MealsType mealsType) {
+
+
+        Intent intent=new Intent(getActivity(),MealsGridActivity.class);
+
+        intent.putExtra(QUERY_TEXT_KEY, mealsType.getmTitle());
+
+        getActivity().startActivity(intent);
+
 
     }
 }
