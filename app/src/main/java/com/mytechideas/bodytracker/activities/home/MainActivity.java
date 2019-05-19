@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         mFirebaseAuth=FirebaseAuth.getInstance();
+
         mAuthStateListener=new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
@@ -70,6 +71,12 @@ public class MainActivity extends AppCompatActivity {
 
                     SharedPreferences sharedPreferences =
                             PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+
+                    SharedPreferences.Editor sharedPreferencesEditor =
+                            sharedPreferences.edit();
+                    sharedPreferencesEditor.putString(getResources().getString(R.string.id_user_firebase_app), user.getUid());
+                    sharedPreferencesEditor.apply();
+
                     // Check if we need to display our OnboardingFragment
                     if (!sharedPreferences.getBoolean(getResources().getString(R.string.first_time_app), false)) {
                         // The user hasn't seen the OnboardingFragment yet, so show it

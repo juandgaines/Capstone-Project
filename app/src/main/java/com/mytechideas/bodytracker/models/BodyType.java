@@ -1,6 +1,6 @@
 package com.mytechideas.bodytracker.models;
 
-class BodyType {
+public class BodyType {
 
     private String mTitle;
     private int mImage;

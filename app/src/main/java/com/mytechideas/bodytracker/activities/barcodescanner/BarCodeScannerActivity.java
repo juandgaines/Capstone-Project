@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.exifinterface.media.ExifInterface;
+import androidx.preference.PreferenceManager;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import retrofit2.Call;
@@ -11,6 +13,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -32,12 +35,15 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.ml.vision.FirebaseVision;
 import com.google.firebase.ml.vision.barcode.FirebaseVisionBarcode;
 import com.google.firebase.ml.vision.barcode.FirebaseVisionBarcodeDetector;
 import com.google.firebase.ml.vision.barcode.FirebaseVisionBarcodeDetectorOptions;
 import com.google.firebase.ml.vision.common.FirebaseVisionImage;
 import com.mytechideas.bodytracker.R;
+import com.mytechideas.bodytracker.models.FoodDataForFireBase;
 import com.mytechideas.bodytracker.retrofit.nutritionix.Foods;
 import com.mytechideas.bodytracker.retrofit.nutritionix.NutritionixService;
 import com.mytechideas.bodytracker.retrofit.nutritionix.NutritionixUPCCall;
@@ -46,7 +52,9 @@ import com.squareup.picasso.Picasso;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class BarCodeScannerActivity extends AppCompatActivity {
@@ -73,6 +81,10 @@ public class BarCodeScannerActivity extends AppCompatActivity {
     @BindView(R.id.upc_chart_product)
     PieChart mPieChart;
 
+    private FirebaseDatabase mFirebaseDatabase;
+    private DatabaseReference mCaloriesDataReference;
+    private String mUserID;
+
     private int[] colorArray=new int[] {R.color.carbs,R.color.fats,R.color.protein};
 
 
@@ -82,6 +94,17 @@ public class BarCodeScannerActivity extends AppCompatActivity {
         setContentView(R.layout.activity_bar_code_scanner);
         ButterKnife.bind(this);
         Intent intent=getIntent();
+
+        SharedPreferences sharedPreferences =
+                PreferenceManager.getDefaultSharedPreferences(BarCodeScannerActivity.this);
+
+        mUserID=sharedPreferences.getString(getString(R.string.id_user_firebase_app),"");
+
+        mFirebaseDatabase=FirebaseDatabase.getInstance();
+        mCaloriesDataReference=mFirebaseDatabase.getReference().child("calories").child(mUserID);
+
+
+
 
         FirebaseVisionBarcodeDetectorOptions options =
                 new FirebaseVisionBarcodeDetectorOptions.Builder()
@@ -158,6 +181,10 @@ public class BarCodeScannerActivity extends AppCompatActivity {
                                                 String carbs = mFood.getNfTotalCarbohydrate().toString() + " g";
                                                 String protein = mFood.getNfProtein().toString() + " g";
 
+                                                Calendar calendar= Calendar.getInstance();
+
+                                                FoodDataForFireBase foodDataForFireBase= new FoodDataForFireBase(mFood.getFoodName(), mFood.getNfCalories(), mFood.getNfTotalCarbohydrate(),mFood.getNfTotalFat(),mFood.getNfProtein(),calendar);
+
                                                 mUpcProductName.setText(name);
                                                 mUpcProductCalories.setText(calories);
                                                 mUpcProductCarbs.setText(carbs);
@@ -179,7 +206,7 @@ public class BarCodeScannerActivity extends AppCompatActivity {
                                                 mPieChart.invalidate(); // refresh
 
                                                 Picasso.get().load(urlImage).into(mPreviewImage);
-                                                showProductFoundMessage();
+                                                showProductFoundMessage(foodDataForFireBase);
 
                                             }
                                             else{
@@ -265,12 +292,14 @@ public class BarCodeScannerActivity extends AppCompatActivity {
         return rotatedBitmap;
     }
 
-    private void showProductFoundMessage() {
+    private void showProductFoundMessage(FoodDataForFireBase food) {
         Snackbar mySnackbar = Snackbar.make(mCoordinatorLayout, R.string.product_found, Snackbar.LENGTH_INDEFINITE);
         mySnackbar.setAction(R.string.yes_text, new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
+                mCaloriesDataReference.push().setValue(food);
+                finish();
             }
         });
         mySnackbar.show();

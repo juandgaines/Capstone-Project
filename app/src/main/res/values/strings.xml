@@ -4,6 +4,7 @@
     <string name="prev_sentence">Previous</string>
     <string name="finish_sentence">Finish</string>
     <string name="first_time_app" translatable="false">firts_time_login</string>
+    <string name="id_user_firebase_app" translatable="false">id_user_firebase</string>
     <string name="edittext_brithday_hint">Tap to insert a date...</string>
     <string name="height_text">Height</string>
     <string name="weight_text">Weight</string>
