@@ -16,16 +16,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".mainviewpager.MealsGridActivity"></activity>
-        <activity android:name=".mainviewpager.BarCodeScannerActivity" />
-        <activity android:name=".mainviewpager.InputBarcodeActivity" />
+        <activity android:name=".activities.meals.MealsGridActivity"></activity>
+        <activity android:name=".activities.barcodescanner.BarCodeScannerActivity" />
+        <activity android:name=".activities.inputbarcode.InputBarcodeActivity" />
 
         <meta-data
             android:name="com.google.firebase.ml.vision.DEPENDENCIES"
             android:value="barcode" />
 
         <activity
-            android:name=".SplashActivity"
+            android:name=".activities.splash.SplashActivity"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -34,10 +34,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".activities.home.MainActivity"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".onboarding.IntroPagerActivity"
+            android:name=".activities.onboarding.IntroPagerActivity"
             android:theme="@style/AppTheme" />
     </application>
 
