@@ -5,6 +5,12 @@
     <string name="finish_sentence">Finish</string>
     <string name="first_time_app" translatable="false">firts_time_login</string>
     <string name="id_user_firebase_app" translatable="false">id_user_firebase</string>
+    <string name="id_user_max_protein">id_user_max_protein</string>
+    <string name="id_user_max_carbs">id_user_max_carbs</string>
+    <string name="id_user_max_fats">id_user_max_fats</string>
+    <string name="id_user_max_calories">id_user_max_calories</string>
+
+
     <string name="edittext_brithday_hint">Tap to insert a date...</string>
     <string name="height_text">Height</string>
     <string name="weight_text">Weight</string>
@@ -73,6 +79,7 @@
     <string name="meal_lunch_description">Fuel up at the right time. In the 1960s, nutritionist Adelle Davis popularized the mantra “Eat breakfast like a king, lunch like a prince and dinner like a pauper.” Why? Fueling up makes sense earlier in the day, when your body needs the most calories for energy.</string>
     <string name="meal_dinner_description">Don’t overdo it. Calories get burned up no matter when you eat them, so theoretically it’s O.K. to eat after dark. But if you eat a heavy dinner, you’re not as likely to get rid of those calories before you turn in.</string>
     <string name="meal_snacks_description"><![CDATA[A snack is a small service of food and generally eaten between meals. Snacks come in a variety of forms including packaged snack foods and other processed foods, as well as items made from fresh ingredients at home.]]></string>
+    <string name="sign_out_text">Sign out</string>
 
 
     <string-array name="gender_array">

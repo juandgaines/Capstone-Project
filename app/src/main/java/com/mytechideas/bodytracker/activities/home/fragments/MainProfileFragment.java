@@ -26,4 +26,8 @@ public class MainProfileFragment extends Fragment {
 
         return view;
     }
+
+    public void onSignedOutCleanUp() {
+
+    }
 }

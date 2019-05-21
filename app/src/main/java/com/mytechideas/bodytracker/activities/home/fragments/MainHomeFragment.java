@@ -71,9 +71,6 @@ public class MainHomeFragment extends Fragment implements OnChartValueSelectedLi
     private float dailyProteins=0f;
     private float dailyCarbs=0f;
 
-
-
-
     private boolean isFABOpen=false;
 
     private int[] colorArray=new int[] {R.color.carbs,R.color.fats,R.color.protein};
@@ -82,6 +79,10 @@ public class MainHomeFragment extends Fragment implements OnChartValueSelectedLi
     private String mUserID;
 
     private List<BarEntry> entries = new ArrayList<>();
+    private float mMaxProtein;
+    private float mMaxCarbs;
+    private float mMaxFats;
+    private float mMaxCalories;
 
 
     @Nullable
@@ -97,6 +98,11 @@ public class MainHomeFragment extends Fragment implements OnChartValueSelectedLi
 
         mUserID=sharedPreferences.getString(getString(R.string.id_user_firebase_app),"");
 
+        mMaxCalories=sharedPreferences.getFloat(getString(R.string.id_user_max_calories),0f);
+        mMaxProtein=sharedPreferences.getFloat(getString(R.string.id_user_max_protein),0f);
+        mMaxCarbs=sharedPreferences.getFloat(getString(R.string.id_user_max_carbs),0f);
+        mMaxFats=sharedPreferences.getFloat(getString(R.string.id_user_max_fats),0f);
+
         mFirebaseDatabase=FirebaseDatabase.getInstance();
         mCaloriesDataReference=mFirebaseDatabase.getReference().child("calories").child(mUserID);
 
@@ -104,56 +110,13 @@ public class MainHomeFragment extends Fragment implements OnChartValueSelectedLi
         Calendar calendar=Calendar.getInstance();
         String mDateFormatted= DateFormat.getDateInstance(DateFormat.FULL).format(calendar.getTime());
         Query query=mCaloriesDataReference.orderByChild("mDateFormatted").equalTo(mDateFormatted);
-
-
-
-        mEventListenerDaily= new ChildEventListener() {
-            @Override
-            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-                FoodDataForFireBase data= dataSnapshot.getValue(FoodDataForFireBase.class);
-
-                dailyCalories+=data.getmCalories();
-                dailyCarbs+=data.getmCarbs();
-                dailyFats+=data.getmFats();
-                dailyProteins+=data.getmProtein();
-
-                entries.clear();
-                barChart();
-
-            }
-
-            @Override
-            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-            }
-
-            @Override
-            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        };
+        attachReadDatabaseListener();
         mCaloriesDataReference.addChildEventListener(mEventListenerDaily);
 
         mCaloriesDataReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-
-                dailyCalories=0f;
-                dailyFats=0f;
-                dailyProteins=0f;
-                dailyCarbs=0f;
 
                 for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
 
@@ -166,6 +129,7 @@ public class MainHomeFragment extends Fragment implements OnChartValueSelectedLi
 
                 }
 
+                chart.clear();
                 barChart();
 
             }
@@ -202,8 +166,51 @@ public class MainHomeFragment extends Fragment implements OnChartValueSelectedLi
         return view;
     }
 
+    private void attachReadDatabaseListener() {
+
+        if(mEventListenerDaily==null) {
+            mEventListenerDaily = new ChildEventListener() {
+                @Override
+                public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+                    FoodDataForFireBase data = dataSnapshot.getValue(FoodDataForFireBase.class);
+
+                    dailyCalories += data.getmCalories();
+                    dailyCarbs += data.getmCarbs();
+                    dailyFats += data.getmFats();
+                    dailyProteins += data.getmProtein();
+                    barChart();
+
+                }
+
+                @Override
+                public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+                }
+
+                @Override
+                public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+
+                }
+
+                @Override
+                public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            };
+        }
+    }
+
     private void barChart() {
 
+        chart.clear();
+        entries.clear();
         entries.add(new BarEntry(0f, dailyCarbs));
         entries.add(new BarEntry(1f, dailyFats));
         entries.add(new BarEntry(2f, dailyProteins));
@@ -214,17 +221,20 @@ public class MainHomeFragment extends Fragment implements OnChartValueSelectedLi
         BarData data = new BarData(set);
 
         data.setBarWidth(0.9f); // set custom bar width
+
         chart.setData(data);
 
         chart.setFitBars(true); // make the x-axis fit exactly all bars
 
 
         YAxis leftAxis = chart.getAxisLeft();
-        leftAxis.setAxisMaximum(100f);
+        leftAxis.setAxisMaximum(mMaxCalories/2);
 
-        LimitLine lc = new LimitLine(50f, "Carbs limit");
-        LimitLine lp = new LimitLine(70f, "Protein limit");
-        LimitLine lf = new LimitLine(45f, "Fats limit");
+
+
+        LimitLine lc = new LimitLine(mMaxCarbs, "Carbs limit");
+        LimitLine lp = new LimitLine(mMaxProtein, "Protein limit");
+        LimitLine lf = new LimitLine(mMaxFats, "Fats limit");
 
         lc.setLineColor(Color.YELLOW);
         lc.setLineWidth(4f);
@@ -260,6 +270,9 @@ public class MainHomeFragment extends Fragment implements OnChartValueSelectedLi
         }
         legend.setCustom(legendEntries);
 
+        chart.getAxisRight().setDrawGridLines(false);
+        chart.getAxisLeft().setDrawGridLines(false);
+        chart.getXAxis().setDrawGridLines(false);
         chart.invalidate(); // refresh
     }
 
@@ -293,5 +306,30 @@ public class MainHomeFragment extends Fragment implements OnChartValueSelectedLi
         mFabOp2.animate().translationY(0);
         mFabOp3.animate().translationY(0);
         cancelToAdd.start();
+    }
+
+
+    public void onSignedOutCleanUp(){
+        entries.clear();
+        dailyCarbs=0;
+        dailyFats=0;
+        dailyProteins=0;
+        mMaxCalories=0;
+        mUserID=null;
+        dettachReadDatabaseListener();
+
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        dettachReadDatabaseListener();
+    }
+
+    private void dettachReadDatabaseListener() {
+        if(mEventListenerDaily!=null) {
+            mCaloriesDataReference.removeEventListener(mEventListenerDaily);
+            mEventListenerDaily=null;
+        }
     }
 }

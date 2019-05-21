@@ -1,5 +1,6 @@
 package com.mytechideas.bodytracker.activities.onboarding.fragments;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.Toast;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.mytechideas.bodytracker.R;
+import com.mytechideas.bodytracker.activities.home.MainActivity;
 import com.mytechideas.bodytracker.models.UserDataBT;
 import com.mytechideas.bodytracker.activities.onboarding.adapters.AdapterBodyType;
 
@@ -19,6 +21,7 @@ import java.math.RoundingMode;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
@@ -62,6 +65,8 @@ public class OnboardingFragment3 extends Fragment implements AdapterBodyType.OnC
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false);
         mBodyRecyclerView.setLayoutManager(layoutManager);
+
+
 
 
 
@@ -114,6 +119,19 @@ public class OnboardingFragment3 extends Fragment implements AdapterBodyType.OnC
 
             mFirebaseDatabase.getReference().child("users").child(mFirebaseUI).removeValue();
             mUserDataReference.push().setValue(mUserDataBT);
+            SharedPreferences sharedPreferences =
+                    PreferenceManager.getDefaultSharedPreferences(getContext());
+
+            SharedPreferences.Editor sharedPreferencesEditor =
+                    sharedPreferences.edit();
+            sharedPreferencesEditor.putString(getResources().getString(R.string.id_user_firebase_app),mFirebaseUI);
+            sharedPreferencesEditor.putFloat(getResources().getString(R.string.id_user_max_protein),(float) mUserDataBT.getmPerProtein());
+            sharedPreferencesEditor.putFloat(getResources().getString(R.string.id_user_max_carbs),(float)mUserDataBT.getmPerCarbs());
+            sharedPreferencesEditor.putFloat(getResources().getString(R.string.id_user_max_fats),(float)mUserDataBT.getmPerFats());
+            sharedPreferencesEditor.putFloat(getResources().getString(R.string.id_user_max_calories),(float)mUserDataBT.getmPerFats());
+
+            sharedPreferencesEditor.apply();
+
             return true;
         }
         Toast.makeText(getContext(),"Select a bodytype in order to go forward.",Toast.LENGTH_LONG).show();

@@ -69,6 +69,13 @@ public class MainAdapterViewPager extends FragmentPagerAdapter {
     }
 
 
+    public void onSignedOut(){
+
+        mainHomeFragment.onSignedOutCleanUp();
+        mainProfileFragment.onSignedOutCleanUp();
+    }
+
+
 
 
 

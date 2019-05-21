@@ -4,6 +4,9 @@ package com.mytechideas.bodytracker.activities.home;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.firebase.ui.auth.AuthUI;
@@ -52,12 +55,11 @@ public class MainActivity extends AppCompatActivity {
 
         mFirebaseAuth=FirebaseAuth.getInstance();
 
+
         mAuthStateListener=new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user= firebaseAuth.getCurrentUser();
-
-
                 if(user!=null){
                     Toast.makeText(MainActivity.this,"user:"+user.getUid(),Toast.LENGTH_LONG).show();
                      name= user.getDisplayName();
@@ -88,6 +90,9 @@ public class MainActivity extends AppCompatActivity {
 
                 }
                 else{
+                    if(mMainAdapterViewPager!=null) {
+                        mMainAdapterViewPager.onSignedOut();
+                    }
                     startActivityForResult(
                             AuthUI.getInstance()
                                     .createSignInIntentBuilder()
@@ -103,6 +108,28 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         };
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_menu, menu);
+        // return true so that the menu pop up is opened
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch(item.getItemId()) {
+            case R.id.sign_out_item:
+                AuthUI.getInstance().signOut(this);
+                return true;
+            default:
+
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     @Override
@@ -130,6 +157,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        mFirebaseAuth.removeAuthStateListener(mAuthStateListener);
+
+        if(mAuthStateListener!=null) {
+            mFirebaseAuth.removeAuthStateListener(mAuthStateListener);
+        }
     }
 }
