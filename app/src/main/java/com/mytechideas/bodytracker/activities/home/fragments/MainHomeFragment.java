@@ -30,10 +30,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.mytechideas.bodytracker.R;
-import com.mytechideas.bodytracker.activities.barcodescanner.BarCodeScannerActivity;
+import com.mytechideas.bodytracker.activities.inputvoice.VoiceInputActivity;
 import com.mytechideas.bodytracker.activities.inputbarcode.InputBarcodeActivity;
 import com.mytechideas.bodytracker.models.FoodDataForFireBase;
-import com.mytechideas.bodytracker.retrofit.edemam.Food;
 
 import java.text.DateFormat;
 import java.util.ArrayList;
@@ -156,6 +155,15 @@ public class MainHomeFragment extends Fragment implements OnChartValueSelectedLi
             @Override
             public void onClick(View view) {
                 Intent intent= new Intent(getContext(), InputBarcodeActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+        mFabOp3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent= new Intent(getContext(), VoiceInputActivity.class);
                 startActivity(intent);
             }
         });
