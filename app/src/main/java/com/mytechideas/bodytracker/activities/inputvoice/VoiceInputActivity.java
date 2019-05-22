@@ -1,11 +1,14 @@
 package com.mytechideas.bodytracker.activities.inputvoice;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
@@ -15,15 +18,27 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.data.PieData;
+import com.github.mikephil.charting.data.PieDataSet;
+import com.github.mikephil.charting.data.PieEntry;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.mytechideas.bodytracker.R;
+import com.mytechideas.bodytracker.activities.barcodescanner.BarCodeScannerActivity;
 import com.mytechideas.bodytracker.activities.inputvoice.adapters.VoiceAdapterIngredients;
+import com.mytechideas.bodytracker.models.FoodDataForFireBase;
+import com.mytechideas.bodytracker.retrofit.nutritionix.Food;
+import com.mytechideas.bodytracker.retrofit.nutritionix.Foods;
 import com.mytechideas.bodytracker.retrofit.nutritionix.NutritionixNaturalCall;
 import com.mytechideas.bodytracker.retrofit.nutritionix.NutritionixService;
 import com.mytechideas.bodytracker.retrofit.nutritionix.RetrofitNutritionixInstance;
 import com.mytechideas.bodytracker.retrofit.nutritionix.TextQuery;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import butterknife.BindView;
@@ -34,20 +49,32 @@ import retrofit2.Response;
 
 public class VoiceInputActivity extends AppCompatActivity {
 
-    private static final String TAG=VoiceInputActivity.class.getSimpleName();
+    private static final String TAG = VoiceInputActivity.class.getSimpleName();
     private static final int SPEECH_REQUEST_CODE = 0;
     @BindView(R.id.fab_calculate)
     FloatingActionButton mFabCalculate;
     @BindView(R.id.fab_insert)
     FloatingActionButton mFabInsert;
 
-    private List<String> ingredients=new ArrayList<>();
+    private List<String> ingredients = new ArrayList<>();
+
+    @BindView(R.id.coordinatorlayout)
+    CoordinatorLayout mCoordinatorLayout;
 
     @BindView(R.id.recycler)
     RecyclerView recyclerView;
 
+    @BindView(R.id.upc_chart_product)
+    PieChart mPieChart;
+
     private VoiceAdapterIngredients mAdapter;
     private RecyclerView.LayoutManager layoutManager;
+
+    private FirebaseDatabase mFirebaseDatabase;
+    private DatabaseReference mCaloriesDataReference;
+    private String mUserID;
+
+    private int[] colorArray=new int[] {R.color.carbs,R.color.fats,R.color.protein};
 
 
     @Override
@@ -56,6 +83,13 @@ public class VoiceInputActivity extends AppCompatActivity {
         setContentView(R.layout.activity_voice_input);
         ButterKnife.bind(this);
 
+        SharedPreferences sharedPreferences =
+                PreferenceManager.getDefaultSharedPreferences(VoiceInputActivity.this);
+
+        mUserID=sharedPreferences.getString(getString(R.string.id_user_firebase_app),"");
+
+        mFirebaseDatabase= FirebaseDatabase.getInstance();
+        mCaloriesDataReference=mFirebaseDatabase.getReference().child("calories").child(mUserID);
         recyclerView.setHasFixedSize(true);
 
         // use a linear layout manager
@@ -93,11 +127,44 @@ public class VoiceInputActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<NutritionixNaturalCall> call, Response<NutritionixNaturalCall> response) {
                 Log.d(TAG,"Response->"+ response.body().getFoods().get(0).getFoodName());
+
+                int sumCalories=0;
+                int sumCarbs=0;
+                int sumFats=0;
+                int sumProtein=0;
+
+                List<Food> list= response.body().getFoods();
+                for(Food l:list){
+                    sumCalories+=l.getNfCalories();
+                    sumCarbs+= l.getNfTotalCarbohydrate() * 4;
+                    sumFats+=l.getNfTotalFat() * 9;
+                    sumProtein+=l.getNfProtein()* 4;
+
+                }
+
+                Calendar calendar= Calendar.getInstance();
+
+                FoodDataForFireBase foodDataForFireBase= new FoodDataForFireBase(textQuery.getQuery(), sumCalories, sumCarbs,sumFats,sumProtein,calendar);
+
+                List<PieEntry> entries = new ArrayList<>();
+
+                entries.add(new PieEntry(sumCarbs, "Carbs"));
+                entries.add(new PieEntry(sumFats * 9, "Fats"));
+                entries.add(new PieEntry(sumProtein* 4, "Proteins"));
+
+                PieDataSet set = new PieDataSet(entries, "Calories distribution");
+
+                set.setColors(colorArray, VoiceInputActivity.this);
+                PieData data = new PieData(set);
+                mPieChart.setData(data);
+
+                mPieChart.invalidate(); // refresh
+                showProductFoundMessage(foodDataForFireBase);
             }
 
             @Override
             public void onFailure(Call<NutritionixNaturalCall> call, Throwable t) {
-                Log.d(TAG,"Error->"+ call.toString());
+                Log.d(TAG,"Error->"+ t.toString());
             }
         });
     }
@@ -157,5 +224,18 @@ public class VoiceInputActivity extends AppCompatActivity {
 
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    private void showProductFoundMessage(FoodDataForFireBase food) {
+        Snackbar mySnackbar = Snackbar.make(mCoordinatorLayout, R.string.product_found, Snackbar.LENGTH_INDEFINITE);
+        mySnackbar.setAction(R.string.yes_text, new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                mCaloriesDataReference.push().setValue(food);
+                finish();
+            }
+        });
+        mySnackbar.show();
     }
 }

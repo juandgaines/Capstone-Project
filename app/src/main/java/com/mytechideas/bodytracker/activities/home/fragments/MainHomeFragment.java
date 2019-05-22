@@ -236,7 +236,7 @@ public class MainHomeFragment extends Fragment implements OnChartValueSelectedLi
 
 
         YAxis leftAxis = chart.getAxisLeft();
-        leftAxis.setAxisMaximum(mMaxCalories/2);
+        leftAxis.setAxisMaximum(mMaxCalories);
 
 
 
