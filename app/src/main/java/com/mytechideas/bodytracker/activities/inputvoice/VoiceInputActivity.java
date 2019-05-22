@@ -80,36 +80,26 @@ public class VoiceInputActivity extends AppCompatActivity {
         mFabCalculate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
-
-                TextQuery textQuery= new TextQuery(mAdapter.toString());
-
-                service.getNutrientsByQuery(textQuery, "1cf1c784", "d2f6e52115ea7dca4b2ae122a784c6fc").enqueue(new Callback<NutritionixNaturalCall>() {
-                    @Override
-                    public void onResponse(Call<NutritionixNaturalCall> call, Response<NutritionixNaturalCall> response) {
-
-
-                        Log.d(TAG,"Response->"+ response.body().getFoods().get(0).getFoodName());
-                    }
-
-                    @Override
-                    public void onFailure(Call<NutritionixNaturalCall> call, Throwable t) {
-
-                        Log.d(TAG,"Error->"+ call.toString());
-                    }
-                });
-
-
+                fetchDataFromQueryOfAdapter(service);
             }
         });
 
+    }
 
+    private void fetchDataFromQueryOfAdapter(NutritionixService service) {
+        TextQuery textQuery= new TextQuery(mAdapter.toString());
 
+        service.getNutrientsByQuery(textQuery, "1cf1c784", "d2f6e52115ea7dca4b2ae122a784c6fc").enqueue(new Callback<NutritionixNaturalCall>() {
+            @Override
+            public void onResponse(Call<NutritionixNaturalCall> call, Response<NutritionixNaturalCall> response) {
+                Log.d(TAG,"Response->"+ response.body().getFoods().get(0).getFoodName());
+            }
 
-
-
-
+            @Override
+            public void onFailure(Call<NutritionixNaturalCall> call, Throwable t) {
+                Log.d(TAG,"Error->"+ call.toString());
+            }
+        });
     }
 
     private void attachItemTouchHelper() {
