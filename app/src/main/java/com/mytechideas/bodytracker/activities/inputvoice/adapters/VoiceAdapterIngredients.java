@@ -48,4 +48,28 @@ public class VoiceAdapterIngredients extends RecyclerView.Adapter<VoiceAdapterIn
     public int getItemCount() {
         return mDataset.size();
     }
+
+    public void deleteItem(int position){
+
+        mDataset.remove(position);
+        notifyDataSetChanged();
+    }
+    public void add(String item){
+
+        mDataset.add(item);
+        notifyDataSetChanged();
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+
+        String all="";
+
+        for(String s:mDataset){
+
+            all+=" "+s;
+        }
+        return all;
+    }
 }

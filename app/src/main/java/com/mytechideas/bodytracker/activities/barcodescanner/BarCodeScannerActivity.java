@@ -143,8 +143,6 @@ public class BarCodeScannerActivity extends AppCompatActivity {
                                     String rawValue = barcode.getRawValue();
 
                                     mPreviwSerial.setText(rawValue);
-
-
                                     int formatType = barcode.getFormat();
 
                                     int valueType = barcode.getValueType();
