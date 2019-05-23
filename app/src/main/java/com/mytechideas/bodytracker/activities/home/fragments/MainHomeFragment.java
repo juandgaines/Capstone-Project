@@ -82,6 +82,7 @@ public class MainHomeFragment extends Fragment implements OnChartValueSelectedLi
     private float mMaxCarbs;
     private float mMaxFats;
     private float mMaxCalories;
+    private ValueEventListener mEventSingleEventListenerDaily;
 
 
     @Nullable
@@ -90,7 +91,7 @@ public class MainHomeFragment extends Fragment implements OnChartValueSelectedLi
         View view = inflater.inflate(R.layout.main_home_fragment,
                 container, false);
         ButterKnife.bind(this,view);
-
+        clearChart();
 
         SharedPreferences sharedPreferences =
                 PreferenceManager.getDefaultSharedPreferences(getContext());
@@ -109,37 +110,12 @@ public class MainHomeFragment extends Fragment implements OnChartValueSelectedLi
         Calendar calendar=Calendar.getInstance();
         String mDateFormatted= DateFormat.getDateInstance(DateFormat.FULL).format(calendar.getTime());
         Query query=mCaloriesDataReference.orderByChild("mDateFormatted").equalTo(mDateFormatted);
-        attachReadDatabaseListener();
-        mCaloriesDataReference.addChildEventListener(mEventListenerDaily);
-
-        mCaloriesDataReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
+        //attachReadDatabaseListener();
 
 
-                for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
 
-                    FoodDataForFireBase data= postSnapshot.getValue(FoodDataForFireBase.class);
+        attachDataBaseSingleEventListener();
 
-                    dailyCalories+= data.getmCalories();
-                    dailyCarbs +=data.getmCarbs();
-                    dailyProteins+=data.getmProtein();
-                    dailyFats+=data.getmFats();
-
-                }
-
-                chart.clear();
-                barChart();
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                // Getting Post failed, log a message
-                Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
-                // ...
-            }
-        });
         mFabMain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -172,6 +148,61 @@ public class MainHomeFragment extends Fragment implements OnChartValueSelectedLi
 
 
         return view;
+    }
+
+    private void clearChart() {
+        chart.clear();
+        entries.clear();
+        dailyCarbs=0;
+        dailyFats=0;
+        dailyProteins=0;
+        mMaxCalories=0;
+        barChart();
+        chart.invalidate();
+    }
+
+    private void attachDataBaseSingleEventListener() {
+        
+        if(mEventSingleEventListenerDaily==null){ 
+            mEventSingleEventListenerDaily= new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    chart.clear();
+                    entries.clear();
+                    dailyCarbs=0;
+                    dailyFats=0;
+                    dailyProteins=0;
+                    mMaxCalories=0;
+                    barChart();
+
+                    for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
+
+                        FoodDataForFireBase data= postSnapshot.getValue(FoodDataForFireBase.class);
+
+                        dailyCalories+= data.getmCalories();
+                        dailyCarbs +=data.getmCarbs();
+                        dailyProteins+=data.getmProtein();
+                        dailyFats+=data.getmFats();
+
+                    }
+
+
+                    barChart();
+
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                    // Getting Post failed, log a message
+                    Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
+                    // ...
+                }
+            };
+        }
+        mCaloriesDataReference.addListenerForSingleValueEvent(mEventSingleEventListenerDaily);
+
+
+
     }
 
     private void attachReadDatabaseListener() {
@@ -213,6 +244,8 @@ public class MainHomeFragment extends Fragment implements OnChartValueSelectedLi
                 }
             };
         }
+
+        mCaloriesDataReference.addChildEventListener(mEventListenerDaily);
     }
 
     private void barChart() {
@@ -334,10 +367,21 @@ public class MainHomeFragment extends Fragment implements OnChartValueSelectedLi
         dettachReadDatabaseListener();
     }
 
+    @Override
+    public void onStop(){
+        super.onStop();
+        dettachReadDatabaseListener();
+    }
+
     private void dettachReadDatabaseListener() {
         if(mEventListenerDaily!=null) {
             mCaloriesDataReference.removeEventListener(mEventListenerDaily);
             mEventListenerDaily=null;
+        }
+
+        if(mEventSingleEventListenerDaily!=null){
+            mCaloriesDataReference.removeEventListener(mEventSingleEventListenerDaily);
+            mEventSingleEventListenerDaily=null;
         }
     }
 }
