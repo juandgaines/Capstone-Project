@@ -30,6 +30,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.mytechideas.bodytracker.R;
+import com.mytechideas.bodytracker.activities.inputType.InputTypeActivity;
 import com.mytechideas.bodytracker.activities.inputvoice.VoiceInputActivity;
 import com.mytechideas.bodytracker.activities.inputbarcode.InputBarcodeActivity;
 import com.mytechideas.bodytracker.models.FoodDataForFireBase;
@@ -83,6 +84,7 @@ public class MainHomeFragment extends Fragment implements OnChartValueSelectedLi
     private float mMaxFats;
     private float mMaxCalories;
     private ValueEventListener mEventSingleEventListenerDaily;
+    private Query query;
 
 
     @Nullable
@@ -106,12 +108,9 @@ public class MainHomeFragment extends Fragment implements OnChartValueSelectedLi
         mFirebaseDatabase=FirebaseDatabase.getInstance();
         mCaloriesDataReference=mFirebaseDatabase.getReference().child("calories").child(mUserID);
 
-
         Calendar calendar=Calendar.getInstance();
         String mDateFormatted= DateFormat.getDateInstance(DateFormat.FULL).format(calendar.getTime());
-        Query query=mCaloriesDataReference.orderByChild("mDateFormatted").equalTo(mDateFormatted);
-        //attachReadDatabaseListener();
-
+        query=mCaloriesDataReference.orderByChild("mDateFormatted").equalTo(mDateFormatted);
 
 
         attachDataBaseSingleEventListener();
@@ -135,6 +134,15 @@ public class MainHomeFragment extends Fragment implements OnChartValueSelectedLi
             }
         });
 
+        mFabOp2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent= new Intent(getContext(), InputTypeActivity.class);
+                startActivity(intent);
+
+            }
+        });
+
 
         mFabOp3.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -143,8 +151,6 @@ public class MainHomeFragment extends Fragment implements OnChartValueSelectedLi
                 startActivity(intent);
             }
         });
-
-        //barChart();
 
 
         return view;
@@ -156,9 +162,8 @@ public class MainHomeFragment extends Fragment implements OnChartValueSelectedLi
         dailyCarbs=0;
         dailyFats=0;
         dailyProteins=0;
-        mMaxCalories=0;
-        barChart();
-        chart.invalidate();
+        dailyCalories=0;
+        chart.invalidate(); // refresh
     }
 
     private void attachDataBaseSingleEventListener() {
@@ -167,13 +172,7 @@ public class MainHomeFragment extends Fragment implements OnChartValueSelectedLi
             mEventSingleEventListenerDaily= new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
-                    chart.clear();
-                    entries.clear();
-                    dailyCarbs=0;
-                    dailyFats=0;
-                    dailyProteins=0;
-                    mMaxCalories=0;
-                    barChart();
+                    clearChart();
 
                     for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
 
@@ -185,10 +184,7 @@ public class MainHomeFragment extends Fragment implements OnChartValueSelectedLi
                         dailyFats+=data.getmFats();
 
                     }
-
-
                     barChart();
-
                 }
 
                 @Override
@@ -199,9 +195,7 @@ public class MainHomeFragment extends Fragment implements OnChartValueSelectedLi
                 }
             };
         }
-        mCaloriesDataReference.addListenerForSingleValueEvent(mEventSingleEventListenerDaily);
-
-
+        query.addListenerForSingleValueEvent(mEventSingleEventListenerDaily);
 
     }
 
@@ -211,9 +205,7 @@ public class MainHomeFragment extends Fragment implements OnChartValueSelectedLi
             mEventListenerDaily = new ChildEventListener() {
                 @Override
                 public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
                     FoodDataForFireBase data = dataSnapshot.getValue(FoodDataForFireBase.class);
-
                     dailyCalories += data.getmCalories();
                     dailyCarbs += data.getmCarbs();
                     dailyFats += data.getmFats();
@@ -269,7 +261,7 @@ public class MainHomeFragment extends Fragment implements OnChartValueSelectedLi
 
 
         YAxis leftAxis = chart.getAxisLeft();
-        leftAxis.setAxisMaximum(mMaxCalories);
+        leftAxis.setAxisMaximum(2000);
 
 
 

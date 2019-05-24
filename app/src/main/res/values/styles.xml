@@ -29,5 +29,9 @@
         <item name="android:windowBackground">@color/material_green_50</item>
     </style>
 
+    <style name="InputTypeTheme" parent="Theme.AppCompat.Dialog">
+
+    </style>
+
 
 </resources>
