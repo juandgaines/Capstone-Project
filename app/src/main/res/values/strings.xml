@@ -80,6 +80,7 @@
     <string name="meal_dinner_description">Don’t overdo it. Calories get burned up no matter when you eat them, so theoretically it’s O.K. to eat after dark. But if you eat a heavy dinner, you’re not as likely to get rid of those calories before you turn in.</string>
     <string name="meal_snacks_description"><![CDATA[A snack is a small service of food and generally eaten between meals. Snacks come in a variety of forms including packaged snack foods and other processed foods, as well as items made from fresh ingredients at home.]]></string>
     <string name="sign_out_text">Sign out</string>
+    <string name="external_permission_denied">You should grant permission in order to take pictures</string>
 
 
     <string-array name="gender_array">

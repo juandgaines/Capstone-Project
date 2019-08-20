@@ -24,31 +24,31 @@ public class Foods {
     private Integer servingWeightGrams;
     @SerializedName("nf_calories")
     @Expose
-    private Integer nfCalories;
+    private Float nfCalories;
     @SerializedName("nf_total_fat")
     @Expose
-    private Integer nfTotalFat;
+    private Float nfTotalFat;
     @SerializedName("nf_saturated_fat")
     @Expose
-    private Integer nfSaturatedFat;
+    private Float nfSaturatedFat;
     @SerializedName("nf_cholesterol")
     @Expose
-    private Integer nfCholesterol;
+    private Float nfCholesterol;
     @SerializedName("nf_sodium")
     @Expose
-    private Integer nfSodium;
+    private Float nfSodium;
     @SerializedName("nf_total_carbohydrate")
     @Expose
-    private Integer nfTotalCarbohydrate;
+    private Float nfTotalCarbohydrate;
     @SerializedName("nf_dietary_fiber")
     @Expose
-    private Integer nfDietaryFiber;
+    private Float nfDietaryFiber;
     @SerializedName("nf_sugars")
     @Expose
-    private Integer nfSugars;
+    private Float nfSugars;
     @SerializedName("nf_protein")
     @Expose
-    private Integer nfProtein;
+    private Float nfProtein;
     @SerializedName("nf_potassium")
     @Expose
     private Object nfPotassium;
@@ -112,41 +112,40 @@ public class Foods {
     }
 
     /**
-     *
-     * @param nfIngredientStatement
-     * @param nfP
-     * @param lng
+     *  @param foodName
      * @param brandName
-     * @param nfTotalCarbohydrate
-     * @param nfTotalFat
-     * @param nixItemId
-     * @param servingWeightGrams
      * @param servingQty
-     * @param nfPotassium
-     * @param altMeasures
-     * @param ndbNo
-     * @param note
-     * @param lat
-     * @param metadata
-     * @param tags
-     * @param nfDietaryFiber
-     * @param nfSodium
-     * @param photo
-     * @param nfSugars
-     * @param nfCholesterol
-     * @param nfCalories
-     * @param nixBrandId
-     * @param updatedAt
-     * @param fullNutrients
-     * @param source
-     * @param nixItemName
-     * @param nixBrandName
      * @param servingUnit
+     * @param servingWeightGrams
+     * @param nfCalories
+     * @param nfTotalFat
      * @param nfSaturatedFat
-     * @param foodName
+     * @param nfCholesterol
+     * @param nfSodium
+     * @param nfTotalCarbohydrate
+     * @param nfDietaryFiber
+     * @param nfSugars
      * @param nfProtein
+     * @param nfPotassium
+     * @param nfP
+     * @param fullNutrients
+     * @param nixBrandName
+     * @param nixBrandId
+     * @param nixItemName
+     * @param nixItemId
+     * @param metadata
+     * @param source
+     * @param ndbNo
+     * @param tags
+     * @param altMeasures
+     * @param lat
+     * @param lng
+     * @param photo
+     * @param note
+     * @param updatedAt
+     * @param nfIngredientStatement
      */
-    public Foods(String foodName, String brandName, Integer servingQty, String servingUnit, Integer servingWeightGrams, Integer nfCalories, Integer nfTotalFat, Integer nfSaturatedFat, Integer nfCholesterol, Integer nfSodium, Integer nfTotalCarbohydrate, Integer nfDietaryFiber, Integer nfSugars, Integer nfProtein, Object nfPotassium, Object nfP, List<FullNutrient> fullNutrients, String nixBrandName, String nixBrandId, String nixItemName, String nixItemId, Metadata metadata, Integer source, Object ndbNo, Object tags, Object altMeasures, Object lat, Object lng, Photo photo, Object note, String updatedAt, String nfIngredientStatement) {
+    public Foods(String foodName, String brandName, Integer servingQty, String servingUnit, Integer servingWeightGrams, Float nfCalories, Float nfTotalFat, Float nfSaturatedFat, Float nfCholesterol, Float nfSodium, Float nfTotalCarbohydrate, Float nfDietaryFiber, Float nfSugars, Float nfProtein, Object nfPotassium, Object nfP, List<FullNutrient> fullNutrients, String nixBrandName, String nixBrandId, String nixItemName, String nixItemId, Metadata metadata, Integer source, Object ndbNo, Object tags, Object altMeasures, Object lat, Object lng, Photo photo, Object note, String updatedAt, String nfIngredientStatement) {
         super();
         this.foodName = foodName;
         this.brandName = brandName;
@@ -222,75 +221,75 @@ public class Foods {
         this.servingWeightGrams = servingWeightGrams;
     }
 
-    public Integer getNfCalories() {
+    public Float getNfCalories() {
         return nfCalories;
     }
 
-    public void setNfCalories(Integer nfCalories) {
+    public void setNfCalories(Float nfCalories) {
         this.nfCalories = nfCalories;
     }
 
-    public Integer getNfTotalFat() {
+    public Float getNfTotalFat() {
         return nfTotalFat;
     }
 
-    public void setNfTotalFat(Integer nfTotalFat) {
+    public void setNfTotalFat(Float nfTotalFat) {
         this.nfTotalFat = nfTotalFat;
     }
 
-    public Integer getNfSaturatedFat() {
+    public Float getNfSaturatedFat() {
         return nfSaturatedFat;
     }
 
-    public void setNfSaturatedFat(Integer nfSaturatedFat) {
+    public void setNfSaturatedFat(Float nfSaturatedFat) {
         this.nfSaturatedFat = nfSaturatedFat;
     }
 
-    public Integer getNfCholesterol() {
+    public Float getNfCholesterol() {
         return nfCholesterol;
     }
 
-    public void setNfCholesterol(Integer nfCholesterol) {
+    public void setNfCholesterol(Float nfCholesterol) {
         this.nfCholesterol = nfCholesterol;
     }
 
-    public Integer getNfSodium() {
+    public Float getNfSodium() {
         return nfSodium;
     }
 
-    public void setNfSodium(Integer nfSodium) {
+    public void setNfSodium(Float nfSodium) {
         this.nfSodium = nfSodium;
     }
 
-    public Integer getNfTotalCarbohydrate() {
+    public Float getNfTotalCarbohydrate() {
         return nfTotalCarbohydrate;
     }
 
-    public void setNfTotalCarbohydrate(Integer nfTotalCarbohydrate) {
+    public void setNfTotalCarbohydrate(Float nfTotalCarbohydrate) {
         this.nfTotalCarbohydrate = nfTotalCarbohydrate;
     }
 
-    public Integer getNfDietaryFiber() {
+    public Float getNfDietaryFiber() {
         return nfDietaryFiber;
     }
 
-    public void setNfDietaryFiber(Integer nfDietaryFiber) {
+    public void setNfDietaryFiber(Float nfDietaryFiber) {
         this.nfDietaryFiber = nfDietaryFiber;
     }
 
-    public Integer getNfSugars() {
+    public Float getNfSugars() {
         return nfSugars;
     }
 
-    public void setNfSugars(Integer nfSugars) {
+    public void setNfSugars(Float nfSugars) {
         this.nfSugars = nfSugars;
     }
 
-    public Integer getNfProtein() {
+    public Float getNfProtein() {
         return nfProtein;
     }
 
-    public void setNfProtein(Integer nfProtein) {
+    public void setNfProtein(Float nfProtein) {
         this.nfProtein = nfProtein;
     }
 

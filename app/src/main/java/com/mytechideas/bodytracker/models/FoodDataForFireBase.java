@@ -9,10 +9,10 @@ public class FoodDataForFireBase {
 
     private Integer mPartOfDayTime;
     private String mName;
-    private Integer mCalories;
-    private Integer mCarbs;
-    private Integer mFats;
-    private Integer mProtein;
+    private Float mCalories;
+    private Float mCarbs;
+    private Float mFats;
+    private Float mProtein;
     //private Calendar mDate;
     private String mDateFormatted;
     private Integer mDateDayOfWeek;
@@ -25,7 +25,7 @@ public class FoodDataForFireBase {
 
 
 
-    public FoodDataForFireBase(String name, Integer calories, Integer carbs, Integer fats, Integer protein, Calendar date) {
+    public FoodDataForFireBase(String name, Float calories, Float carbs, Float fats, Float protein, Calendar date) {
 
         mName=name;
         mCalories=calories;
@@ -112,15 +112,15 @@ public class FoodDataForFireBase {
         return mDateDayNumber;
     }
 
-    public void setmCalories(Integer mCalories) {
+    public void setmCalories(Float mCalories) {
         this.mCalories = mCalories;
     }
 
-    public void setmCarbs(Integer mCarbs) {
+    public void setmCarbs(Float mCarbs) {
         this.mCarbs = mCarbs;
     }
 
-    public void setmFats(Integer mFats) {
+    public void setmFats(Float mFats) {
         this.mFats = mFats;
     }
 
@@ -128,23 +128,23 @@ public class FoodDataForFireBase {
         this.mName = mName;
     }
 
-    public void setmProtein(Integer mProtein) {
+    public void setmProtein(Float mProtein) {
         this.mProtein = mProtein;
     }
 
-    public Integer getmCalories() {
+    public Float getmCalories() {
         return mCalories;
     }
 
-    public Integer getmCarbs() {
+    public Float getmCarbs() {
         return mCarbs;
     }
 
-    public Integer getmFats() {
+    public Float getmFats() {
         return mFats;
     }
 
-    public Integer getmProtein() {
+    public Float getmProtein() {
         return mProtein;
     }
 

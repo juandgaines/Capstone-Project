@@ -28,7 +28,7 @@ public class RetrofitNutritionixInstance {
         }
 
         public static NutritionixService getNutritionixService(){
-        return getRetroInstance().create(NutritionixService.class);
+            return getRetroInstance().create(NutritionixService.class);
     }
 
 

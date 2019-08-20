@@ -43,6 +43,7 @@ import com.google.firebase.ml.vision.barcode.FirebaseVisionBarcodeDetector;
 import com.google.firebase.ml.vision.barcode.FirebaseVisionBarcodeDetectorOptions;
 import com.google.firebase.ml.vision.common.FirebaseVisionImage;
 import com.mytechideas.bodytracker.R;
+import com.mytechideas.bodytracker.activities.home.fragments.MainHomeFragment;
 import com.mytechideas.bodytracker.models.FoodDataForFireBase;
 import com.mytechideas.bodytracker.retrofit.nutritionix.Foods;
 import com.mytechideas.bodytracker.retrofit.nutritionix.NutritionixService;
@@ -116,7 +117,7 @@ public class BarCodeScannerActivity extends AppCompatActivity {
         NutritionixService service = RetrofitNutritionixInstance.getNutritionixService();
 
 
-        if(intent!=null && intent.hasExtra("image")){
+        if(intent!=null && intent.hasExtra(MainHomeFragment.EXTRA_PICTURE_TO_BARCODE_SCANNER)){
 
 
             Bitmap rotatedBitmap = getBitmap(intent);
@@ -267,10 +268,9 @@ public class BarCodeScannerActivity extends AppCompatActivity {
     }
 
     private Bitmap getBitmap(Intent intent) {
-        String filePath=intent.getStringExtra("image");
+        String filePath=intent.getStringExtra(MainHomeFragment.EXTRA_PICTURE_TO_BARCODE_SCANNER);
         Bitmap bitmap = BitmapFactory.decodeFile(filePath);
         Bitmap mutableBitmap = bitmap.copy(Bitmap.Config.ARGB_8888, true);
-        //Bitmap bitmapRotated =rotateBitmap(mutableBitmap,90);
 
         File curFile = new File(filePath); // ... This is an image file from my device.
         Bitmap rotatedBitmap=null;

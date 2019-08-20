@@ -128,10 +128,10 @@ public class VoiceInputActivity extends AppCompatActivity {
             public void onResponse(Call<NutritionixNaturalCall> call, Response<NutritionixNaturalCall> response) {
                 Log.d(TAG,"Response->"+ response.body().getFoods().get(0).getFoodName());
 
-                int sumCalories=0;
-                int sumCarbs=0;
-                int sumFats=0;
-                int sumProtein=0;
+                float sumCalories=0;
+                float sumCarbs=0;
+                float sumFats=0;
+                float sumProtein=0;
 
                 List<Food> list= response.body().getFoods();
                 for(Food l:list){

@@ -1,6 +1,9 @@
 
 package com.mytechideas.bodytracker.retrofit.edemam;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.DiffUtil;
+
 import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -255,5 +258,17 @@ public class Recipe {
     public void setDigest(List<Digest> digest) {
         this.digest = digest;
     }
+
+    public static final DiffUtil.ItemCallback<Recipe> CALLBACK= new DiffUtil.ItemCallback<Recipe>() {
+        @Override
+        public boolean areItemsTheSame(@NonNull Recipe oldItem, @NonNull Recipe newItem) {
+            return oldItem.getUri().equals(newItem.getUri());
+        }
+
+        @Override
+        public boolean areContentsTheSame(@NonNull Recipe oldItem, @NonNull Recipe newItem) {
+            return true;
+        }
+    };
 
 }

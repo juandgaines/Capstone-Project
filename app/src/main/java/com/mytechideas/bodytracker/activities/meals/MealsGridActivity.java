@@ -1,15 +1,19 @@
 package com.mytechideas.bodytracker.activities.meals;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.paging.PagedList;
+import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -27,12 +31,13 @@ public class MealsGridActivity extends AppCompatActivity {
     MealsViewModel mealsViewModel;
     MealAdapter mAdapter;
 
+    PagedList<Recipe> listOfRecepies;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meals_grid);
         ButterKnife.bind(this);
-
         Intent intent=getIntent();
 
         if(intent!=null && intent.hasExtra(MainMealsFragment.QUERY_TEXT_KEY)){
@@ -43,29 +48,44 @@ public class MealsGridActivity extends AppCompatActivity {
             GridLayoutManager layoutManager= new GridLayoutManager(this,2);
 
             mRecyclerView.setHasFixedSize(true);
+            mRecyclerView.setLayoutManager(layoutManager);
 
             mealsViewModel= ViewModelProviders.of(this).get(MealsViewModel.class);
+            getRecipes();
 
-           mAdapter= new MealAdapter(this);
 
-
-            mealsViewModel.getRecipePagedList().observe(this, new Observer<PagedList<Recipe>>() {
-                @Override
-                public void onChanged(PagedList<Recipe> recipes) {
-
-                    mAdapter.submitList(recipes);
-
-                }
-            });
-
-            mRecyclerView.setAdapter(mAdapter);
         }
+    }
+
+    private void getRecipes() {
+
+        mealsViewModel.getRecipePagedList().observe(this, new Observer<PagedList<Recipe>>() {
+            @Override
+            public void onChanged(@Nullable PagedList<Recipe> recipesFromLiveData) {
+
+                listOfRecepies=recipesFromLiveData;
+                showOnRecyclerView();
+
+
+            }
+        });
     }
 
 
     @Override
     protected void onResume() {
         super.onResume();
+
+    }
+
+    private void showOnRecyclerView() {
+        mAdapter = new MealAdapter(this);
+        mAdapter.submitList(listOfRecepies);
+
+        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
+        mRecyclerView.setAdapter(mAdapter);
+        mAdapter.notifyDataSetChanged();
+
 
     }
 }

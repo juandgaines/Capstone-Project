@@ -1,14 +1,24 @@
 package com.mytechideas.bodytracker.activities.home.fragments;
 
+import android.Manifest;
+import android.app.Activity;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.AnimatedVectorDrawable;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.Legend;
@@ -30,24 +40,38 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.mytechideas.bodytracker.R;
+import com.mytechideas.bodytracker.activities.barcodescanner.BarCodeScannerActivity;
 import com.mytechideas.bodytracker.activities.inputvoice.VoiceInputActivity;
 import com.mytechideas.bodytracker.activities.inputbarcode.InputBarcodeActivity;
 import com.mytechideas.bodytracker.models.FoodDataForFireBase;
 
+import java.io.File;
+import java.io.IOException;
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.preference.PreferenceManager;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static android.app.Activity.RESULT_OK;
+
 public class MainHomeFragment extends Fragment implements OnChartValueSelectedListener {
+    private static final int REQUEST_IMAGE_CAPTURE =1230 ;
+    private static final int REQUEST_CAMERA_PERMISSION = 2230;
     @BindView(R.id.daily_bar_chart_data)
     BarChart chart;
     @BindView(R.id.fab_main)
@@ -58,6 +82,8 @@ public class MainHomeFragment extends Fragment implements OnChartValueSelectedLi
     FloatingActionButton mFabOp2;
     @BindView(R.id.fab_op3)
     FloatingActionButton mFabOp3;
+
+    String currentPhotoPath;
 
     public static final String TAG=MainHomeFragment.class.getSimpleName();
 
@@ -82,6 +108,9 @@ public class MainHomeFragment extends Fragment implements OnChartValueSelectedLi
     private float mMaxCarbs;
     private float mMaxFats;
     private float mMaxCalories;
+    private final int MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE=2548;
+
+    public static final String EXTRA_PICTURE_TO_BARCODE_SCANNER="picture_taken";
 
 
     @Nullable
@@ -154,8 +183,19 @@ public class MainHomeFragment extends Fragment implements OnChartValueSelectedLi
         mFabOp1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent= new Intent(getContext(), InputBarcodeActivity.class);
-                startActivity(intent);
+                //Intent intent= new Intent(getContext(), InputBarcodeActivity.class);
+                //startActivity(intent);
+                if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                        != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(getActivity(),
+                            new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                            MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE);
+                }
+                else{
+                    dispatchTakePictureIntent();
+                }
+
+
             }
         });
 
@@ -183,10 +223,12 @@ public class MainHomeFragment extends Fragment implements OnChartValueSelectedLi
 
                     FoodDataForFireBase data = dataSnapshot.getValue(FoodDataForFireBase.class);
 
-                    dailyCalories += data.getmCalories();
-                    dailyCarbs += data.getmCarbs();
-                    dailyFats += data.getmFats();
-                    dailyProteins += data.getmProtein();
+                    if(data!=null) {
+                        dailyCalories += data.getmCalories();
+                        dailyCarbs += data.getmCarbs();
+                        dailyFats += data.getmFats();
+                        dailyProteins += data.getmProtein();
+                    }
                     barChart();
 
                 }
@@ -338,6 +380,81 @@ public class MainHomeFragment extends Fragment implements OnChartValueSelectedLi
         if(mEventListenerDaily!=null) {
             mCaloriesDataReference.removeEventListener(mEventListenerDaily);
             mEventListenerDaily=null;
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+
+        Intent intent =new Intent(getActivity(), BarCodeScannerActivity.class);
+
+        intent.putExtra(EXTRA_PICTURE_TO_BARCODE_SCANNER, currentPhotoPath);
+        startActivity(intent);
+        }
+
+    }
+
+    private File createImageFile() throws IOException {
+        // Create an image file name
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        String imageFileName = "JPEG_" + timeStamp + "_";
+        File storageDir = getActivity().getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        File image = File.createTempFile(
+                imageFileName,  /* prefix */
+                ".jpg",         /* suffix */
+                storageDir      /* directory */
+        );
+
+        // Save a file: path for use with ACTION_VIEW intents
+        currentPhotoPath = image.getAbsolutePath();
+        return image;
+    }
+
+
+    private void dispatchTakePictureIntent() {
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        // Ensure that there's a camera activity to handle the intent
+        if (takePictureIntent.resolveActivity(getActivity().getPackageManager()) != null) {
+            // Create the File where the photo should go
+            File photoFile = null;
+            try {
+                photoFile = createImageFile();
+            } catch (IOException ex) {
+                // Error occurred while creating the File
+                currentPhotoPath=null;
+
+            }
+            // Continue only if the File was successfully created
+            if (photoFile != null) {
+                Uri photoURI = FileProvider.getUriForFile(getContext(),
+                        "com.mytechideas.bodytracker.fileprovider",
+                        photoFile);
+                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+                startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+            }
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String[] permissions, int[] grantResults) {
+        switch (requestCode) {
+            case MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE: {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+                    dispatchTakePictureIntent();
+                } else {
+                    Toast.makeText(getContext(),getContext().getString(R.string.external_permission_denied),Toast.LENGTH_SHORT).show();
+                }
+                return;
+            }
+
+
         }
     }
 }

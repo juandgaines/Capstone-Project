@@ -17,14 +17,15 @@ import androidx.paging.PagedListAdapter;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
+
 public class MealAdapter extends PagedListAdapter<Recipe, MealAdapter.MealViewHolder> {
 
 
     private Context mContext;
 
     public MealAdapter(Context context) {
-        super(DIFF_CALLBACK);
-
+        super(Recipe.CALLBACK);
         mContext=context;
 
     }
@@ -54,18 +55,6 @@ public class MealAdapter extends PagedListAdapter<Recipe, MealAdapter.MealViewHo
 
     }
 
-
-    private static DiffUtil.ItemCallback<Recipe> DIFF_CALLBACK= new DiffUtil.ItemCallback<Recipe>() {
-        @Override
-        public boolean areItemsTheSame(@NonNull Recipe oldItem, @NonNull Recipe newItem) {
-            return oldItem.getUri().equals(newItem.getUri());
-        }
-
-        @Override
-        public boolean areContentsTheSame(@NonNull Recipe oldItem, @NonNull Recipe newItem) {
-            return oldItem.equals(newItem);
-        }
-    };
 
 
     public class  MealViewHolder extends RecyclerView.ViewHolder{

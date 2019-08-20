@@ -67,10 +67,7 @@ public class OnboardingFragment1 extends Fragment implements AdapterView.OnItemS
                 container, false);
 
         ButterKnife.bind(this,view);
-
         c=Calendar.getInstance();
-
-
         mYear=c.get(Calendar.YEAR);
         mMonth=c.get(Calendar.MONTH);
         mDay=c.get(Calendar.DAY_OF_MONTH);
