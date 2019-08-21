@@ -2,7 +2,6 @@ package com.mytechideas.bodytracker.activities.meals;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.paging.PagedList;
@@ -13,13 +12,14 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.widget.Toast;
 
 import com.mytechideas.bodytracker.R;
 import com.mytechideas.bodytracker.activities.home.fragments.MainMealsFragment;
 import com.mytechideas.bodytracker.activities.meals.adapters.MealAdapter;
+import com.mytechideas.bodytracker.activities.meals.viewmodel.MealsViewModel;
+import com.mytechideas.bodytracker.activities.meals.viewmodel.MealsViewModelFactory;
 import com.mytechideas.bodytracker.retrofit.edemam.Recipe;
 
 public class MealsGridActivity extends AppCompatActivity {
@@ -50,7 +50,10 @@ public class MealsGridActivity extends AppCompatActivity {
             mRecyclerView.setHasFixedSize(true);
             mRecyclerView.setLayoutManager(layoutManager);
 
-            mealsViewModel= ViewModelProviders.of(this).get(MealsViewModel.class);
+            MealsViewModelFactory mealsViewModelFactory=new MealsViewModelFactory(query);
+
+
+            mealsViewModel= ViewModelProviders.of(this,mealsViewModelFactory).get(MealsViewModel.class);
             getRecipes();
 
 
@@ -66,7 +69,6 @@ public class MealsGridActivity extends AppCompatActivity {
                 listOfRecepies=recipesFromLiveData;
                 showOnRecyclerView();
 
-
             }
         });
     }
@@ -81,11 +83,8 @@ public class MealsGridActivity extends AppCompatActivity {
     private void showOnRecyclerView() {
         mAdapter = new MealAdapter(this);
         mAdapter.submitList(listOfRecepies);
-
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
         mRecyclerView.setAdapter(mAdapter);
         mAdapter.notifyDataSetChanged();
-
-
     }
 }
