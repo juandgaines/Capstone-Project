@@ -16,7 +16,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.inputvoice.VoiceInputActivity"></activity>
+        <activity android:name=".activities.inputType.InputTypeActivity"
+            android:theme="@style/InputTypeTheme"></activity>
+        <activity android:name=".activities.inputvoice.VoiceInputActivity" />
         <activity android:name=".activities.meals.MealsGridActivity" />
         <activity android:name=".activities.barcodescanner.BarCodeScannerActivity" />
         <activity android:name=".activities.inputbarcode.InputBarcodeActivity" />
