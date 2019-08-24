@@ -3,12 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.mytechideas.bodytracker">
     <!-- First, request the camera permission -->
-    <uses-permission android:name="android.permission.CAMERA" /> <!--  -->
-    <uses-feature android:name="android.hardware.camera" />
-    <uses-feature android:name="android.hardware.camera.autofocus" />
-
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -16,16 +10,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.inputType.InputTypeActivity"
-            android:theme="@style/InputTypeTheme"></activity>
+        <activity android:name=".activities.recipedetail.RecipeDetailActivity"></activity>
+        <activity
+            android:name=".activities.inputType.InputTypeActivity"
+            android:theme="@style/InputTypeTheme" />
         <activity android:name=".activities.inputvoice.VoiceInputActivity" />
         <activity android:name=".activities.meals.MealsGridActivity" />
         <activity android:name=".activities.barcodescanner.BarCodeScannerActivity" />
         <activity android:name=".activities.inputbarcode.InputBarcodeActivity" />
-
-        <meta-data
-            android:name="com.google.firebase.ml.vision.DEPENDENCIES"
-            android:value="barcode" />
 
         <activity
             android:name=".activities.splash.SplashActivity"
@@ -36,12 +28,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".activities.home.MainActivity"
             android:theme="@style/AppTheme" />
         <activity
             android:name=".activities.onboarding.IntroPagerActivity"
             android:theme="@style/AppTheme" />
+        <meta-data
+            android:name="com.google.firebase.ml.vision.DEPENDENCIES"
+            android:value="barcode" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
@@ -50,8 +46,14 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths"></meta-data>
+                android:resource="@xml/file_paths" />
         </provider>
-    </application>
+    </application> <!--  -->
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+    <uses-feature android:name="android.hardware.camera" />
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <uses-permission android:name="android.permission.CAMERA" />
 
 </manifest>

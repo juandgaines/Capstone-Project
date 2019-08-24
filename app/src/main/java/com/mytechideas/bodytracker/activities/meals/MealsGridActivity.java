@@ -20,9 +20,10 @@ import com.mytechideas.bodytracker.activities.home.fragments.MainMealsFragment;
 import com.mytechideas.bodytracker.activities.meals.adapters.MealAdapter;
 import com.mytechideas.bodytracker.activities.meals.viewmodel.MealsViewModel;
 import com.mytechideas.bodytracker.activities.meals.viewmodel.MealsViewModelFactory;
+import com.mytechideas.bodytracker.activities.recipedetail.RecipeDetailActivity;
 import com.mytechideas.bodytracker.retrofit.edemam.Recipe;
 
-public class MealsGridActivity extends AppCompatActivity {
+public class MealsGridActivity extends AppCompatActivity implements MealAdapter.OnClickRecipe{
 
 
     @BindView(R.id.meals_list_recycler)
@@ -32,6 +33,7 @@ public class MealsGridActivity extends AppCompatActivity {
     MealAdapter mAdapter;
 
     PagedList<Recipe> listOfRecepies;
+    public static final String RECIPE_EXTRA_KEY_DETAIL= "extra_recipe";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,13 +80,22 @@ public class MealsGridActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
+
     }
 
     private void showOnRecyclerView() {
-        mAdapter = new MealAdapter(this);
+        mAdapter = new MealAdapter(this,this);
         mAdapter.submitList(listOfRecepies);
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
         mRecyclerView.setAdapter(mAdapter);
         mAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onClickItemRecipe(Recipe recipe) {
+        Intent intent=new Intent(this, RecipeDetailActivity.class);
+        intent.putExtra(RECIPE_EXTRA_KEY_DETAIL,recipe);
+        startActivity(intent);
+
     }
 }

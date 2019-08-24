@@ -1,14 +1,18 @@
 
 package com.mytechideas.bodytracker.retrofit.edemam;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
 
+import java.util.ArrayList;
 import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Recipe {
+public class Recipe implements Parcelable {
 
     @SerializedName("uri")
     @Expose
@@ -33,19 +37,19 @@ public class Recipe {
     private Double yield;
     @SerializedName("dietLabels")
     @Expose
-    private List<String> dietLabels = null;
+    private List<String> dietLabels = new ArrayList<>();
     @SerializedName("healthLabels")
     @Expose
-    private List<String> healthLabels = null;
+    private List<String> healthLabels = new ArrayList<>();
     @SerializedName("cautions")
     @Expose
-    private List<String> cautions = null;
+    private List<String> cautions = new ArrayList<>();
     @SerializedName("ingredientLines")
     @Expose
-    private List<String> ingredientLines = null;
+    private List<String> ingredientLines = new ArrayList<>();
     @SerializedName("ingredients")
     @Expose
-    private List<Ingredient> ingredients = null;
+    private List<Ingredient> ingredients = new ArrayList<>();
     @SerializedName("calories")
     @Expose
     private Double calories;
@@ -63,7 +67,7 @@ public class Recipe {
     private TotalDaily totalDaily;
     @SerializedName("digest")
     @Expose
-    private List<Digest> digest = null;
+    private List<Digest> digest = new ArrayList<>();
 
     /**
      * No args constructor for use in serialization
@@ -271,4 +275,65 @@ public class Recipe {
         }
     };
 
+    @Override
+    public int describeContents() {
+        return hashCode();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int i) {
+
+        dest.writeString(uri);
+        dest.writeString(label);
+        dest.writeString(image);
+        dest.writeString(source);
+        dest.writeString(url);
+        dest.writeString(shareAs);
+        dest.writeDouble(yield);
+        dest.writeStringList(dietLabels);
+        dest.writeStringList(healthLabels);
+        dest.writeStringList(cautions);
+        dest.writeStringList(ingredientLines);
+        dest.writeList(ingredients);
+        dest.writeDouble(calories);
+        dest.writeDouble(totalWeight);
+        dest.writeDouble(totalTime);
+        dest.writeParcelable(totalNutrients,i);
+    }
+
+    public Recipe(Parcel parcel){
+
+        uri=parcel.readString();
+        label=parcel.readString();
+        image=parcel.readString();
+        source=parcel.readString();
+        url=parcel.readString();
+        shareAs=parcel.readString();
+        yield=parcel.readDouble();
+        parcel.readStringList(dietLabels);
+        parcel.readStringList(healthLabels);
+        parcel.readStringList(cautions);
+        parcel.readStringList(ingredientLines);
+        parcel.readList(ingredients, Ingredient.class.getClassLoader());
+        calories=parcel.readDouble();
+        totalWeight=parcel.readDouble();
+        totalTime=parcel.readDouble();
+        parcel.readParcelable(TotalNutrients.class.getClassLoader());
+
+    }
+
+
+    //creator - used when un-parceling our parcle (creating the object)
+    public static final Parcelable.Creator<Recipe> CREATOR = new Parcelable.Creator<Recipe>(){
+
+        @Override
+        public Recipe createFromParcel(Parcel parcel) {
+            return new Recipe(parcel);
+        }
+
+        @Override
+        public Recipe[] newArray(int size) {
+            return new Recipe[0];
+        }
+    };
 }

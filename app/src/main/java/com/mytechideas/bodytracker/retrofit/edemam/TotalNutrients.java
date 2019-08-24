@@ -1,10 +1,13 @@
 
 package com.mytechideas.bodytracker.retrofit.edemam;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class TotalNutrients {
+public class TotalNutrients implements Parcelable{
 
     @SerializedName("ENERC_KCAL")
     @Expose
@@ -410,5 +413,98 @@ public class TotalNutrients {
     public void setVITD(VITD vITD) {
         this.vITD = vITD;
     }
+
+
+    @Override
+    public int describeContents() {
+        return hashCode();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int i) {
+
+        dest.writeParcelable(eNERCKCAL,i);
+        dest.writeParcelable(fAT,i);
+        dest.writeParcelable(fASAT,i);
+        dest.writeParcelable(fAMS,i);
+        dest.writeParcelable(fAPU,i);
+        dest.writeParcelable(cHOCDF,i);
+        dest.writeParcelable(fIBTG,i);
+        dest.writeParcelable(sUGAR,i);
+        dest.writeParcelable(pROCNT,i);
+        dest.writeParcelable(nA,i);
+        dest.writeParcelable(cA,i);
+        dest.writeParcelable(mG,i);
+        dest.writeParcelable(k,i);
+        dest.writeParcelable(fE,i);
+        dest.writeParcelable(zN,i);
+        dest.writeParcelable(p,i);
+        dest.writeParcelable(vITARAE,i);
+        dest.writeParcelable(vITC,i);
+        dest.writeParcelable(tHIA,i);
+        dest.writeParcelable(rIBF,i);
+        dest.writeParcelable(nIA,i);
+        dest.writeParcelable(vITB6A,i);
+        dest.writeParcelable(fOLDFE,i);
+        dest.writeParcelable(fOLFD,i);
+        dest.writeParcelable(tOCPHA,i);
+        dest.writeParcelable(vITK1,i);
+        dest.writeParcelable(fATRN,i);
+        dest.writeParcelable(cHOLE,i);
+        dest.writeParcelable(vITB12,i);
+        dest.writeParcelable(vITD,i);
+
+    }
+
+    public TotalNutrients(Parcel parcel){
+
+        this.eNERCKCAL = parcel.readParcelable(ENERCKCAL.class.getClassLoader());
+        this.fAT = parcel.readParcelable(FAT.class.getClassLoader());
+        this.fASAT = parcel.readParcelable(FASAT.class.getClassLoader());
+        this.fAMS = parcel.readParcelable(FAMS.class.getClassLoader());
+        this.fAPU = parcel.readParcelable(FAPU.class.getClassLoader());
+        this.cHOCDF = parcel.readParcelable(CHOCDF.class.getClassLoader());
+        this.fIBTG = parcel.readParcelable(FIBTG.class.getClassLoader());
+        this.sUGAR = parcel.readParcelable(SUGAR.class.getClassLoader());
+        this.pROCNT = parcel.readParcelable(PROCNT.class.getClassLoader());
+        this.nA = parcel.readParcelable(NA.class.getClassLoader());
+        this.cA = parcel.readParcelable(CA.class.getClassLoader());
+        this.mG = parcel.readParcelable(MG.class.getClassLoader());
+        this.k = parcel.readParcelable(K.class.getClassLoader());
+        this.fE = parcel.readParcelable(FE.class.getClassLoader());
+        this.zN = parcel.readParcelable(ZN.class.getClassLoader());
+        this.p = parcel.readParcelable(P.class.getClassLoader());
+        this.vITARAE = parcel.readParcelable(VITARAE.class.getClassLoader());
+        this.vITC = parcel.readParcelable(VITC.class.getClassLoader());
+        this.tHIA = parcel.readParcelable(THIA.class.getClassLoader());
+        this.rIBF = parcel.readParcelable(RIBF.class.getClassLoader());
+        this.nIA = parcel.readParcelable(NIA.class.getClassLoader());
+        this.vITB6A = parcel.readParcelable(VITB6A.class.getClassLoader());
+        this.fOLDFE = parcel.readParcelable(FOLDFE.class.getClassLoader());
+        this.fOLFD = parcel.readParcelable(FOLFD.class.getClassLoader());
+        this.tOCPHA = parcel.readParcelable(TOCPHA.class.getClassLoader());
+        this.vITK1 = parcel.readParcelable(VITK1.class.getClassLoader());
+        this.fATRN = parcel.readParcelable(FATRN.class.getClassLoader());
+        this.cHOLE = parcel.readParcelable(CHOLE.class.getClassLoader());
+        this.vITB12 = parcel.readParcelable(VITB12.class.getClassLoader());
+        this.vITD = parcel.readParcelable(VITD.class.getClassLoader());
+
+    }
+
+
+    //creator - used when un-parceling our parcle (creating the object)
+    public static final Parcelable.Creator<TotalNutrients> CREATOR = new Parcelable.Creator<TotalNutrients>(){
+
+        @Override
+        public TotalNutrients createFromParcel(Parcel parcel) {
+            return new TotalNutrients(parcel);
+        }
+
+        @Override
+        public TotalNutrients[] newArray(int size) {
+            return new TotalNutrients[0];
+        }
+    };
+
 
 }

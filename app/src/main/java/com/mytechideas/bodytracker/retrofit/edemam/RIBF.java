@@ -3,60 +3,47 @@ package com.mytechideas.bodytracker.retrofit.edemam;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class RIBF {
-
-    @SerializedName("label")
-    @Expose
-    private String label;
-    @SerializedName("quantity")
-    @Expose
-    private Double quantity;
-    @SerializedName("unit")
-    @Expose
-    private String unit;
+public class RIBF extends BaseNutrient{
 
     /**
      * No args constructor for use in serialization
-     * 
+     *
      */
     public RIBF() {
     }
 
     /**
-     * 
+     *
      * @param unit
      * @param quantity
      * @param label
      */
     public RIBF(String label, Double quantity, String unit) {
-        super();
-        this.label = label;
-        this.quantity = quantity;
-        this.unit = unit;
+        super(label,quantity,unit);
     }
 
     public String getLabel() {
-        return label;
+        return super.getLabel();
     }
 
     public void setLabel(String label) {
-        this.label = label;
+        super.setLabel(label);
     }
 
     public Double getQuantity() {
-        return quantity;
+        return super.getQuantity();
     }
 
     public void setQuantity(Double quantity) {
-        this.quantity = quantity;
+        super.setQuantity(quantity);
     }
 
     public String getUnit() {
-        return unit;
+        return super.getUnit();
     }
 
     public void setUnit(String unit) {
-        this.unit = unit;
+        super.setUnit(unit);
     }
 
 }

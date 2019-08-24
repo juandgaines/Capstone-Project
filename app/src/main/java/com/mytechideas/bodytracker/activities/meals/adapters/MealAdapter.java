@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,10 +24,16 @@ public class MealAdapter extends PagedListAdapter<Recipe, MealAdapter.MealViewHo
 
 
     private Context mContext;
+    private OnClickRecipe onClickRecipe;
 
-    public MealAdapter(Context context) {
+    public interface OnClickRecipe{
+        void onClickItemRecipe(Recipe recipe);
+    }
+
+    public MealAdapter(Context context, OnClickRecipe onClickRecipe) {
         super(Recipe.CALLBACK);
         mContext=context;
+        this.onClickRecipe=onClickRecipe;
 
     }
 
@@ -57,7 +64,7 @@ public class MealAdapter extends PagedListAdapter<Recipe, MealAdapter.MealViewHo
 
 
 
-    public class  MealViewHolder extends RecyclerView.ViewHolder{
+    public class  MealViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         public ImageView mealImageView;
         public TextView mealTitleView;
@@ -67,7 +74,14 @@ public class MealAdapter extends PagedListAdapter<Recipe, MealAdapter.MealViewHo
 
             mealImageView= (ImageView)itemView.findViewById(R.id.meal_image);
             mealTitleView= (TextView) itemView.findViewById(R.id.meal_title);
+            itemView.setOnClickListener(this);
+        }
 
+        @Override
+        public void onClick(View view) {
+                int adapterPosition=getAdapterPosition();
+                Recipe recipe = getItem(adapterPosition);
+                onClickRecipe.onClickItemRecipe(recipe);
         }
     }
 
