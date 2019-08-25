@@ -1,10 +1,13 @@
 
 package com.mytechideas.bodytracker.retrofit.edemam;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class VITC_ extends BaseNutrient{
+public class VITC_ extends BaseNutrient implements Parcelable {
 
     /**
      * No args constructor for use in serialization
@@ -46,5 +49,40 @@ public class VITC_ extends BaseNutrient{
     public void setUnit(String unit) {
         super.setUnit(unit);
     }
+
+    @Override
+    public int describeContents() {
+        return hashCode();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int i) {
+
+        dest.writeString(super.getLabel());
+        dest.writeDouble(super.getQuantity());
+        dest.writeString(super.getUnit());
+
+    }
+
+    public VITC_(Parcel parcel){
+        super.setLabel(parcel.readString());
+        super.setQuantity(parcel.readDouble());
+        super.setUnit(parcel.readString());
+    }
+
+
+    //creator - used when un-parceling our parcle (creating the object)
+    public static final Parcelable.Creator<VITC_> CREATOR = new Parcelable.Creator<VITC_>(){
+
+        @Override
+        public VITC_ createFromParcel(Parcel parcel) {
+            return new VITC_(parcel);
+        }
+
+        @Override
+        public VITC_[] newArray(int size) {
+            return new VITC_[0];
+        }
+    };
 
 }

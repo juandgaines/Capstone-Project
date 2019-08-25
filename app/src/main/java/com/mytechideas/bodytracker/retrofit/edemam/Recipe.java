@@ -318,7 +318,7 @@ public class Recipe implements Parcelable {
         calories=parcel.readDouble();
         totalWeight=parcel.readDouble();
         totalTime=parcel.readDouble();
-        parcel.readParcelable(TotalNutrients.class.getClassLoader());
+        totalNutrients=parcel.readParcelable(TotalNutrients.class.getClassLoader());
 
     }
 
