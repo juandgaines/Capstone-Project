@@ -1,7 +1,9 @@
 package com.mytechideas.bodytracker.activities.meals;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.paging.PagedList;
@@ -11,8 +13,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.mytechideas.bodytracker.R;
@@ -45,19 +52,12 @@ public class MealsGridActivity extends AppCompatActivity implements MealAdapter.
         if(intent!=null && intent.hasExtra(MainMealsFragment.QUERY_TEXT_KEY)){
 
             String query =intent.getStringExtra(MainMealsFragment.QUERY_TEXT_KEY);
-
-            Toast.makeText(this,query,Toast.LENGTH_LONG).show();
             GridLayoutManager layoutManager= new GridLayoutManager(this,2);
-
             mRecyclerView.setHasFixedSize(true);
             mRecyclerView.setLayoutManager(layoutManager);
-
             MealsViewModelFactory mealsViewModelFactory=new MealsViewModelFactory(query);
-
-
             mealsViewModel= ViewModelProviders.of(this,mealsViewModelFactory).get(MealsViewModel.class);
             getRecipes();
-
 
         }
     }
@@ -98,4 +98,5 @@ public class MealsGridActivity extends AppCompatActivity implements MealAdapter.
         startActivity(intent);
 
     }
+
 }
