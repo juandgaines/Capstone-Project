@@ -10,7 +10,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.recipedetail.RecipeDetailActivity"></activity>
+        <activity android:name=".activities.recipedetail.RecipeDetailActivity"
+            android:theme="@style/SplashTheme">
+
+        </activity>
         <activity
             android:name=".activities.inputType.InputTypeActivity"
             android:theme="@style/InputTypeTheme" />

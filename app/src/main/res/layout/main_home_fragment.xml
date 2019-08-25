@@ -6,56 +6,6 @@
     android:layout_height="match_parent">
 
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab_op1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="8dp"
-        android:clickable="true"
-        app:layout_constraintBottom_toBottomOf="@+id/scrollView2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/scrollView2"
-        app:layout_constraintVertical_bias="0.8"
-        app:srcCompat="@drawable/ic_take_picture_bar_code" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab_op2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:clickable="true"
-        app:layout_constraintBottom_toBottomOf="@+id/fab_op1"
-        app:layout_constraintEnd_toEndOf="@+id/fab_op1"
-        app:layout_constraintStart_toStartOf="@+id/fab_op1"
-        app:layout_constraintTop_toTopOf="@+id/fab_op1"
-        app:srcCompat="@drawable/ic_type_data" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab_op3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:clickable="true"
-        app:layout_constraintBottom_toBottomOf="@+id/fab_op2"
-        app:layout_constraintEnd_toEndOf="@+id/fab_op2"
-        app:layout_constraintStart_toStartOf="@+id/fab_op2"
-        app:layout_constraintTop_toTopOf="@+id/fab_op2"
-        app:srcCompat="@drawable/ic_speech_recognition" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab_main"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:clickable="true"
-        app:layout_constraintBottom_toBottomOf="@+id/fab_op3"
-        app:layout_constraintEnd_toEndOf="@+id/fab_op3"
-        app:layout_constraintStart_toStartOf="@+id/fab_op3"
-        app:layout_constraintTop_toTopOf="@+id/fab_op3"
-        app:srcCompat="@drawable/ic_add" />
-
     <ScrollView
         android:id="@+id/scrollView2"
         android:layout_width="match_parent"
@@ -66,6 +16,7 @@
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0">
@@ -79,7 +30,7 @@
                 android:layout_width="271dp"
                 android:layout_height="279dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="80dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -91,4 +42,72 @@
 
 
     </ScrollView>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.85" />
+
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_op1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:clickable="true"
+        app:layout_constraintBottom_toBottomOf="@+id/fab_main"
+        app:layout_constraintEnd_toEndOf="@+id/fab_main"
+        app:layout_constraintStart_toStartOf="@+id/fab_main"
+        app:layout_constraintTop_toTopOf="@+id/fab_main"
+        app:layout_constraintVertical_bias="0.8"
+        app:srcCompat="@drawable/ic_take_picture_bar_code" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_op3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:clickable="true"
+        app:layout_constraintBottom_toBottomOf="@+id/fab_main"
+        app:layout_constraintEnd_toEndOf="@+id/fab_main"
+        app:layout_constraintStart_toStartOf="@+id/fab_main"
+        app:layout_constraintTop_toTopOf="@+id/fab_main"
+        app:srcCompat="@drawable/ic_speech_recognition" />
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_op2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:clickable="true"
+        app:layout_constraintBottom_toBottomOf="@+id/fab_main"
+        app:layout_constraintEnd_toEndOf="@+id/fab_main"
+        app:layout_constraintStart_toStartOf="@+id/fab_main"
+        app:layout_constraintTop_toTopOf="@+id/fab_main"
+        app:srcCompat="@drawable/ic_type_data" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_main"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="16dp"
+        android:clickable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline"
+        app:srcCompat="@drawable/ic_add" />
+
+
+
+
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

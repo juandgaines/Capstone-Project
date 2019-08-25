@@ -84,6 +84,13 @@
     <string name="search_with_keyword">Add a keyword to search for a recipe...</string>
     <string name="search">Search</string>
     <string name="cancel">Cancel</string>
+    <string name="servings_text_label">Servings:</string>
+    <string name="total_calories_label">Total calories:</string>
+    <string name="cooking_time_label">Cooking time:</string>
+    <string name="serving_calories_label">Calories/Serving</string>
+    <string name="mark_as_favorite">Add to favorites</string>
+    <string name="ingredients_label">Ingredients</string>
+    <string name="go_to_instructions_text_for_button">Go to instructions</string>
 
 
     <string-array name="gender_array">
