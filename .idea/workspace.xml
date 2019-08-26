@@ -10,7 +10,7 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="42e3556e-14e4-4707-a18d-4879871657bd" name="Default Changelist" comment="">
+    <list default="true" id="42e3556e-14e4-4707-a18d-4879871657bd" name="Default Changelist" comment="feat: transition restored values from pieChart and recyclerview">
       <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.1.1/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.1.1/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.1.1/fileHashes/fileHashes.bin" afterDir="false" />
@@ -18,12 +18,9 @@
       <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/classAnalysis.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/javaCompile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mytechideas/bodytracker/activities/inputvoice/adapters/VoiceAdapterIngredients.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/mytechideas/bodytracker/activities/inputvoice/adapters/VoiceAdapterIngredients.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mytechideas/bodytracker/activities/recipedetail/RecipeDetailActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/mytechideas/bodytracker/activities/recipedetail/RecipeDetailActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_recipe_detail.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_recipe_detail.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/item_voice_ingredient.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_ingredient.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_recipe_detail_scene_a.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_recipe_detail_scene_a.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_recipe_detail_scene_b.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_recipe_detail_scene_b.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -63,42 +60,15 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mytechideas/bodytracker/activities/recipedetail/RecipeDetailActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="233">
-              <caret line="147" selection-start-line="147" selection-end-line="147" />
+            <state relative-caret-position="171">
+              <caret line="153" column="59" selection-start-line="153" selection-start-column="59" selection-end-line="153" selection-end-column="59" />
               <folding>
-                <element signature="e#3057#3058#0" expanded="true" />
-                <element signature="e#3102#3103#0" expanded="true" />
                 <element signature="class#2138:2290" />
                 <element signature="e#2008#2055#0" />
+                <element signature="method#setAdapterWithRecyclerSceneA#0;class#RecipeDetailActivity#0" />
+                <element signature="method#setMInfoButton#0;class#RecipeDetailActivity#0" />
                 <element signature="method#setPieChart#0;class#RecipeDetailActivity#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mytechideas/bodytracker/activities/meals/MealsGridActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="59">
-              <caret line="95" selection-start-line="95" selection-end-line="95" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_recipe_detail.xml">
-          <provider editor-type-id="android-designer2" />
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="167">
-              <caret line="69" column="51" selection-start-line="69" selection-start-column="51" selection-end-line="69" selection-end-column="51" />
-              <folding>
-                <element signature="e#411#2062#0" />
-                <element signature="e#3447#3491#0" expanded="true" />
-                <element signature="e#4674#4703#0" expanded="true" />
-                <element signature="e#5724#5754#0" expanded="true" />
-                <element signature="e#6912#6940#0" expanded="true" />
-                <element signature="e#8009#8041#0" expanded="true" />
-                <element signature="e#9241#9267#0" expanded="true" />
+                <element signature="method#onClick#0;class#RecipeDetailActivity#0" />
               </folding>
             </state>
           </provider>
@@ -108,8 +78,31 @@
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_recipe_detail_scene_b.xml">
           <provider editor-type-id="android-designer2" />
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="8" column="34" selection-start-line="8" selection-start-column="34" selection-end-line="8" selection-end-column="34" />
+            <state relative-caret-position="450">
+              <caret line="30" column="43" lean-forward="true" selection-start-line="30" selection-start-column="43" selection-end-line="30" selection-end-column="43" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_recipe_detail.xml">
+          <provider editor-type-id="android-designer2" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1052">
+              <caret line="202" column="58" selection-start-line="202" selection-start-column="58" selection-end-line="202" selection-end-column="58" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_recipe_detail_scene_a.xml">
+          <provider editor-type-id="android-designer2" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="769">
+              <caret line="53" column="42" selection-start-line="53" selection-start-column="42" selection-end-line="53" selection-end-column="42" />
+              <folding>
+                <element signature="e#831#858#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -123,14 +116,13 @@
         <option value="Interface" />
         <option value="layoutResourceFile" />
         <option value="Class" />
-        <option value="resourceFile" />
         <option value="layoutResourceFile_vertical" />
+        <option value="resourceFile" />
       </list>
     </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>vi</find>
       <find>showProductFoundMessage</find>
       <find>mFirebaseUI</find>
       <find>mUpcProductName</find>
@@ -160,6 +152,7 @@
       <find>mealFab</find>
       <find>main</find>
       <find>RECIPE_EXTRA_KEY_DETAIL</find>
+      <find>mInfoButton</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -176,7 +169,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/src/main/java/com/mytechideas/bodytracker/retrofit/edemam/NA_.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/mytechideas/bodytracker/retrofit/edemam/NIA.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/mytechideas/bodytracker/retrofit/edemam/NIA_.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/mytechideas/bodytracker/retrofit/edemam/P.java" />
@@ -223,10 +215,11 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/item_ingredient.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/drawable/scrim.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_recipe_detail_extra_info.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_recipe_detail.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/transition/fade_transition.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/mytechideas/bodytracker/activities/recipedetail/RecipeDetailActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_recipe_detail_scene_a.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_recipe_detail_scene_b.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_recipe_detail.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/mytechideas/bodytracker/activities/recipedetail/RecipeDetailActivity.java" />
       </list>
     </option>
   </component>
@@ -296,7 +289,7 @@
               <item name="Capstone-Project" type="1abcf292:AndroidViewProjectNode" />
               <item name="app" type="feadf853:AndroidModuleNode" />
               <item name="res" type="d4f16f75:AndroidResFolderNode" />
-              <item name="drawable" type="ddeffd01:AndroidResFolderTypeNode" />
+              <item name="transition" type="ddeffd01:AndroidResFolderTypeNode" />
             </path>
             <path>
               <item name="Capstone-Project" type="1abcf292:AndroidViewProjectNode" />
@@ -579,7 +572,21 @@
       <option name="project" value="LOCAL" />
       <updated>1566760676133</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="feat:DetailsActivity transition on going for details">
+      <created>1566779973501</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1566779973501</updated>
+    </task>
+    <task id="LOCAL-00008" summary="feat: transition restored values from pieChart and recyclerview">
+      <created>1566784413568</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1566784413568</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TodoView">
@@ -593,6 +600,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49775785" visible="true" weight="0.2358643" />
       <window_info id="Resources Explorer" order="1" weight="0.32956383" />
@@ -603,10 +611,10 @@
       <window_info id="Image Layers" order="6" />
       <window_info id="Designer" order="7" />
       <window_info id="Capture Tool" order="8" />
-      <window_info anchor="bottom" id="Run" order="0" weight="0.3916533" />
-      <window_info anchor="bottom" id="Logcat" order="1" weight="0.3109589" />
+      <window_info anchor="bottom" id="Run" order="0" visible="true" weight="0.39041096" />
+      <window_info anchor="bottom" id="Logcat" order="1" weight="0.17123288" />
       <window_info anchor="bottom" id="TODO" order="2" weight="0.32465753" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.25342464" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.2" />
       <window_info anchor="bottom" id="Terminal" order="4" weight="0.32792208" />
       <window_info anchor="bottom" id="Event Log" order="5" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="6" weight="0.33009708" />
@@ -657,7 +665,9 @@
     <MESSAGE value="refactor: Nutrients to Parcelable v2" />
     <MESSAGE value="feat:dialog for recipe query parameter" />
     <MESSAGE value="feat:DetailsActivity started" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat:DetailsActivity started" />
+    <MESSAGE value="feat:DetailsActivity transition on going for details" />
+    <MESSAGE value="feat: transition restored values from pieChart and recyclerview" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: transition restored values from pieChart and recyclerview" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -741,28 +751,16 @@
           <option name="timeStamp" value="59" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/mytechideas/bodytracker/activities/meals/MealsGridActivity.java</url>
-          <line>95</line>
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/mytechideas/bodytracker/activities/recipedetail/RecipeDetailActivity.java</url>
+          <line>158</line>
           <properties />
-          <option name="timeStamp" value="62" />
+          <option name="timeStamp" value="71" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/mytechideas/bodytracker/activities/recipedetail/RecipeDetailActivity.java</url>
-          <line>196</line>
+          <line>131</line>
           <properties />
-          <option name="timeStamp" value="65" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/mytechideas/bodytracker/activities/recipedetail/RecipeDetailActivity.java</url>
-          <line>147</line>
-          <properties />
-          <option name="timeStamp" value="67" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/mytechideas/bodytracker/activities/recipedetail/RecipeDetailActivity.java</url>
-          <line>87</line>
-          <properties />
-          <option name="timeStamp" value="68" />
+          <option name="timeStamp" value="73" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -782,20 +780,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mytechideas/bodytracker/retrofit/edemam/RIBF_.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="49">
-          <caret line="52" column="4" lean-forward="true" selection-start-line="52" selection-start-column="4" selection-end-line="85" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mytechideas/bodytracker/retrofit/edemam/Sub.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mytechideas/bodytracker/retrofit/edemam/SUGAR.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="49">
@@ -1116,42 +1100,6 @@
     <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/ic_cancel.xml">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_recipe_detail_scene_a.xml">
-      <provider editor-type-id="android-designer2" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="338">
-          <caret line="50" column="46" lean-forward="true" selection-start-line="50" selection-start-column="46" selection-end-line="50" selection-end-column="46" />
-          <folding>
-            <element signature="e#6666#6693#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_recipe_detail_scene_b.xml">
-      <provider editor-type-id="android-designer2" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="8" column="34" selection-start-line="8" selection-start-column="34" selection-end-line="8" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_recipe_detail.xml">
-      <provider editor-type-id="android-designer2" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="167">
-          <caret line="69" column="51" selection-start-line="69" selection-start-column="51" selection-end-line="69" selection-end-column="51" />
-          <folding>
-            <element signature="e#411#2062#0" />
-            <element signature="e#3447#3491#0" expanded="true" />
-            <element signature="e#4674#4703#0" expanded="true" />
-            <element signature="e#5724#5754#0" expanded="true" />
-            <element signature="e#6912#6940#0" expanded="true" />
-            <element signature="e#8009#8041#0" expanded="true" />
-            <element signature="e#9241#9267#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mytechideas/bodytracker/retrofit/edemam/TotalNutrients.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="88">
@@ -1162,23 +1110,65 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mytechideas/bodytracker/activities/meals/MealsGridActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/build/generated/source/apt/debug/com/mytechideas/bodytracker/activities/recipedetail/RecipeDetailActivity_ViewBinding.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="59">
+          <caret line="37" selection-start-line="37" selection-end-line="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/transition/fade_transition.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="67" selection-start-line="1" selection-start-column="67" selection-end-line="1" selection-end-column="67" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mytechideas/bodytracker/activities/meals/MealsGridActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="94">
           <caret line="95" selection-start-line="95" selection-end-line="95" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_recipe_detail_scene_a.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="769">
+          <caret line="53" column="42" selection-start-line="53" selection-start-column="42" selection-end-line="53" selection-end-column="42" />
+          <folding>
+            <element signature="e#831#858#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_recipe_detail.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1052">
+          <caret line="202" column="58" selection-start-line="202" selection-start-column="58" selection-end-line="202" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_recipe_detail_scene_b.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="30" column="43" lean-forward="true" selection-start-line="30" selection-start-column="43" selection-end-line="30" selection-end-column="43" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mytechideas/bodytracker/activities/recipedetail/RecipeDetailActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="233">
-          <caret line="147" selection-start-line="147" selection-end-line="147" />
+        <state relative-caret-position="171">
+          <caret line="153" column="59" selection-start-line="153" selection-start-column="59" selection-end-line="153" selection-end-column="59" />
           <folding>
-            <element signature="e#3057#3058#0" expanded="true" />
-            <element signature="e#3102#3103#0" expanded="true" />
             <element signature="class#2138:2290" />
             <element signature="e#2008#2055#0" />
+            <element signature="method#setAdapterWithRecyclerSceneA#0;class#RecipeDetailActivity#0" />
+            <element signature="method#setMInfoButton#0;class#RecipeDetailActivity#0" />
             <element signature="method#setPieChart#0;class#RecipeDetailActivity#0" />
+            <element signature="method#onClick#0;class#RecipeDetailActivity#0" />
           </folding>
         </state>
       </provider>

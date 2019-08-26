@@ -48,10 +48,10 @@
 
         <com.github.mikephil.charting.charts.PieChart
             android:id="@+id/pieChart"
-            android:layout_width="316dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="251dp"
             android:layout_height="251dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/recycler_ingredients"
             app:layout_constraintHorizontal_bias="0.0"
