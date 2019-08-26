@@ -6,7 +6,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.transition.Scene;
 import androidx.transition.Transition;
+import androidx.transition.TransitionInflater;
 import androidx.transition.TransitionManager;
+import androidx.transition.TransitionValues;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -34,14 +36,11 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class RecipeDetailActivity extends AppCompatActivity {
+public class RecipeDetailActivity extends AppCompatActivity  implements View.OnClickListener{
 
 
     private CollapsingToolbarLayout collapsingToolbarLayout;
     private ImageView mRecipeImageToolbar;
-
-    @BindView(R.id.recycler_ingredients)
-    RecyclerView mRecyclerIngredients;
 
     @BindView(R.id.servings_value)
     TextView mServings;
@@ -56,9 +55,7 @@ public class RecipeDetailActivity extends AppCompatActivity {
     @BindView(R.id.pieChart)
     PieChart pieChart;
 
-    @BindView(R.id.additional_info)
-    ImageView mInfoButton;
-
+    private RecyclerView mRecyclerIngredients;
     private IngredientsAdapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
     private Recipe recipe;
@@ -76,33 +73,6 @@ public class RecipeDetailActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         collapsingToolbarLayout=((CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar_layout));
         mRecipeImageToolbar= collapsingToolbarLayout.findViewById(R.id.image_recipe);
-
-        getWindow().getSharedElementEnterTransition().addListener(new android.transition.Transition.TransitionListener() {
-            @Override
-            public void onTransitionStart(android.transition.Transition transition) {
-
-            }
-
-            @Override
-            public void onTransitionEnd(android.transition.Transition transition) {
-                setPieChart();
-            }
-
-            @Override
-            public void onTransitionCancel(android.transition.Transition transition) {
-
-            }
-
-            @Override
-            public void onTransitionPause(android.transition.Transition transition) {
-
-            }
-
-            @Override
-            public void onTransitionResume(android.transition.Transition transition) {
-
-            }
-        });
         Intent intent =getIntent();
         if(intent!=null && intent.hasExtra(MealsGridActivity.RECIPE_EXTRA_KEY_DETAIL)) {
             recipe = intent.getParcelableExtra(MealsGridActivity.RECIPE_EXTRA_KEY_DETAIL);
@@ -131,9 +101,18 @@ public class RecipeDetailActivity extends AppCompatActivity {
                 mServingCalories.setText(mCaloriesPerServing.toString());
             }
             setPieChart();
+            setAdapterWithRecyclerSceneA();
+            Transition fadeTransition = setTransition();
+            setMInfoButton(fadeTransition);
 
+        }
+    }
+
+    private void setAdapterWithRecyclerSceneA() {
+
+        if (scene.equals("A")) {
+            mRecyclerIngredients = (RecyclerView) findViewById(R.id.recycler_ingredients);
             mRecyclerIngredients.setHasFixedSize(true);
-
             // use a linear layout manager
             layoutManager = new LinearLayoutManager(this);
             mRecyclerIngredients.setLayoutManager(layoutManager);
@@ -141,73 +120,81 @@ public class RecipeDetailActivity extends AppCompatActivity {
             // specify an adapter (see also next example)
             mAdapter = new IngredientsAdapter(recipe.getIngredientLines());
             mRecyclerIngredients.setAdapter(mAdapter);
-
-            mInfoButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if(scene.equals("A")) {
-                        scene = "B";
-                        TransitionManager.go(
-                                Scene.getSceneForLayout(
-                                        (ViewGroup) findViewById(R.id.scene),
-                                        R.layout.activity_recipe_detail_scene_b,
-                                        RecipeDetailActivity.this
-                                )
-                        );
-                    }
-                    else {
-                        scene = "A";
-                        TransitionManager.go(
-                                Scene.getSceneForLayout(
-                                        (ViewGroup) findViewById(R.id.scene),
-                                        R.layout.activity_recipe_detail_scene_a,
-                                        RecipeDetailActivity.this
-                                )
-                        );
-                    }
-
-
-
-
-                }
-            });
-
-
         }
+    }
 
+    private Transition setTransition() {
+        Transition fadeTransition = TransitionInflater.from(RecipeDetailActivity.this)
+                .inflateTransition(R.transition.fade_transition);
+        Transition.TransitionListener listener= new Transition.TransitionListener() {
+            @Override
+            public void onTransitionStart(@NonNull Transition transition) {
+                if (scene.equals("A"))
+                    scene="B";
+                else
+                    scene="A";
+            }
+            @Override
+            public void onTransitionEnd(@NonNull Transition transition) {
+                setPieChart();
+                setMInfoButton(fadeTransition);
+                setAdapterWithRecyclerSceneA();
+            }
+            @Override
+            public void onTransitionCancel(@NonNull Transition transition) { }
+            @Override
+            public void onTransitionPause(@NonNull Transition transition) { }
+            @Override
+            public void onTransitionResume(@NonNull Transition transition) { }
+        };
+        fadeTransition.addListener(listener);
+        return fadeTransition;
+    }
 
-
+    private void setMInfoButton(Transition fadeTransition) {
+        ImageView mInfoButton= (ImageView)findViewById (R.id.additional_info);
+        View.OnClickListener listener = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (scene.equals("A")) {
+                    TransitionManager.go(
+                            Scene.getSceneForLayout(
+                                    (ViewGroup) findViewById(R.id.scene),
+                                    R.layout.activity_recipe_detail_scene_b,
+                                    RecipeDetailActivity.this
+                            ), fadeTransition
+                    );
+                    mInfoButton.setOnClickListener(null);
+                } else {
+                    TransitionManager.go(
+                            Scene.getSceneForLayout(
+                                    (ViewGroup) findViewById(R.id.scene),
+                                    R.layout.activity_recipe_detail_scene_a,
+                                    RecipeDetailActivity.this
+                            ), fadeTransition
+                    );
+                    mInfoButton.setOnClickListener(null);
+                }
+            }
+        };
+        mInfoButton.setOnClickListener(listener);
     }
 
     private void setPieChart() {
-        if (scene.equals("A")) {
+            PieChart pieChart=(PieChart)findViewById(R.id.pieChart);
             List<PieEntry> entries = new ArrayList<>();
-
             entries.add(new PieEntry(recipe.getTotalNutrients().getCHOCDF().getQuantity().floatValue(), "Carbs"));
             entries.add(new PieEntry(recipe.getTotalNutrients().getFAT().getQuantity().floatValue(), "Fats"));
             entries.add(new PieEntry(recipe.getTotalNutrients().getPROCNT().getQuantity().floatValue(), "Protein"));
-
             PieDataSet set = new PieDataSet(entries, "Macro-nutrients summary");
             set.setColors(colorArray, this);
             PieData data = new PieData(set);
             pieChart.setData(data);
             pieChart.invalidate();
-        }
-        else {
-            PieChart pieChart2=(PieChart)findViewById(R.id.pieChart2);
-
-            List<PieEntry> entries = new ArrayList<>();
-
-            entries.add(new PieEntry(recipe.getTotalNutrients().getCHOCDF().getQuantity().floatValue(), "Carbs"));
-            entries.add(new PieEntry(recipe.getTotalNutrients().getFAT().getQuantity().floatValue(), "Fats"));
-            entries.add(new PieEntry(recipe.getTotalNutrients().getPROCNT().getQuantity().floatValue(), "Protein"));
-
-            PieDataSet set = new PieDataSet(entries, "Macro-nutrients summary");
-            set.setColors(colorArray, this);
-            PieData data = new PieData(set);
-            pieChart2.setData(data);
-            pieChart2.invalidate();
-        }
     }
 
+    @Override
+    public void onClick(View view) {
+
+    }
 }
