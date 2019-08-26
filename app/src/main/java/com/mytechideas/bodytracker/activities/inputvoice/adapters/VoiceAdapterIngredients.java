@@ -34,7 +34,7 @@ public class VoiceAdapterIngredients extends RecyclerView.Adapter<VoiceAdapterIn
     public VoiceItemHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         // create a new view
         View v =LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_voice_ingredient, parent, false);
+                .inflate(R.layout.item_ingredient, parent, false);
         VoiceItemHolder vh = new VoiceItemHolder(v);
         return vh;
     }

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/root"
     tools:context=".activities.recipedetail.RecipeDetailActivity">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -21,13 +22,22 @@
             app:expandedTitleMarginStart="72dp"
             app:contentScrim="?attr/colorPrimary"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
-
-            <ImageView
-                android:id="@+id/image_recipe"
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:layout_collapseMode="parallax"
-                android:scaleType="centerCrop" />
+                android:layout_height="match_parent">
+                <ImageView
+                    android:id="@+id/image_recipe"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layout_collapseMode="parallax"
+                    android:scaleType="centerCrop" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/scrim"/>
+
+            </FrameLayout>
 
 
             <androidx.appcompat.widget.Toolbar
@@ -46,171 +56,152 @@
     </com.google.android.material.appbar.AppBarLayout>
 
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="1080dp">
+            android:orientation="vertical"
+            android:layout_height="match_parent">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-            <Button
-                android:id="@+id/go_to_instructions_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:background="@drawable/button_selector"
-                android:paddingLeft="16dp"
-                android:paddingRight="16dp"
-                android:text="@string/go_to_instructions_text_for_button"
-                android:textColor="@color/white"
-                app:layout_constraintEnd_toStartOf="@+id/guideline2"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/cooking_time_label"
-                app:layout_constraintTop_toBottomOf="@+id/cooking_time_label" />
+                <Button
+                    android:id="@+id/go_to_instructions_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/button_selector"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    android:text="@string/go_to_instructions_text_for_button"
+                    android:textColor="@color/white"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline2"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/cooking_time_label"
+                    app:layout_constraintTop_toBottomOf="@+id/cooking_time_label" />
 
-            <Switch
-                android:id="@+id/add_to_favorites_state"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                app:layout_constraintBottom_toBottomOf="@+id/favorites_label"
-                app:layout_constraintStart_toEndOf="@+id/favorites_label"
-                app:layout_constraintTop_toTopOf="@+id/favorites_label" />
-
-
-            <TextView
-                android:id="@+id/servings_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:text="@string/servings_text_label"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/servings_value"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:text="--"
-                app:layout_constraintBottom_toBottomOf="@+id/servings_label"
-                app:layout_constraintEnd_toStartOf="@+id/guideline2"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@+id/servings_label"
-                app:layout_constraintTop_toTopOf="@+id/servings_label" />
-
-            <TextView
-                android:id="@+id/total_calories_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/total_calories_label"
-                app:layout_constraintStart_toStartOf="@+id/guideline2"
-                app:layout_constraintTop_toTopOf="@+id/servings_label" />
-
-            <TextView
-                android:id="@+id/total_calories_value"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:text="--"
-                app:layout_constraintBottom_toBottomOf="@+id/total_calories_label"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@+id/total_calories_label"
-                app:layout_constraintTop_toTopOf="@+id/total_calories_label" />
-
-            <TextView
-                android:id="@+id/cooking_time_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="@string/cooking_time_label"
-                app:layout_constraintStart_toStartOf="@+id/servings_label"
-                app:layout_constraintTop_toBottomOf="@+id/servings_label" />
-
-            <TextView
-                android:id="@+id/cooking_time_value"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:text="--"
-                app:layout_constraintBottom_toBottomOf="@+id/cooking_time_label"
-                app:layout_constraintEnd_toStartOf="@+id/guideline2"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@+id/cooking_time_label"
-                app:layout_constraintTop_toTopOf="@+id/cooking_time_label" />
+                <Switch
+                    android:id="@+id/add_to_favorites_state"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/favorites_label"
+                    app:layout_constraintStart_toEndOf="@+id/favorites_label"
+                    app:layout_constraintTop_toTopOf="@+id/favorites_label" />
 
 
-            <TextView
-                android:id="@+id/serving_calories_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/serving_calories_label"
-                app:layout_constraintBottom_toBottomOf="@+id/cooking_time_label"
-                app:layout_constraintStart_toStartOf="@+id/guideline2"
-                app:layout_constraintTop_toTopOf="@+id/cooking_time_label" />
+                <TextView
+                    android:id="@+id/servings_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/servings_text_label"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/serving_calories_value"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:text="--"
-                app:layout_constraintBottom_toBottomOf="@+id/serving_calories_label"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@+id/serving_calories_label"
-                app:layout_constraintTop_toTopOf="@+id/serving_calories_label" />
+                <TextView
+                    android:id="@+id/servings_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:text="--"
+                    app:layout_constraintBottom_toBottomOf="@+id/servings_label"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline2"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toEndOf="@+id/servings_label"
+                    app:layout_constraintTop_toTopOf="@+id/servings_label" />
 
-            <TextView
-                android:id="@+id/ingredients_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="@string/ingredients_label"
-                app:layout_constraintStart_toStartOf="@+id/cooking_time_label"
-                app:layout_constraintTop_toBottomOf="@+id/go_to_instructions_button" />
+                <TextView
+                    android:id="@+id/total_calories_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/total_calories_label"
+                    app:layout_constraintStart_toStartOf="@+id/guideline2"
+                    app:layout_constraintTop_toTopOf="@+id/servings_label" />
 
-            <TextView
-                android:id="@+id/favorites_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/mark_as_favorite"
-                app:layout_constraintBottom_toBottomOf="@+id/go_to_instructions_button"
-                app:layout_constraintStart_toStartOf="@+id/guideline2"
-                app:layout_constraintTop_toTopOf="@+id/go_to_instructions_button" />
+                <TextView
+                    android:id="@+id/total_calories_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="--"
+                    app:layout_constraintBottom_toBottomOf="@+id/total_calories_label"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toEndOf="@+id/total_calories_label"
+                    app:layout_constraintTop_toTopOf="@+id/total_calories_label" />
 
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.5" />
+                <TextView
+                    android:id="@+id/cooking_time_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/cooking_time_label"
+                    app:layout_constraintStart_toStartOf="@+id/servings_label"
+                    app:layout_constraintTop_toBottomOf="@+id/servings_label" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycler_ingredients"
-                android:layout_width="0dp"
-                android:layout_height="200dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/guideline2"
-                app:layout_constraintStart_toStartOf="@+id/ingredients_label"
-                app:layout_constraintTop_toBottomOf="@+id/ingredients_label" />
+                <TextView
+                    android:id="@+id/cooking_time_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:text="--"
+                    app:layout_constraintBottom_toBottomOf="@+id/cooking_time_label"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline2"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toEndOf="@+id/cooking_time_label"
+                    app:layout_constraintTop_toTopOf="@+id/cooking_time_label" />
 
-            <com.github.mikephil.charting.charts.PieChart
-                android:id="@+id/pieChart"
-                android:layout_width="0dp"
-                android:layout_height="200dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/guideline2"
-                app:layout_constraintTop_toBottomOf="@+id/ingredients_label" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </ScrollView>
+                <TextView
+                    android:id="@+id/serving_calories_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/serving_calories_label"
+                    app:layout_constraintBottom_toBottomOf="@+id/cooking_time_label"
+                    app:layout_constraintStart_toStartOf="@+id/guideline2"
+                    app:layout_constraintTop_toTopOf="@+id/cooking_time_label" />
+
+                <TextView
+                    android:id="@+id/serving_calories_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="--"
+                    app:layout_constraintBottom_toBottomOf="@+id/serving_calories_label"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toEndOf="@+id/serving_calories_label"
+                    app:layout_constraintTop_toTopOf="@+id/serving_calories_label" />
+
+                <TextView
+                    android:id="@+id/favorites_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/mark_as_favorite"
+                    app:layout_constraintBottom_toBottomOf="@+id/go_to_instructions_button"
+                    app:layout_constraintStart_toStartOf="@+id/guideline2"
+                    app:layout_constraintTop_toTopOf="@+id/go_to_instructions_button" />
+
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.5" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <include
+                android:id="@+id/scene"
+                layout="@layout/activity_recipe_detail_scene_a"/>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -1,12 +1,18 @@
 package com.mytechideas.bodytracker.activities.recipedetail;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.transition.Scene;
+import androidx.transition.Transition;
+import androidx.transition.TransitionManager;
 
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -18,10 +24,9 @@ import com.github.mikephil.charting.data.PieEntry;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.mytechideas.bodytracker.R;
 import com.mytechideas.bodytracker.activities.meals.MealsGridActivity;
+import com.mytechideas.bodytracker.activities.recipedetail.adapter.IngredientsAdapter;
 import com.mytechideas.bodytracker.retrofit.edemam.Recipe;
 import com.squareup.picasso.Picasso;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,7 +55,17 @@ public class RecipeDetailActivity extends AppCompatActivity {
     Button mGoToInstructions;
     @BindView(R.id.pieChart)
     PieChart pieChart;
+
+    @BindView(R.id.additional_info)
+    ImageView mInfoButton;
+
+    private IngredientsAdapter mAdapter;
+    private RecyclerView.LayoutManager layoutManager;
     private Recipe recipe;
+
+    private String scene="A";
+
+
 
     private int[] colorArray=new int[] {R.color.carbs,R.color.fats,R.color.protein};
 
@@ -62,6 +77,32 @@ public class RecipeDetailActivity extends AppCompatActivity {
         collapsingToolbarLayout=((CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar_layout));
         mRecipeImageToolbar= collapsingToolbarLayout.findViewById(R.id.image_recipe);
 
+        getWindow().getSharedElementEnterTransition().addListener(new android.transition.Transition.TransitionListener() {
+            @Override
+            public void onTransitionStart(android.transition.Transition transition) {
+
+            }
+
+            @Override
+            public void onTransitionEnd(android.transition.Transition transition) {
+                setPieChart();
+            }
+
+            @Override
+            public void onTransitionCancel(android.transition.Transition transition) {
+
+            }
+
+            @Override
+            public void onTransitionPause(android.transition.Transition transition) {
+
+            }
+
+            @Override
+            public void onTransitionResume(android.transition.Transition transition) {
+
+            }
+        });
         Intent intent =getIntent();
         if(intent!=null && intent.hasExtra(MealsGridActivity.RECIPE_EXTRA_KEY_DETAIL)) {
             recipe = intent.getParcelableExtra(MealsGridActivity.RECIPE_EXTRA_KEY_DETAIL);
@@ -91,6 +132,46 @@ public class RecipeDetailActivity extends AppCompatActivity {
             }
             setPieChart();
 
+            mRecyclerIngredients.setHasFixedSize(true);
+
+            // use a linear layout manager
+            layoutManager = new LinearLayoutManager(this);
+            mRecyclerIngredients.setLayoutManager(layoutManager);
+
+            // specify an adapter (see also next example)
+            mAdapter = new IngredientsAdapter(recipe.getIngredientLines());
+            mRecyclerIngredients.setAdapter(mAdapter);
+
+            mInfoButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(scene.equals("A")) {
+                        scene = "B";
+                        TransitionManager.go(
+                                Scene.getSceneForLayout(
+                                        (ViewGroup) findViewById(R.id.scene),
+                                        R.layout.activity_recipe_detail_scene_b,
+                                        RecipeDetailActivity.this
+                                )
+                        );
+                    }
+                    else {
+                        scene = "A";
+                        TransitionManager.go(
+                                Scene.getSceneForLayout(
+                                        (ViewGroup) findViewById(R.id.scene),
+                                        R.layout.activity_recipe_detail_scene_a,
+                                        RecipeDetailActivity.this
+                                )
+                        );
+                    }
+
+
+
+
+                }
+            });
+
 
         }
 
@@ -99,16 +180,34 @@ public class RecipeDetailActivity extends AppCompatActivity {
     }
 
     private void setPieChart() {
-        List<PieEntry> entries = new ArrayList<>();
+        if (scene.equals("A")) {
+            List<PieEntry> entries = new ArrayList<>();
 
-        entries.add(new PieEntry(recipe.getTotalNutrients().getCHOCDF().getQuantity().floatValue(), "Carbs"));
-        entries.add(new PieEntry(recipe.getTotalNutrients().getFAT().getQuantity().floatValue(), "Fats"));
-        entries.add(new PieEntry(recipe.getTotalNutrients().getPROCNT().getQuantity().floatValue(), "Protein"));
+            entries.add(new PieEntry(recipe.getTotalNutrients().getCHOCDF().getQuantity().floatValue(), "Carbs"));
+            entries.add(new PieEntry(recipe.getTotalNutrients().getFAT().getQuantity().floatValue(), "Fats"));
+            entries.add(new PieEntry(recipe.getTotalNutrients().getPROCNT().getQuantity().floatValue(), "Protein"));
 
-        PieDataSet set = new PieDataSet(entries, "Macro-nutrients summary");
-        set.setColors(colorArray,this);
-        PieData data = new PieData(set);
-        pieChart.setData(data);
-        pieChart.invalidate();
+            PieDataSet set = new PieDataSet(entries, "Macro-nutrients summary");
+            set.setColors(colorArray, this);
+            PieData data = new PieData(set);
+            pieChart.setData(data);
+            pieChart.invalidate();
+        }
+        else {
+            PieChart pieChart2=(PieChart)findViewById(R.id.pieChart2);
+
+            List<PieEntry> entries = new ArrayList<>();
+
+            entries.add(new PieEntry(recipe.getTotalNutrients().getCHOCDF().getQuantity().floatValue(), "Carbs"));
+            entries.add(new PieEntry(recipe.getTotalNutrients().getFAT().getQuantity().floatValue(), "Fats"));
+            entries.add(new PieEntry(recipe.getTotalNutrients().getPROCNT().getQuantity().floatValue(), "Protein"));
+
+            PieDataSet set = new PieDataSet(entries, "Macro-nutrients summary");
+            set.setColors(colorArray, this);
+            PieData data = new PieData(set);
+            pieChart2.setData(data);
+            pieChart2.invalidate();
+        }
     }
+
 }
