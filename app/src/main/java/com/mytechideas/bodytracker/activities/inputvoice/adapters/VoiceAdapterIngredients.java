@@ -54,6 +54,8 @@ public class VoiceAdapterIngredients extends RecyclerView.Adapter<RecyclerView.V
     public VoiceAdapterIngredients(List<String> myDataset, AddButton addButton) {
         mDataset = myDataset;
         mAddButton=addButton;
+        mDataset.add("burger");
+        mDataset.add("soda");
     }
 
     @NonNull
@@ -84,7 +86,7 @@ public class VoiceAdapterIngredients extends RecyclerView.Adapter<RecyclerView.V
 
     @Override
     public int getItemViewType(int position) {
-        if (position == mDataset.size()) {
+        if (position ==0) {
             return ADD_BUTTON;
         } else {
             return ITEM_LIST;
@@ -95,11 +97,12 @@ public class VoiceAdapterIngredients extends RecyclerView.Adapter<RecyclerView.V
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
 
         switch (holder.getItemViewType()) {
+
             case ADD_BUTTON: {
                 break;
             }
             case ITEM_LIST: {
-                ((VoiceItemHolder)holder).textView.setText(mDataset.get(position));
+                ((VoiceItemHolder)holder).textView.setText(mDataset.get(position-1));
                 break;
             }
             default:
