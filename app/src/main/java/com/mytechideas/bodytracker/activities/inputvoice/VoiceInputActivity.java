@@ -1,5 +1,6 @@
 package com.mytechideas.bodytracker.activities.inputvoice;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.preference.PreferenceManager;
@@ -47,14 +48,17 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class VoiceInputActivity extends AppCompatActivity {
+import static com.mytechideas.bodytracker.activities.inputvoice.adapters.VoiceAdapterIngredients.ADD_BUTTON;
+import static com.mytechideas.bodytracker.activities.inputvoice.adapters.VoiceAdapterIngredients.ITEM_LIST;
+
+public class VoiceInputActivity extends AppCompatActivity  implements VoiceAdapterIngredients.AddButton{
 
     private static final String TAG = VoiceInputActivity.class.getSimpleName();
     private static final int SPEECH_REQUEST_CODE = 0;
     @BindView(R.id.fab_calculate)
     FloatingActionButton mFabCalculate;
-    @BindView(R.id.fab_insert)
-    FloatingActionButton mFabInsert;
+    //@BindView(R.id.fab_insert)
+    //FloatingActionButton mFabInsert;
 
     private List<String> ingredients = new ArrayList<>();
 
@@ -97,18 +101,18 @@ public class VoiceInputActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
 
         // specify an adapter (see also next example)
-        mAdapter = new VoiceAdapterIngredients(ingredients);
+        mAdapter = new VoiceAdapterIngredients(ingredients,this);
         recyclerView.setAdapter(mAdapter);
 
         attachItemTouchHelper();
         NutritionixService service = RetrofitNutritionixInstance.getNutritionixService();
 
-        mFabInsert.setOnClickListener(new View.OnClickListener() {
+        /*mFabInsert.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 displaySpeechRecognizer();
             }
-        });
+        });*/
 
 
         mFabCalculate.setOnClickListener(new View.OnClickListener() {
@@ -179,11 +183,31 @@ public class VoiceInputActivity extends AppCompatActivity {
             @Override
             public void onSwiped(RecyclerView.ViewHolder viewHolder, int swipeDir) {
 
-                int id= viewHolder.getAdapterPosition();
-                Toast.makeText(VoiceInputActivity.this,"num:"+id,Toast.LENGTH_SHORT).show();
-                mAdapter.deleteItem(id);
-                mAdapter.notifyDataSetChanged();
+                switch (viewHolder.getItemViewType()){
+                    case ADD_BUTTON: {
 
+                        break;
+                    }
+                    case ITEM_LIST: {
+                        int id= viewHolder.getAdapterPosition();
+                        Toast.makeText(VoiceInputActivity.this,"num:"+id,Toast.LENGTH_SHORT).show();
+                        mAdapter.deleteItem(id);
+                        mAdapter.notifyDataSetChanged();
+                        break;
+                    }
+                    default:
+                        throw new IllegalArgumentException("Invalid view type, value of " + viewHolder.getItemViewType());
+                }
+
+
+            }
+
+            @Override
+            public int getSwipeDirs(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder) {
+                if(viewHolder.getItemViewType()==ADD_BUTTON)
+                    return 0;
+                else
+                    return super.getSwipeDirs(recyclerView, viewHolder);
             }
         }).attachToRecyclerView(recyclerView);
     }
@@ -237,5 +261,10 @@ public class VoiceInputActivity extends AppCompatActivity {
             }
         });
         mySnackbar.show();
+    }
+
+    @Override
+    public void onClickAddButton() {
+        displaySpeechRecognizer();
     }
 }

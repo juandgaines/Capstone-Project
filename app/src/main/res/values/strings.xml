@@ -91,6 +91,7 @@
     <string name="mark_as_favorite">Add to favorites</string>
     <string name="ingredients_label">Ingredients</string>
     <string name="go_to_instructions_text_for_button">Go to instructions</string>
+    <string name="add">Add</string>
 
 
     <string-array name="gender_array">
